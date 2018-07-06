@@ -1,12 +1,8 @@
+import gym
+import gym.spaces
 
-import sys
+env = gym.make('CartPole-v0')
+env.reset()
 
-tx=0
-
-ty='ss'
-
-
-
-
-
-print(tx)
+for _ in range(1000):
+    env.render()
