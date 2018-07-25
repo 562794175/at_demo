@@ -36,7 +36,7 @@ print('dt len:',len(dt))
 #获取其他特征
 socket.send_getdata_volume()
 vol = socket.pull_getdata()
-while dt==None:
+while vol==None:
     socket.send_getdata_volume()
     vol = socket.pull_getdata()
 
@@ -52,7 +52,7 @@ dt= dt.dropna()
 
 t=.8
 t = int(t*len(dt[0]))
-X_ALL=dt[['S_3','S_VOL']]
+X_ALL=dt[['S_3','S_9','S_VOL']]
 Y_ALL=dt[0]
 # Train dataset
 X_train = X_ALL[:t]
@@ -68,6 +68,13 @@ print("Gold ETF Price =", np.round(linear.coef_[0],2), \
 
 #预测1
 predicted_price = linear.predict(X_test)
+
+#模型评价
+from sklearn import metrics
+print("MSE:",metrics.mean_squared_error(Y_test, predicted_price))
+print("RMSE:",np.sqrt(metrics.mean_squared_error(Y_test, predicted_price)))
+
+
 predicted_price = pd.DataFrame(predicted_price,index=Y_test.index,columns = ['price'])
 
 l2,=ax2.plot(predicted_price)
@@ -81,6 +88,8 @@ r2_score = linear.score(X_test,Y_test)*100
 print(float("{0:.2f}".format(r2_score)))
 
 plt.legend(['actual','predicted'])
+
+
 
 #实验数据
 while len(socket.s_bid)<len(socket.t):
