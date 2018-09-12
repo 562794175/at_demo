@@ -1,6 +1,9 @@
 <?php
 //https://www.cnblogs.com/lhbryant/p/6929275.html
 //http://www.w3school.com.cn/php/php_ref_mysqli.asp
+require_once("phpchartdir.php");
+
+
 $link = @mysqli_connect('localhost','root','123456');
 if (!$link) {
     exit('error('.mysqli_connect_errno().'):'.mysqli_connect_error());
