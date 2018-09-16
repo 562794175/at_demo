@@ -1,8 +1,6 @@
 <?php
-//https://www.cnblogs.com/lhbryant/p/6929275.html
-//http://www.w3school.com.cn/php/php_ref_mysqli.asp
 require_once("phpchartdir.php");
-
+require_once("function.php");
 
 $link = @mysqli_connect('localhost','root','');
 if (!$link) {
@@ -34,8 +32,19 @@ if ($result && mysqli_num_rows($result)) {
     $output_html="<table>";
     while ($row = mysqli_fetch_array($result,MYSQLI_NUM)) {
         $output_html.="<tr>";
+        $id=0;
+        $peroid=0;
+        $price_data="";
         foreach ($row as $key => $value) {
-            $output_html.="<td>".$value."</td>";
+            if($key==4) $output_html.="<td><img src='".show_price_png($id,$peroid,$value)."'><img src='".show_price_close_png($id,$peroid,$value)."'></td>";
+            else if($key==6) $output_html.="<td><img src='".show_obv_png($id,$peroid,$value)."'></td>";
+            else if($key==8) $output_html.="<td><img src='".show_price_bands_png($id,$peroid,$value,$price_data)."'><img src='".show_price_close_bands_png($id,$peroid,$value,$price_data)."'></td>";
+            else $output_html.="<td>".$value."</td>";
+            
+            if($key==0) $id=$value;
+            if($key==1) $peroid=$value;
+            if($key==4) $price_data=$value;
+            
         }
         $output_html.="</tr>";
     }

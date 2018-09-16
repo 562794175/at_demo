@@ -23,13 +23,13 @@ $closeData = array(1950, 1991, 2026, 2029, 2004, 2053, 2011, 1962, 1987, 2019, 2
 //    "Thu 25", "Fri 26", "Mon 29", "Tue 30", "Wed 31");
 
 # Create a XYChart object of size 600 x 350 pixels
-$c = new XYChart(600, 370);
+$c = new XYChart(600, 360);
 
 # Set the plotarea at (50, 25) and of size 500 x 250 pixels. Enable both the horizontal and vertical
 # grids by setting their colors to grey (0xc0c0c0)
 $plotAreaObj = $c->setPlotArea(0, 0, 600, 350);
 $plotAreaObj->setGridColor(Transparent, Transparent);
-
+$plotAreaObj->setBackground(Transparent, Transparent, Transparent);
 # Add a title to the chart
 //$c->addTitle("Universal Stock Index on Jan 2001");
 
@@ -62,8 +62,8 @@ $layer->setLineWidth(1);
 
 # Output the chart
 header("Content-type: image/png");
-print($c->makeChart2(PNG));
-
+//print($c->makeChart2(PNG));
+$c->makeChart2(PNG);
 
 $c->getDrawArea()->outPNG("d:\\tt.png");
 
