@@ -52,7 +52,7 @@ def playHapplyDemo():
 def playStep(happyDemo):
 	while True:
 		action0 = np.array([0,0,0,0,0,0,0,0])
-		at = np.random.randint(1, 7)
+		at = np.random.randint(0, 8)
 		action0[at]=1
 		observation0, reward0, terminal = happyDemo.frame_step(action0)
 
@@ -61,8 +61,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-
-
-
-
