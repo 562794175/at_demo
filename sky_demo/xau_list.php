@@ -59,18 +59,19 @@
             echo"<td>".$v[3]."</td>";
             //价格
             echo"<td>";
-            echo"<img src='".show_price_bands_png($v[0],$v[1],$v[8],$v[4])."'><img src='".show_price_close_bands_png($v[0],$v[1],$v[8],$v[4])."'>";
+            echo"<img src='".show_price_bands_png($v[0],$v[1],$v[8],$v[4])."'><img src='".show_price_close_bands_png($v[0],$v[1],$v[8],$v[4])."'><br>";
             echo"时长：";
             echo"幅度：";
             echo"状态：";
-            echo"斜率：";
+            echo"斜率：<br>";
+            echo"突破压力/支撑次数：";
+            echo"变分自编码器：";
             echo"</td>";
             //obv
             echo"<td>";
             echo"<img src='".show_obv_png($v[0],$v[1],$v[6])."'>";
             echo"";
             echo"</td>";
-            
             echo"<td></td>";
             echo"</tr>";
         }
