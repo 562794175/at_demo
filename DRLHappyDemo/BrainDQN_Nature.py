@@ -5,11 +5,11 @@ import random
 from collections import deque
 
 # Hyper Parameters:
-FRAME_PER_ACTION = 1
+FRAME_PER_ACTION = 2
 GAMMA = 0.99  # decay rate of past observations
-OBSERVE = 100.  # timesteps to observe before training
+OBSERVE = 1000.  # timesteps to observe before training
 EXPLORE = 200000.  # frames over which to anneal epsilon
-FINAL_EPSILON = 0  # 0.001 # final value of epsilon
+FINAL_EPSILON = 0.00  # 0.001 # final value of epsilon
 INITIAL_EPSILON = 0  # 0.01 # starting value of epsilon
 REPLAY_MEMORY = 50000  # number of previous transitions to remember
 BATCH_SIZE = 32  # size of minibatch
@@ -116,7 +116,7 @@ class BrainDQN:
 
         # Step 2: calculate y
         y_batch = []
-        QValue_batch = self.QValueT.eval(feed_dict={self.stateInputT: nextState_batch})
+        QValue_batch = self.QValueT.eval(session=self.session,feed_dict={self.stateInputT: nextState_batch})
         for i in range(0, BATCH_SIZE):
             terminal = minibatch[i][4]
             if terminal:
@@ -124,7 +124,7 @@ class BrainDQN:
             else:
                 y_batch.append(reward_batch[i] + GAMMA * np.max(QValue_batch[i]))
 
-        self.trainStep.run(feed_dict={
+        self.trainStep.run(session=self.session,feed_dict={
             self.yInput: y_batch,
             self.actionInput: action_batch,
             self.stateInput: state_batch
@@ -163,7 +163,7 @@ class BrainDQN:
         self.timeStep += 1
 
     def getAction(self):
-        QValue = self.QValue.eval(feed_dict={self.stateInput: [self.currentState]})[0]
+        QValue = self.QValue.eval(session=self.session,feed_dict={self.stateInput: [self.currentState]})[0]
         action = np.zeros(self.actions)
         action_index = 0
         if self.timeStep % FRAME_PER_ACTION == 0:

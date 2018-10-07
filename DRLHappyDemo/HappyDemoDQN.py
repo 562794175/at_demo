@@ -42,19 +42,33 @@ def playHapplyDemo():
 	happyDemo = game.GameState()
 
 	action0 = np.array([1,0,0,0,0,0,0,0])  # do nothing
+	#action0 = np.array([1, 0])  # do nothing
 	observation0, reward0, terminal = happyDemo.frame_step(action0)
+	observation0 = cv2.cvtColor(cv2.resize(observation0, (80, 80)), cv2.COLOR_BGR2GRAY)
+	ret, observation0 = cv2.threshold(observation0, 1, 255, cv2.THRESH_BINARY)
+	brain.setInitState(observation0)
 
-	t = threading.Thread(target=playStep,args=(happyDemo,))
+	t = threading.Thread(target=playStep,args=(happyDemo,brain,))
 	t.start()
 	happyDemo.show()
 	stop_thread(t)
 
-def playStep(happyDemo):
+def playStep(happyDemo,brain):
 	while True:
-		action0 = np.array([0,0,0,0,0,0,0,0])
-		at = np.random.randint(0, 8)
-		action0[at]=1
-		observation0, reward0, terminal = happyDemo.frame_step(action0)
+
+		# if happyDemo.getPointCount()==0:
+		# 	action = np.array([0,0,0,0,0,0,0,0])
+		# 	at = np.random.randint(0, 8)
+		# 	action[at]=1
+		#
+		# elif happyDemo.getPointCount() <= 10:
+		# 	action = brain.getAction()
+
+		action = brain.getAction()
+
+		nextObservation, reward, terminal = happyDemo.frame_step(action)
+		nextObservation = preprocess(nextObservation)
+		brain.setPerception(nextObservation, action, reward, terminal)
 
 def main():
 	playHapplyDemo()
