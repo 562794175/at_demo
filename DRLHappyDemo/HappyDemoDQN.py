@@ -36,12 +36,12 @@ def preprocess(observation):
 
 def playHapplyDemo():
 	# Step 1: init BrainDQN
-	actions = 8
+	actions = 4
 	brain = BrainDQN(actions)
 	# Step 2: init Flappy Bird Game
 	happyDemo = game.GameState()
 
-	action0 = np.array([1,0,0,0,0,0,0,0])  # do nothing
+	action0 = np.array([1,0,0,0])  # do nothing
 	#action0 = np.array([1, 0])  # do nothing
 	observation0, reward0, terminal = happyDemo.frame_step(action0)
 	observation0 = cv2.cvtColor(cv2.resize(observation0, (80, 80)), cv2.COLOR_BGR2GRAY)
