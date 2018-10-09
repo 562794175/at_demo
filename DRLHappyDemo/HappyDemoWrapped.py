@@ -65,8 +65,18 @@ class GameState:
         self.axes = self.figure.add_subplot(111)
         # self.axes.axis('off')
         self.range_start, self.range_end, self.range_step = 0, 1, 0.001
+
+
         t = np.arange(self.range_start, self.range_end, self.range_step)
         s = np.sin(4 * np.pi * t)
+        # random start pos
+        rs = round(random.randint(1,999)*0.001,3)
+        self.range_start += rs
+        self.range_end += rs
+        t = np.arange(self.range_start, self.range_end, self.range_step)
+        s = np.sin(4 * np.pi * t)
+
+
         self.l, = self.axes.plot(t, s, color='green')
         self.point_dict = {}
         # for x in dir(ts):
@@ -123,13 +133,11 @@ class GameState:
         return 0.1
 
     def actionCA(self,x,y):
-        r = -1
+        r = -0.1
         for i in self.axes.collections:
             pt = self.point_dict[i]
             if getattr(pt, 'action') == 'BO':
                 tr = ((y - self.reduc) - getattr(pt, 'y'))
-                #self.requestStatic('BO','CA', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr, getTime(), getattr(pt, 'open_time'))
-                #r += tr
                 if tr<0:
                     r = -1
                 else:
@@ -139,15 +147,13 @@ class GameState:
 
             if getattr(pt, 'action') == 'SO':
                 tr = (getattr(pt, 'y') - (y + self.reduc))
-                #self.requestStatic('SO','CA', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr, getTime(),getattr(pt, 'open_time'))
-                #r += tr
                 if tr<0:
                     r = -1
                 else:
                     r += tr
                 i.remove()
                 del self.point_dict[i]
-        return int(r*10)
+        return round(r,1)
 
 
     def action(self,input_actions,x,y):
@@ -205,15 +211,32 @@ class GameState:
 
         plt.pause(0.01)  # pause a bit so that plots are updated
 
+        isFinish=False
+        isReson=''
+
         # check if crash here
-        if reward < 0 or self.actNOCount>110 or self.checkCrash(xdata[-1],ydata[-1]):
+        if reward < 0:
+            isReson = ' / reward:'+str(reward)
+            isFinish=True
+
+        if self.actNOCount>110:
+            isReson += ' / actNOCount:' + str(self.actNOCount)
+            isFinish = True
+
+        if self.checkCrash(xdata[-1],ydata[-1]):
+            isReson += ' / checkCrash!'
+            isFinish = True
+
+
+        if isFinish:
             terminal = True
             plt.gcf().clf()
             self.init()
             reward = -1
+
         at = ','.join(str(i) for i in input_actions)
-        at = at.replace('.0','')
-        self.requestStatic("ACTION:"+str(at)+" / REWARD:"+str(reward))
+        at = at.replace('.0', '')
+        self.requestStatic("ACTION:" + str(at) + " / REWARD:" + str(reward) + isReson)
 
         return image_data, reward, terminal
 

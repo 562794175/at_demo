@@ -7,10 +7,10 @@ from collections import deque
 # Hyper Parameters:
 FRAME_PER_ACTION = 1
 GAMMA = 0.99  # decay rate of past observations
-OBSERVE = 1000.  # timesteps to observe before training
+OBSERVE = 100.  # timesteps to observe before training
 EXPLORE = 200000.  # frames over which to anneal epsilon
-FINAL_EPSILON = 0.00  # 0.001 # final value of epsilon
-INITIAL_EPSILON = 1  # 0.01 # starting value of epsilon
+FINAL_EPSILON = 0.001  # 0.001 # final value of epsilon
+INITIAL_EPSILON = 0.05  # 0.01 # starting value of epsilon
 REPLAY_MEMORY = 50000  # number of previous transitions to remember
 BATCH_SIZE = 32  # size of minibatch
 UPDATE_TIME = 100
@@ -178,7 +178,7 @@ class BrainDQN:
 
         # change episilon
         if self.epsilon > FINAL_EPSILON and self.timeStep > OBSERVE:
-            self.epsilon -= (INITIAL_EPSILON - FINAL_EPSILON) / EXPLORE
+            self.epsilon -= round((INITIAL_EPSILON - FINAL_EPSILON) / EXPLORE,3)
 
         return action
 
