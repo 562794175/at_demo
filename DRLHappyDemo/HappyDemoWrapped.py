@@ -219,7 +219,7 @@ class GameState:
             isReson = ' / reward:'+str(reward)
             isFinish=True
 
-        if self.actNOCount>110:
+        if self.actNOCount>10:
             isReson += ' / actNOCount:' + str(self.actNOCount)
             isFinish = True
 

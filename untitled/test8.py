@@ -1,16 +1,22 @@
-# coding=UTF-8
-import numpy as np
+#!usr/bin/env python
+# encoding:utf-8
 
-import pandas as pd
+import math
 
-lt = [1,3,2,5,6,4]
 
-dt=pd.DataFrame(lt)
+def eval_test():
+    l = '[1,2,3,4,[5,6,7,8,9]]'
+    d = "{'a':123,'b':456,'c':789}"
+    t = '([1,3,5],[5,6,7,8,9],[123,456,789])'
+    print('--------------------------转化开始--------------------------------')
 
-tt=dt.rolling(window=3).mean()
+    print(type(l), type(eval(l)))
 
-ft=dt.shift(1).rolling(window=3).mean()
+    print(type(d), type(eval(d)))
 
-lt.reverse()
+    print(type(t), type(eval(t)))
 
-print(lt)
+
+
+if __name__ == "__main__":
+    eval_test()
