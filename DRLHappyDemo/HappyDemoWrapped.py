@@ -2,7 +2,6 @@ import numpy as np
 import sys
 import random
 import matplotlib
-#matplotlib.use('Agg')
 import HappyDemoUtils as happy_demo_utils
 import matplotlib.pyplot as plt
 import matplotlib.markers as mmarkers
@@ -66,8 +65,18 @@ class GameState:
         self.axes = self.figure.add_subplot(111)
         # self.axes.axis('off')
         self.range_start, self.range_end, self.range_step = 0, 1, 0.001
+
+
         t = np.arange(self.range_start, self.range_end, self.range_step)
         s = np.sin(4 * np.pi * t)
+        # random start pos
+        rs = round(random.randint(1,999)*0.001,3)
+        self.range_start += rs
+        self.range_end += rs
+        t = np.arange(self.range_start, self.range_end, self.range_step)
+        s = np.sin(4 * np.pi * t)
+
+
         self.l, = self.axes.plot(t, s, color='green')
         self.point_dict = {}
         # for x in dir(ts):
@@ -77,6 +86,7 @@ class GameState:
         self.reward_total = 0
         self.reduc = 0.000
         self.trainCount+=1
+        self.actNOCount=0
 
     def show(self):
         plt.show()
@@ -84,37 +94,26 @@ class GameState:
     def getPointCount(self):
         return len(self.point_dict)
 
-    def requestStatic(self,act,act_exe,open_x,open_y,close_x,close_y,reward,close_time,open_time):
-        payload = {'act': act,'act_exe':act_exe, 'open_x': open_x,'open_y':open_y,'close_x':close_x,'close_y':close_y,'reward':reward,'close_time':close_time,'open_time':open_time}
-        r = requests.post("http://localhost/action_his.php", data=payload)
+    def requestStatic(self,log_str):
+        payload = {'log_str': log_str}
+        r = requests.post("http://sky/action_his.php", data=payload)
         if r.text.find('error')>=0:
             print('error:'+r.url)
 
-    def actionNO(self,x,y):
-        r=0.00
+    def checkCrash(self,x,y):
+        flag = False
         for i in self.axes.collections:
             pt = self.point_dict[i]
             if getattr(pt,'action')=='BO' and getattr(pt,'y')>(y-self.reduc):
-                tr=((y - self.reduc) - getattr(pt, 'y'))
-                self.requestStatic('BO','NO',getattr(pt,'x'),getattr(pt,'y'),x,y,tr,getTime(),getattr(pt,'open_time'))
-                #r += tr
-                if tr<0:
-                    r += -1
-                else:
-                    r += tr
-                i.remove()
-                del self.point_dict[i]
+                flag=True
 
             if getattr(pt,'action')=='SO' and getattr(pt,'y')<(y+self.reduc):
-                tr = (getattr(pt, 'y') - (y + self.reduc))
-                self.requestStatic('SO','NO', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr,getTime(),getattr(pt, 'open_time'))
-                #r += tr
-                if tr<0:
-                    r += -1
-                else:
-                    r += tr
-                i.remove()
-                del self.point_dict[i]
+                flag = True
+        return flag
+
+    def actionNO(self,x,y):
+        r=0.1
+        self.actNOCount+=1
         return r
 
     def actionSO(self,x,y):
@@ -122,28 +121,25 @@ class GameState:
         pt = Point()
         pt.setAttr(x, y,'SO',ts)
         self.point_dict[ts]=pt
-        return 0.01
-
-
+        self.actNOCount=0
+        return 0.1
 
     def actionBO(self,x,y):
         ts = self.axes.scatter(x, y, s=30, marker='^',color='red')
         pt = Point()
         pt.setAttr(x, y, 'BO', ts)
         self.point_dict[ts] = pt
-        return 0.01
-
+        self.actNOCount=0
+        return 0.1
 
     def actionCA(self,x,y):
-        r = 0.0
+        r = -0.1
         for i in self.axes.collections:
             pt = self.point_dict[i]
             if getattr(pt, 'action') == 'BO':
                 tr = ((y - self.reduc) - getattr(pt, 'y'))
-                self.requestStatic('BO','CA', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr, getTime(), getattr(pt, 'open_time'))
-                #r += tr
                 if tr<0:
-                    r += -1
+                    r = -1
                 else:
                     r += tr
                 i.remove()
@@ -151,90 +147,17 @@ class GameState:
 
             if getattr(pt, 'action') == 'SO':
                 tr = (getattr(pt, 'y') - (y + self.reduc))
-                self.requestStatic('SO','CA', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr, getTime(),getattr(pt, 'open_time'))
-                #r += tr
                 if tr<0:
-                    r += -1
+                    r = -1
                 else:
                     r += tr
                 i.remove()
                 del self.point_dict[i]
-        return r
+        return round(r,1)
 
-    def actionSOBC(self,x,y):
-        ts = self.axes.scatter(x, y, s=30, marker='v',color='green')
-        pt = Point()
-        pt.setAttr(x, y, 'SO', ts)
-        self.point_dict[ts] = pt
-        r = 0.01
-        for i in self.axes.collections:
-            pt = self.point_dict[i]
-            if getattr(pt,'action')=='BO':
-                tr = ((y - self.reduc) - getattr(pt, 'y'))
-                self.requestStatic('BO','SOBC', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr,getTime(), getattr(pt, 'open_time'))
-                #r += tr
-                if tr<0:
-                    r += -1
-                else:
-                    r += tr
-                i.remove()
-                del self.point_dict[i]
-        return r
-
-    def actionBOSC(self,x,y):
-        ts = self.axes.scatter(x, y, s=30, marker='^',color='red')
-        pt = Point()
-        pt.setAttr(x, y, 'BO', ts)
-        self.point_dict[ts] = pt
-        r = 0.01
-        for i in self.axes.collections:
-            pt = self.point_dict[i]
-            if getattr(pt, 'action') == 'SO':
-                tr = (getattr(pt, 'y') - (y + self.reduc))
-                self.requestStatic('SO','BOSC', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr, getTime(), getattr(pt, 'open_time'))
-                #r += tr
-                if tr<0:
-                    r += -1
-                else:
-                    r += tr
-                i.remove()
-                del self.point_dict[i]
-        return r
-
-    def actionBC(self,x,y):
-        r = 0.0
-        for i in self.axes.collections:
-            pt = self.point_dict[i]
-            if getattr(pt, 'action') == 'BO':
-                tr = ((y - self.reduc) - getattr(pt, 'y'))
-                self.requestStatic('BO','BC', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr, getTime(), getattr(pt, 'open_time'))
-                #r += tr
-                if tr<0:
-                    r += -1
-                else:
-                    r += tr
-                i.remove()
-                del self.point_dict[i]
-        return r
-
-    def actionSC(self,x,y):
-        r = 0.0
-        for i in self.axes.collections:
-            pt = self.point_dict[i]
-            if getattr(pt, 'action') == 'SO':
-                tr = (getattr(pt, 'y') - (y + self.reduc))
-                self.requestStatic('SO','SC', getattr(pt, 'x'), getattr(pt, 'y'), x, y, tr, getTime(), getattr(pt, 'open_time'))
-                #r += tr
-                if tr<0:
-                    r += -1
-                else:
-                    r += tr
-                i.remove()
-                del self.point_dict[i]
-        return r
 
     def action(self,input_actions,x,y):
-        # NO, SO, BO, CA, SO_BC, BO_SC, BC, SC
+        # NO, SO, BO, CA
         # input_actions[0] == 1: NO do nothing but check
         if input_actions[0] == 1:
             return self.actionNO(x,y)
@@ -247,21 +170,10 @@ class GameState:
         # input_actions[3] == 1: CA
         elif input_actions[3] == 1:
             return self.actionCA(x,y)
-        # input_actions[4] == 1: SO_BC
-        elif input_actions[4] == 1:
-            return self.actionSOBC(x,y)
-        # input_actions[5] == 1: BO_SC
-        elif input_actions[5] == 1:
-            return self.actionBOSC(x,y)
-        # input_actions[6] == 1: BC
-        elif input_actions[6] == 1:
-            return self.actionBC(x,y)
-        # input_actions[7] == 1: SC
-        elif input_actions[7] == 1:
-            return self.actionSC(x,y)
+       
 
     def frame_step(self, input_actions):
-        reward = 0.001
+        reward = 0.1
         terminal = False
 
         if sum(input_actions) != 1:
@@ -284,10 +196,10 @@ class GameState:
 
         reward = self.action(input_actions,xdata[-1],ydata[-1])
 
-        self.reward_total += reward
+        #self.reward_total += reward
 
         #print('%f,%f' % (xdata[-1], ydata[-1]))
-        print('pointcount:%d,total reward:%f,traincount:%d' %(len(self.point_dict),self.reward_total,self.trainCount))
+        #print('pointcount:%d,total reward:%f,traincount:%d' %(len(self.point_dict),self.reward_total,self.trainCount))
 
         #
         # self.rand+=1
@@ -299,12 +211,32 @@ class GameState:
 
         plt.pause(0.01)  # pause a bit so that plots are updated
 
+        isFinish=False
+        isReson=''
+
         # check if crash here
-        if self.reward_total < -1:
+        if reward < 0:
+            isReson = ' / reward:'+str(reward)
+            isFinish=True
+
+        if self.actNOCount>10:
+            isReson += ' / actNOCount:' + str(self.actNOCount)
+            isFinish = True
+
+        if self.checkCrash(xdata[-1],ydata[-1]):
+            isReson += ' / checkCrash!'
+            isFinish = True
+
+
+        if isFinish:
             terminal = True
             plt.gcf().clf()
             self.init()
             reward = -1
+
+        at = ','.join(str(i) for i in input_actions)
+        at = at.replace('.0', '')
+        self.requestStatic("ACTION:" + str(at) + " / REWARD:" + str(reward) + isReson)
 
         return image_data, reward, terminal
 
