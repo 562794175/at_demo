@@ -1,4 +1,6 @@
 <?php
+$period = $_GET["period"];
+$last = $_GET["last"];
 $beginTime = $_POST["Begin"];
 $endTime = $_POST["End"];
 //price
@@ -18,8 +20,6 @@ $bandupperData = $_POST["BandsUpper"];
 $data_bands=array("lower"=>$bandslowData,"main"=>$bandmainData,"upper"=>$bandupperData);
 $json_bands= json_encode($data_bands);
 
-
-
 $link = @mysqli_connect('localhost','root','');
 if (!$link) {
     exit('error('.mysqli_connect_errno().'):'.mysqli_connect_error());
@@ -31,9 +31,11 @@ if (!mysqli_select_db($link,'test')) {
     die;
 }
 mysqli_set_charset($link,'utf8');
-
-$sql = "INSERT INTO `xau`
-            (`peroid`,
+if(empty($last)) {
+    $last=$period;
+}
+$sql = "INSERT INTO `xau_".$last."`
+            (`period`,
              `begin`,
              `end`,
              `data_price`,
@@ -41,7 +43,7 @@ $sql = "INSERT INTO `xau`
              `data_obv`,
              `data_rsi`,
              `data_bolling`)
-            VALUES (15,
+            VALUES ('".$period."',
                     $beginTime,
                     $endTime,
                     '$json_price',
@@ -52,9 +54,21 @@ $sql = "INSERT INTO `xau`
 $result = mysqli_query($link,$sql);
 $output_html="";
 if ($result ) {
-$output_html=mysqli_insert_id($link);
+    $output_html=mysqli_insert_id($link);
+} else if($last=='last') {    
+    $sql = "UPDATE `xau_".$last."`
+            SET `begin` = $beginTime,
+              `end` = $endTime,
+              `data_price` = '$json_price',
+              `data_volume` = 'data_volume',
+              `data_obv` = '$obvData',
+              `data_rsi` = 'data_rsi',
+              `data_bolling` = '$json_bands'
+            WHERE `period` = '".$period."'";
+    mysqli_query($link,$sql);
+    //echo $sql;
 } else {
-$output_html="error!".$beginTime." - ".$endTime;
+    $output_html="error!".$beginTime." - ".$endTime;
 }
 echo $output_html;
 mysqli_close($link);
