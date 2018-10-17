@@ -1,0 +1,640 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+
+<Styles>
+ <Style ss:ID="Default" ss:Name="Normal">
+  <Alignment ss:Vertical="Bottom"/>
+  <Borders/>
+  <Font/>
+  <Interior/>
+  <NumberFormat/>
+  <Protection/>
+ </Style>
+ <Style ss:ID="s27">
+  <Font x:Family="Swiss" ss:Color="#0000FF" ss:Bold="1"/>
+ </Style>
+ <Style ss:ID="s21">
+  <NumberFormat ss:Format="yyyy\-mm\-dd"/>
+ </Style>
+ <Style ss:ID="s22">
+  <NumberFormat ss:Format="yyyy\-mm\-dd\ hh:mm:ss"/>
+ </Style>
+ <Style ss:ID="s23">
+  <NumberFormat ss:Format="hh:mm:ss"/>
+ </Style>
+</Styles>
+
+ <Worksheet ss:Name="Sheet1">
+  <ss:Table>
+   <ss:Row>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">id</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">period</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">begin</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">end</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">data_price</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">data_obv</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell  ss:StyleID="s27"><Data ss:Type="String">data_bolling</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-17T08:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-17T18:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1377.1,1376.92,1374.13,1375.41,1374.93,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">7062,6058,6959,6088,6819,7681,8636,7639,6828,7683,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1374.05236967,1373.9292107,1373.98720631</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">2</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-17T18:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T04:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1365.68,1369.41,1367.8,1371.63,1371.23,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">3532,2405,3618,2495,3499,4441,3479,4492,5353,6554,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1366.31802704,1365.99160039,1366.0353071</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">3</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T04:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T07:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1384.15,1384.55,1383.59,1384.14,1383.92,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">9375,8774,9288,8759,8290,8766,9254,8853,9379,8969,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1371.85218533,1372.45880153,1373.0852215</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">4</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T07:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T09:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.37,1382.34,1383.2,1383.71,1383.54,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">6841,7436,7887,7168,7961,7309,7854,8175,9092,8428</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1381.98266944,1381.95874968,1382.3562297</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T09:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T13:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1386.62,1386.3,1385.86,1385.59,1385.36,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">8428,7809,7161,6328,5468,6192,5477,4762,3933,3179,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1381.87851277,1381.81803791,1381.8056284</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">6</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T13:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T15:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1380.72,1381.69,1382.73,1383.81,1383.84,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">1630,2231,2647,3053,3620,2942,2284,3236,4223,3304</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1380.22442323,1380.12772646,1380.245779,</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">7</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T15:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T17:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1386.28,1384.98,1384.72,1384.06,1384.62,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">3304,2571,1829,2843,1863,810,-348,728</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1380.36974245,1380.37569633,1380.3800528</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">8</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-20T17:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T04:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1377.03,1379.26,1379.2,1379.68,1382.43,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">728,1648,2742,3942,5064,5948,5049,6013,5011,6161,5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1378.42865044,1377.98989163,1377.7175803</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">9</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T04:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T07:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1387.67,1386.79,1386.69,1386.9,1386.74,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">5941,5665,6049,5524,5524,5936,5668,6113,6725,6347,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1383.12397566,1383.20891127,1383.2544574</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">10</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T07:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T10:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1385.47,1385.97,1385.66,1386.06,1386.84,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">5339,4765,5353,6053,5363,6101,6928,5995,6909,5845</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1385.59794327,1385.5572259,1385.50543154</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">11</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T10:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T13:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1388.47,1387.7,1386.39,1387.18,1387.01,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">5845,4769,5622,4902,4195,4937,5685,4992,4218,3402,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1385.08125938,1385.05490083,1385.0817563</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">12</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T13:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T15:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1385.91,1386.09,1386.55,1386.38,1386.55,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">4311,4976,4378,4888,4205,4798,4087,4674,5383,6605,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1385.5134339,1385.58687883,1385.53450975</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T15:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T16:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1390.38,1390.64,1382.79,1384.37,1382.01&quot;,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">6547,5193,6643,5276,6596</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1384.00838945,1383.27372251,1382.9605708</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">14</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-21T16:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-22T04:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.01,1383.13,1384.15,1385.07,1384.31,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">6596,7879,9088,7991,9126,10219,11306,10167,11169,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1381.75206322,1381.52880864,1381.4581117</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">15</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-22T04:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-22T11:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1390.27,1389.56,1389.92,1389.8,1389.77,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">12841,13369,12958,12493,12887,12368,12065,12598,12</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1383.93106788,1384.36947112,1384.8851208</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">16</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-22T11:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-22T13:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1388.08,1388.2,1389.04,1389.45,1389.98,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">12103,12846,13682,14502,13559,14360,15010,14387</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1387.93309944,1388.00948037,1388.0179246</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">17</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-22T13:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-23T00:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1389.69,1389.12,1389.47,1389.1,1388.56,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">14387,15051,14251,13497,12741,11955,12781,11780,10</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1387.90308342,1387.90271454,1387.9223924</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">18</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-23T00:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-23T06:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1383.35,1384.7,1385.1,1384.75,1386,1385.5</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">10206,10298,10231,10281,10477,10156,10506,10955,10</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1383.53048362,1383.61260841,1383.6195472</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">19</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-23T06:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T01:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1387.91,1387.5,1387.63,1387.75,1387.53,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">11940,12128,12303,12148,11897,12129,12453,12013,11</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1386.02861886,1386.07410665,1386.2556965</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T01:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T07:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1378.33,1379.7,1379,1380.45,1381.45,1380.</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">13766,13766,13859,13919,13890,13751,13701,13752,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1378.13286848,1378.14566488,1378.1267717</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">21</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T07:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T08:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.5,1382.2,1381.73,1380.7,1381.57,1382</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">13896,13829,13751,13860,13824,13843,13801</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1378.94917646,1378.94696925,1378.8618194</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">22</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T08:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T10:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.64,1379.05,1382.97,1382.99,1383.5,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">13801,13856,13928,13969,13914,13855,13867</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1378.79825871,1378.78432151,1378.9161669</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">23</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T10:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T10:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1381.95,1382.49&quot;,&quot;close&quot;:&quot;1384.5,1382.71&quot;</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">13867,13822</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1378.91206732,1378.94160422&quot;,&quot;main&quot;:&quot;138</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">24</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T10:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T12:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.49,1384.03,1383,1382.4,1384.03,1382.</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">13822,13843,13884,13859,13883,13816,13860</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1378.94160422,1378.94749034,1379.2477372</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">25</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-24T12:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T02:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1383.75,1381.3,1382.1,1381.77,1382.25,138</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">13860,13807,13807,13847,13833,13853,13843,13834,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1379.46691068,1379.41983098,1379.4328980</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">26</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T02:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T12:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1371.26,1375.11,1376.29,1377.31,1376.82,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">13515,14309,15058,14343,15199,14447,15095,15731,16</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1372.18784881,1371.7979671,1371.58948452</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">27</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T12:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T15:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1383.21,1383.12,1382.15,1381.42,1381.29,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">18264,17571,16683,15900,16739,15754,14913,15815,14</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1381.22491353,1381.17345136,1381.0207532</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">28</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T15:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T16:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1379.53,1379.79,1381.02,1381.06,1382.38&quot;,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">14092,15222,16046,17149,18348</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1379.20160809,1379.17605383,1379.1492036</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">29</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T16:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T20:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.38,1383.3,1382.14,1382.3,1381.39,138</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">18348,17255,18337,17311,18184,18888,17976,17034,17</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1379.04703302,1379.04945546,1379.0525802</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">30</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-27T20:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-28T07:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1379.29,1381.18,1382.33,1382.86,1381.92,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">16418,17532,18202,17513,17095,17581,17188,17627,18</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1379.23236227,1379.26959953,1379.2865234</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">31</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-28T07:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-28T10:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1391.14,1391.33,1390.82,1390.25,1389.93,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">25779,25519,25139,24877,24564,24798,24614,24232,23</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1386.36108231,1387.16780848,1388.1175853</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">32</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-28T10:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T00:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1389.15,1389.01,1390.3,1390.93,1390.05,13</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">23748,24130,24402,24125,24497,25041,25482,25014,25</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1388.43043025,1388.42903313,1388.4205832</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">33</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T00:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T03:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1405.65,1404.49,1404.41,1404.85,1404.95,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">22756,22634,22747,22898,22731,23007,22745,23121,22</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1404.03206072,1404.26082053,1404.2711184</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">34</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T03:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T09:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1402,1402.78,1403.84,1404.4,1403.92,1403.</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">22811,23025,23284,23097,23298,23177,22972,23145,23</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1402.29211585,1402.24917761,1402.2336635</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">35</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T09:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T15:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1408.68,1408.14,1407.08,1405.82,1404.86,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">23781,23263,22904,22222,21782,22273,22668,22388,21</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1402.57099491,1402.76188919,1402.9347312</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">36</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-29T15:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T08:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1401.89,1403.78,1404.97,1405.15,1406.9,14</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21628,22228,22811,23514,22934,22392,23426,22675,22</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1402.15761859,1402.14889803,1402.1369116</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">37</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T08:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T09:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1413.81,1413.31,1412.96,1412.85,1413.05,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21179,20847,20697,20962,20587,20848,21118</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1411.72251466,1411.72236615,1411.7186426</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">38</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T09:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T10:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1411.9,1412.75,1413.01,1413.77,1413.41&quot;,&quot;</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21118,21637,22066,21644,21970</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1411.5623049,1411.63730213,1411.61663733</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">39</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T10:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T19:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1413.41,1413.41,1413.48,1413.19,1411.95,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21970,21657,21292,20847,21162,21579,21133,21511,21</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1411.66695182,1411.74087624,1411.8345197</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">40</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2010-12-30T19:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T02:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1402.83,1403.42,1403.32,1404.29,1404.6,14</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">18254,17830,18173,18620,19021,19489,19751,20062,19</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1401.87253783,1401.43291149,1401.3212572</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">41</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T02:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T05:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1418.65,1417.75,1416.9,1417.2,1416.8,1415</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">22235,22130,22192,22143,22025,22164,22069,21981,22</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1411.89579921,1412.95856763,1413.6038649</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">42</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T05:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T16:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1414.3,1415.9,1416.15,1415,1414.75,1415.9</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21896,21952,21880,21954,22002,22002,22080,22024,22</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1414.59617064,1414.5936816,1414.45919208</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">43</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T16:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T17:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1421.65,1418,1419.95,1419.7&quot;,&quot;close&quot;:&quot;141</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21873,22375,21826,21343</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1417.6584345,1417.76450675,1417.79332033</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">44</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T17:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T18:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1419.7,1418.95,1420.7,1421.25,1421.4&quot;,&quot;cl</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21343,21661,22169,21656,22163</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1417.76337025,1417.90563622,1418.0643991</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">45</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T18:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T18:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1421.4,1421.5,1418.55,1416.85&quot;,&quot;close&quot;:&quot;1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">22163,21706,21010,21450</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1418.25858899,1418.0945522,1417.4203707,</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">46</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T18:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T21:30:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1416.85,1418.4,1418.35,1419.35,1418.5,141</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21450,21066,21430,21109,20797,21049,21314,21506,21</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1417.26713916,1417.08092947,1417.0594745</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">47</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T21:30:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T23:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1421.95,1421.5,1420,1416.45,1415.45,1416.</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21627,21489,21172,20779,21003,20862,20584,20329,20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1416.87600131,1416.88546639,1416.4417387</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">48</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-03T23:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-04T08:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1413.85,1413.65,1413.85,1414.35,1414.25,1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">20006,20152,20243,20136,20184,20140,20358,20522,20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1412.81885383,1412.31331862,1411.9532502</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">49</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-04T08:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-04T20:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1416.45,1416.6,1415.85,1414.95,1414.55,14</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">21102,21031,20925,20835,20725,20627,20817,20671,20</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1413.60375044,1413.85100838,1413.9189991</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">50</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-04T20:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T04:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1377.25,1376.5,1378.4,1378,1377.4,1377.25</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">17752,18349,17740,17501,17324,17645,17952,18236,18</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1373.50931166,1374.53239162,1374.0222626</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">51</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T04:00:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T10:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1384.3,1382.35,1382.65,1381.3,1378.8,1379</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">18269,18462,18319,18092,18255,18463,18306,18196,18</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1378.90330344,1378.98617973,1379.1191906</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">52</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T10:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T10:45:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.35,1382.65,1383.45&quot;,&quot;close&quot;:&quot;1382.6,</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">18741,18925,18925</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1380.92867613,1381.12812791,1381.7438681</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">53</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T10:45:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T12:15:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1383.45,1383.55,1382.35,1383.1,1381.5,138</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">18925,18659,18863,18589,18239,18445,18627</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1381.74386811,1382.25238925,1382.2673892</Data></ss:Cell>
+   </ss:Row>
+   <ss:Row>
+    <ss:Cell><Data ss:Type="Number">54</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">15</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T12:15:00.000</Data></ss:Cell>
+    <ss:Cell ss:StyleID="s22"><Data ss:Type="DateTime">2011-01-05T13:00:00.000</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;open&quot;:&quot;1382.25,1382.5,1383.6,1384.25&quot;,&quot;close&quot;:&quot;1</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_volume</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">18627,18879,19137,18872</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">data_rsi</Data></ss:Cell>
+    <ss:Cell><Data ss:Type="String">{&quot;lower&quot;:&quot;1381.60899021,1381.60491233,1381.5299,13</Data></ss:Cell>
+   </ss:Row>
+  </ss:Table>
+ </Worksheet>
+</Workbook>
