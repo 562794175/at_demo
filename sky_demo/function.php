@@ -166,6 +166,14 @@ function show_price_close_obv_png($id,$period,$obv_png,$price_close_bands_png) {
     return $sitepath;
 }
 
+function show_png($c,$filename) {
+    $realpath=realpath('.')."\\".$filename;
+    $sitepath="".$filename;
+    $c->makeChart($realpath);
+    ///cut_png($realpath, 0, 0, 100, 100, $realpath);
+    echo "<img src='".$sitepath."'>";
+}
+
 function setTransparency($new_image,$image_source) 
 { 
     // make sure that the image will retain alpha when saved

@@ -115,7 +115,7 @@ $c->makeChart($realpath);
     <meta charset="UTF-8">
 </head>
 <body>
-    <h1 align="center">XAU图表</h1>
+    <h1 align="center">chart</h1>
     <form method="get" action="xau_chart.php">
     <div align="center">
         <input type="submit" value="15"  name="period"/>
