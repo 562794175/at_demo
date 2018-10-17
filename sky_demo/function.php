@@ -170,7 +170,9 @@ function show_png($c,$filename) {
     $realpath=realpath('.')."\\".$filename;
     $sitepath="".$filename;
     $c->makeChart($realpath);
-    ///cut_png($realpath, 0, 0, 100, 100, $realpath);
+    $w = $c->getWidth();
+    $h = $c->getHeight();
+    cut_png($realpath, 0, 0, $w, $h-10, $realpath);
     echo "<img src='".$sitepath."'>";
 }
 

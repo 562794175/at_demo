@@ -60,7 +60,7 @@ $c->setGridStyle(false);
 # Set angular axis as 0 - 360, either 8 spokes
 //$c->angularAxis->setLinearScale(0, 24, 1);
 
-$c->angularAxis->setLinearScale(0, 50, 1);
+$c->angularAxis->setLinearScale(0, 24, 1);
 
 //
 //# Add a blue (0xff) polar line layer to the chart using (data0, angle0)
@@ -72,7 +72,7 @@ $c->angularAxis->setLinearScale(0, 50, 1);
 
 # Add a red (0xff0000) polar line layer to the chart using (data1, angles1)
 $layer1 = $c->addLineLayer($dataY1, 0xff0000, "Precious Flower");
-$layer1->setAngles($dataY0);
+$layer1->setAngles($times);
 
 # Disable the line by setting its width to 0, so only the symbols are visible
 $layer1->setLineWidth(0);
