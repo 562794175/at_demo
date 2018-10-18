@@ -8,7 +8,7 @@ $sqlall = "select count(*) from xau_15";
 $resultall = $db->query($sqlall);
 $arr1 = $resultall->fetch_row();
 $c = $arr1[0];
-$page = new page($c,100);
+$page = new page($c,1);
 $sql = "select * from xau_15 ".$page->limit;
 $result = $db->query($sql);
 $arr = $result->fetch_all();
@@ -27,302 +27,85 @@ foreach($arr as $v){
     $data_obv=$v[6];
     $data_rsi=$v[7];
     $data_bolling=$v[8];
-    $dataY0[]=time_length($data_obv);
-    $dataY1[]=price_width($data_price);
     
+    $data_price = json_decode($data_price,TRUE);
+    $highData = explode(",", $data_price["high"]);
+    $lowData = explode(",", $data_price["low"]);
+    $openData = explode(",", $data_price["open"]);
+    $closeData = explode(",", $data_price["close"]);
     
+//    $dataY0[]=time_length($data_obv);
+//    $dataY1[]=price_width($data_price);
     $times[]=date("H",strtotime($end)).'.'.date("i",strtotime($end));
     $labels[]=$i++;
-    
 }
 echo "<div align='center'>".$page->fpage()."</div>";//显示分页信息
+# The data for the line chart
 
-#
-# Initialize the WebChartViewer when the page is first loaded
-#
-function initViewer(&$viewer) {
-    #
-    # This example assumes the initial chart is the full chart and we can auto-detect the full data
-    # range in the drawChart code. So we do not need to configure the full range here.
-    #
-}
+$dataY = $closeData;
 
-#
-# Draw the main chart
-#
-function drawChart(&$viewer) {
-    #
-    # For simplicity, in this demo, the data arrays are filled with hard coded data. In a real
-    # application, you may use a database or other data source to load up the arrays, and only
-    # visible data (data within the view port) need to be loaded.
-    #
-    $dataX0 = array(10, 15, 6, -12, 14, -8, 13, -3, 16, 12, 10.5, -7, 3, -10, -5, 2, 5);
-    $dataY0 = array(130, 150, 80, 110, -110, -105, -130, -15, -170, 125, 125, 60, 25, 150, 150, 15,
-        120);
-    $dataX1 = array(6, 7, -4, 3.5, 7, 8, -9, -10, -12, 11, 8, -3, -2, 8, 4, -15, 15);
-    $dataY1 = array(65, -40, -40, 45, -70, -80, 80, 10, -100, 105, 60, 50, 20, 170, -25, 50, 75);
-    $dataX2 = array(-10, -12, 11, 8, 6, 12, -4, 3.5, 7, 8, -9, 3, -13, 16, -7.5, -10, -15);
-    $dataY2 = array(65, -80, -40, 45, -70, -80, 80, 90, -100, 105, 60, -75, -150, -40, 120, -50, -30
-        );
+# The XY data of the first data series
+//$dataX = array(50, 55, 37, 24, 42, 49, 63, 72, 83, 59);
+//$dataY = array(3.6, 2.8, 2.5, 2.3, 3.8, 3.0, 3.8, 5.0, 6.0, 3.3);
 
-    # Create an XYChart object 500 x 480 pixels in size, with light blue (c0c0ff) background
-    $c = new XYChart(500, 480, 0xc0c0ff);
+# Create a XYChart object of size 450 x 420 pixels
+$c = new XYChart(450, 420, 0xFF000000);
 
-    # Set the plotarea at (50, 40) and of size 400 x 400 pixels. Use light grey (c0c0c0) horizontal
-    # and vertical grid lines. Set 4 quadrant coloring, where the colors alternate between lighter
-    # and deeper grey (dddddd/eeeeee).
-    $plotAreaObj = $c->setPlotArea(50, 40, 400, 400, -1, -1, -1, 0xc0c0c0, 0xc0c0c0);
-    $plotAreaObj->set4QBgColor(0xdddddd, 0xeeeeee, 0xdddddd, 0xeeeeee, 0x000000);
+# Set the plotarea at (55, 65) and of size 350 x 300 pixels, with white background and a light grey
+# border (0xc0c0c0). Turn on both horizontal and vertical grid lines with light grey color
+# (0xc0c0c0)
+$c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
 
-    # As the data can lie outside the plotarea in a zoomed chart, we need enable clipping
-    $c->setClipping();
+# Add a scatter layer using (dataX, dataY)
+$c->addLineLayer($dataY);
+# Add a trend line layer for (dataX, dataY)
+$trendLayer = $c->addTrendLayer($dataY, 0x008000);
+$trendLayer->addConfidenceBand(0.95, 0x806666ff);
+$trendLayer->addPredictionBand(0.95, 0x8066ff66);
 
-    # Set 4 quadrant mode, with both x and y axes symetrical around the origin
-    $c->setAxisAtOrigin(XYAxisAtOrigin, XAxisSymmetric + YAxisSymmetric);
+echo sprintf("Slope:%.4f",$trendLayer->getSlope());
+echo sprintf("Intercept:%.4f",$trendLayer->getIntercept());
+echo sprintf("Correlation:%.4f",$trendLayer->getCorrelation());
+echo sprintf("Std Error:%.4f",$trendLayer->getStdError());
 
-    # Add a legend box at (450, 40) (top right corner of the chart) with vertical layout and 8pt
-    # Arial Bold font. Set the background color to semi-transparent grey (40dddddd).
-    $legendBox = $c->addLegend(450, 40, true, "arialbd.ttf", 8);
-    $legendBox->setAlignment(TopRight);
-    $legendBox->setBackground(0x40dddddd);
 
-    # Add titles to axes
-    $c->xAxis->setTitle("Alpha Index");
-    $c->yAxis->setTitle("Beta Index");
+show_png($c,"test.png");
 
-    # Set axes line width to 2 pixels
-    $c->xAxis->setWidth(2);
-    $c->yAxis->setWidth(2);
 
-    # The default ChartDirector settings has a denser y-axis grid spacing and less-dense x-axis grid
-    # spacing. In this demo, we want the tick spacing to be symmetrical. We use around 40 pixels
-    # between major ticks and 20 pixels between minor ticks.
-    $c->xAxis->setTickDensity(40, 20);
-    $c->yAxis->setTickDensity(40, 20);
+//$line_list=[];
+//$start_pos=0;
+//$end_pos=count($dataY);
+//while($start_pos<$end_pos-1) {
+//    $line=[];
+//    for($i=$start_pos;$i<$end_pos;$i++) {
+//        $correlation=0;
+//        $line[]=$dataY[$i];
+//        if(count($line)>=2) {
+//            $c = new XYChart(450, 420, 0xFF000000);
+//            $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
+//            $c->addLineLayer($line);
+//            $trendLayer = $c->addTrendLayer($line);
+//            $trendLayer->addConfidenceBand(0.95,0x806666ff);
+//            $trendLayer->addPredictionBand(0.95,0x8066ff66);
+//            $correlation = abs(round($trendLayer->getCorrelation(),2));
+//            unset($c);
+//           
+//        }
+//
+//        if($correlation>=0.95) {
+//            $start_pos=$i;
+//        } else if(count($line)>2) {
+//            $start_pos=$i-1;
+//            array_pop( $line );
+//            $line_list[] = $line;
+//            break;
+//        }
+//
+//        
+//        
+//    }
+//}
+//echo count($line_list);
 
-    #
-    # In this example, we represent the data by scatter points. You may modify the code below to use
-    # other layer types (lines, areas, etc).
-    #
 
-    # Add scatter layer, using 11 pixels red (ff33333) X shape symbols
-    $c->addScatterLayer($dataX0, $dataY0, "Group A", Cross2Shape(), 11, 0xff3333);
-
-    # Add scatter layer, using 11 pixels green (33ff33) circle symbols
-    $c->addScatterLayer($dataX1, $dataY1, "Group B", CircleShape, 11, 0x33ff33);
-
-    # Add scatter layer, using 11 pixels blue (3333ff) triangle symbols
-    $c->addScatterLayer($dataX2, $dataY2, "Group C", TriangleSymbol, 11, 0x3333ff);
-
-    #
-    # In this example, we have not explicitly configured the full x and y range. In this case, the
-    # first time syncLinearAxisWithViewPort is called, ChartDirector will auto-scale the axis and
-    # assume the resulting range is the full range. In subsequent calls, ChartDirector will set the
-    # axis range based on the view port and the full range.
-    #
-    $viewer->syncLinearAxisWithViewPort("x", $c->xAxis);
-    $viewer->syncLinearAxisWithViewPort("y", $c->yAxis);
-
-    # Output the chart
-    $chartQuery = $c->makeSession($viewer->getId());
-
-    # Include tool tip for the chart
-    $imageMap = $c->getHTMLImageMap("", "",
-        "title='[{dataSetName}] Alpha = {x|G}, Beta = {value|G}'");
-
-    # Set the chart URL, image map and chart metrics to the viewer
-    $viewer->setImageUrl("getchart.php?".$chartQuery);
-    $viewer->setImageMap($imageMap);
-    $viewer->setChartMetrics($c->getChartMetrics());
-}
-
-#
-# Draw the thumbnail chart in the WebViewPortControl
-#
-function drawFullChart(&$vp, &$viewer) {
-    #
-    # For simplicity, in this demo, the data arrays are filled with hard coded data. In a real
-    # application, you may use a database or other data source to load up the arrays. As this is a
-    # small thumbnail chart, complete data may not be needed. For exmaple, if there are a million
-    # points, a random sample may already be sufficient for the thumbnail chart.
-    #
-    $dataX0 = array(10, 15, 6, -12, 14, -8, 13, -3, 16, 12, 10.5, -7, 3, -10, -5, 2, 5);
-    $dataY0 = array(130, 150, 80, 110, -110, -105, -130, -15, -170, 125, 125, 60, 25, 150, 150, 15,
-        120);
-    $dataX1 = array(6, 7, -4, 3.5, 7, 8, -9, -10, -12, 11, 8, -3, -2, 8, 4, -15, 15);
-    $dataY1 = array(65, -40, -40, 45, -70, -80, 80, 10, -100, 105, 60, 50, 20, 170, -25, 50, 75);
-    $dataX2 = array(-10, -12, 11, 8, 6, 12, -4, 3.5, 7, 8, -9, 3, -13, 16, -7.5, -10, -15);
-    $dataY2 = array(65, -80, -40, 45, -70, -80, 80, 90, -100, 105, 60, -75, -150, -40, 120, -50, -30
-        );
-
-    # Create an XYChart object 120 x 120 pixels in size
-    $c = new XYChart(120, 120);
-
-    # Set the plotarea to cover the entire chart and with no grid lines. Set 4 quadrant coloring,
-    # where the colors alternate between lighter and deeper grey (d8d8d8/eeeeee).
-    $plotAreaObj = $c->setPlotArea(0, 0, $c->getWidth() - 1, $c->getHeight() - 1, -1, -1, -1,
-        Transparent);
-    $plotAreaObj->set4QBgColor(0xd8d8d8, 0xeeeeee, 0xd8d8d8, 0xeeeeee, 0x000000);
-
-    # Set 4 quadrant mode, with both x and y axes symetrical around the origin
-    $c->setAxisAtOrigin(XYAxisAtOrigin, XAxisSymmetric + YAxisSymmetric);
-
-    # The x and y axis scales reflect the full range of the view port
-    $c->xAxis->setLinearScale($viewer->getValueAtViewPort("x", 0), $viewer->getValueAtViewPort("x",
-        1), NoValue);
-    $c->yAxis->setLinearScale($viewer->getValueAtViewPort("y", 0), $viewer->getValueAtViewPort("y",
-        1), NoValue);
-
-    # Add scatter layer, using 5 pixels red (ff33333) X shape symbols
-    $c->addScatterLayer($dataX0, $dataY0, "Group A", Cross2Shape(), 5, 0xff3333);
-
-    # Add scatter layer, using 5 pixels green (33ff33) circle symbols
-    $c->addScatterLayer($dataX1, $dataY1, "Group B", CircleShape, 5, 0x33ff33);
-
-    # Add scatter layer, using 5 pixels blue (3333ff) triangle symbols
-    $c->addScatterLayer($dataX2, $dataY2, "Group C", TriangleSymbol, 5, 0x3333ff);
-
-    # Output the chart
-    $chartQuery = $c->makeSession($vp->getId());
-
-    # Set the chart URL and chart metrics to the viewport control
-    $vp->setImageUrl("getchart.php?".$chartQuery);
-    $vp->setChartMetrics($c->getChartMetrics());
-}
-
-#
-# This script handles both the full page request, as well as the subsequent partial updates (AJAX
-# chart updates). We need to determine the type of request first before we processing it.
-#
-
-# Create the WebChartViewer object
-$viewer = new WebChartViewer("chart1");
-
-if ($viewer->isPartialUpdateRequest()) {
-    # Is a partial update request. Draw the chart and perform a partial response.
-    drawChart($viewer);
-    print($viewer->partialUpdateChart());
-    exit();
-}
-
-#
-# If the code reaches here, it is a full page request.
-#
-
-# Initialize the WebChartViewer and draw the chart.
-initViewer($viewer);
-drawChart($viewer);
-
-# Draw a thumbnail chart representing the full range in the WebViewPortControl
-$viewPortCtrl = new WebViewPortControl("fullchart1");
-drawFullChart($viewPortCtrl, $viewer);
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>XY Zooming and Scrolling</title>
-    <script type="text/javascript" src="cdjcv.js"></script>
-    <style type="text/css">
-        .chartButton { font:12px Verdana; border-bottom:#000000 1px solid; padding:5px; cursor:pointer;}
-        .chartButtonSpacer { font:12px Verdana; border-bottom:#000000 1px solid; padding:5px;}
-        .chartButton:hover { box-shadow:inset 0px 0px 0px 2px #444488; }
-        .chartButtonPressed { background-color: #CCFFCC; }
-    </style>
-</head>
-<body style="margin:0px">
-<script type="text/javascript">
-
-//
-// Execute the following initialization code after the web page is loaded
-//
-JsChartViewer.addEventListener(window, 'load', function() {
-    // Update the chart when the view port has changed (eg. when the user zooms in using the mouse)
-    var viewer = JsChartViewer.get('<?php echo $viewer->getId()?>');
-    viewer.attachHandler("ViewPortChanged", viewer.partialUpdate);
-
-    // Set the zoom and scroll mode to bi-directional
-    viewer.setScrollDirection(JsChartViewer.HorizontalVertical);
-    viewer.setZoomDirection(JsChartViewer.HorizontalVertical);
-
-    // Set the initial mouse usage to "zoom in"
-    setMouseMode(JsChartViewer.ZoomIn);
-
-    // Initialize the view port control
-    var viewPortCtrl = JsViewPortControl.get('<?php echo $viewPortCtrl->getId()?>');
-    // Set the mask color to semi-transparent black
-    viewPortCtrl.setViewPortExternalColor("#80000000");
-    // Set the selection rectangle border to white
-    viewPortCtrl.setSelectionBorderStyle("1px solid white");
-    // Bind the view port control to the chart viewer
-    viewPortCtrl.setViewer(viewer);
-});
-
-//
-// This method is called when the user clicks on the Pointer, Zoom In or Zoom Out buttons
-//
-function setMouseMode(mode)
-{
-    var viewer = JsChartViewer.get('<?php echo $viewer->getId()?>');
-    if (mode == viewer.getMouseUsage())
-        mode = JsChartViewer.Default;
-
-    // Set the button color based on the selected mouse mode
-    document.getElementById("scrollButton").className = "chartButton" +
-        ((mode  == JsChartViewer.Scroll) ? " chartButtonPressed" : "");
-    document.getElementById("zoomInButton").className = "chartButton" +
-        ((mode  == JsChartViewer.ZoomIn) ? " chartButtonPressed" : "");
-    document.getElementById("zoomOutButton").className = "chartButton" +
-        ((mode  == JsChartViewer.ZoomOut) ? " chartButtonPressed" : "");
-
-    // Set the mouse mode
-    viewer.setMouseUsage(mode);
-}
-
-</script>
-<form method="post">
-<table cellspacing="0" cellpadding="0" style="border:black 1px solid;">
-    <tr>
-        <td align="right" colspan="2" style="background:#000088; color:#ffff00; padding:0px 4px 2px 0px;">
-            <a style="color:#FFFF00; font:italic bold 10pt Arial; text-decoration:none" href="http://www.advsofteng.com/">
-                Advanced Software Engineering
-            </a>
-        </td>
-    </tr>
-    <tr valign="top">
-        <td style="width:130px; background:#e0e0e0;">
-            <!-- The following table is to create 3 cells for 3 buttons to control the mouse usage mode. -->
-            <table cellspacing="0" cellpadding="0" width="100%" border="0">
-                <tr>
-                    <td class="chartButton" id="scrollButton" onclick="setMouseMode(JsChartViewer.Scroll)"
-                        ontouchstart="this.onclick(event); event.preventDefault();">
-                        <img src="scrollnesw.gif" style="vertical-align:middle" alt="Drag" />&nbsp;&nbsp;Drag to Scroll
-                    </td>
-                </tr>
-                <tr>
-                    <td class="chartButton" id="zoomInButton" onclick="setMouseMode(JsChartViewer.ZoomIn)"
-                        ontouchstart="this.onclick(event); event.preventDefault();">
-                        <img src="zoomInIcon.gif" style="vertical-align:middle" alt="Zoom In" />&nbsp;&nbsp;Zoom In
-                    </td>
-                </tr>
-                <tr>
-                    <td class="chartButton" id="zoomOutButton" onclick="setMouseMode(JsChartViewer.ZoomOut)"
-                        ontouchstart="this.onclick(event); event.preventDefault();">
-                        <img src="zoomOutIcon.gif" style="vertical-align:middle" alt="Zoom Out" />&nbsp;&nbsp;Zoom Out
-                    </td>
-                </tr>
-            </table>
-            <br /><br /><br /><br /><br />
-            <div style="text-align:center;">
-                <!-- ****** Here is the view port control ****** -->
-                <?php echo $viewPortCtrl->renderHTML()?>
-            </div>
-        </td>
-        <td style="border-left: black 1px solid; background-color: #c0c0ff; padding:5px">
-            <!-- ****** Here is the chart image ****** -->
-            <?php echo $viewer->renderHTML()?>
-        </td>
-    </tr>
-</table>
-</form>
-</body>
-</html>
