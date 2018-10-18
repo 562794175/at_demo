@@ -2,13 +2,13 @@
 require_once("phpchartdir.php");
 require_once("function.php");
 require_once("page.class.php");
-$db = new MySQLi("localhost","root","123456","test");
+$db = new MySQLi("localhost","root","","test");
 
 $sqlall = "select count(*) from xau_15";
 $resultall = $db->query($sqlall);
 $arr1 = $resultall->fetch_row();
 $c = $arr1[0];
-$page = new page($c,100);
+$page = new page($c,2000);
 $sql = "select * from xau_15 ".$page->limit;
 $result = $db->query($sql);
 $arr = $result->fetch_all();
@@ -44,11 +44,11 @@ $labels = array("North", "North\nEast", "East", "South\nEast", "South", "South\n
 
 
 # Create a PolarChart object of size 460 x 460 pixels
-$c = new PolarChart(460, 460);
+$c = new PolarChart(2000, 1010);
 
 
 # Set center of plot area at (230, 240) with radius 180 pixels
-$c->setPlotArea(230, 240, 180);
+$c->setPlotArea(430, 440, 400);
 
 # Use alternative light grey/dark grey sector background color
 $c->setPlotAreaBg(0xdddddd, 0xeeeeee, false);
@@ -71,7 +71,7 @@ $c->angularAxis->setLinearScale(0, 24, 1);
 //$layer0->setDataSymbol(TriangleSymbol, 5);
 
 # Add a red (0xff0000) polar line layer to the chart using (data1, angles1)
-$layer1 = $c->addLineLayer($dataY1, 0xff0000, "Precious Flower");
+$layer1 = $c->addLineLayer($dataY0, 0xff0000, "Precious Flower");
 $layer1->setAngles($times);
 
 # Disable the line by setting its width to 0, so only the symbols are visible

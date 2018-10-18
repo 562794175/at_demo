@@ -173,7 +173,7 @@ function show_png($c,$filename) {
     $w = $c->getWidth();
     $h = $c->getHeight();
     cut_png($realpath, 0, 0, $w, $h-10, $realpath);
-    echo "<img src='".$sitepath."'>";
+    echo "<div align='center'><img src='".$sitepath."'></div>";
 }
 
 function setTransparency($new_image,$image_source) 

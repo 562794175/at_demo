@@ -1,7 +1,7 @@
 <?php
 require_once("phpchartdir.php");
 require_once("function.php");
-$db = new MySQLi("localhost","root","123456","test");
+$db = new MySQLi("localhost","root","","test");
 $sql = "select * from xau_15";
 $result = $db->query($sql);
 $arr = $result->fetch_all();
@@ -36,23 +36,23 @@ foreach($arr as $v){
     
 }
 
-$c = new XYChart(450, 420);
+$c = new XYChart(2000, 960);
 
 
-$c->setPlotArea(55, 65, 350, 300, -1, -1, 0xc0c0c0, 0xc0c0c0, -1);
+$c->setPlotArea(30, 0, 2000, 920, -1, -1, 0xc0c0c0, 0xc0c0c0, -1);
 
 
-$legendObj = $c->addLegend(50, 30, false, "timesbi.ttf", 5);
-$legendObj->setBackground(Transparent);
+//$legendObj = $c->addLegend(50, 30, false, "timesbi.ttf", 5);
+//$legendObj->setBackground(Transparent);
 
 
-$c->yAxis->setTitle("Length", "arialbi.ttf", 8);
+//$c->yAxis->setTitle("Length", "arialbi.ttf", 8);
+//
+//
+//$c->xAxis->setTitle("SN", "arialbi.ttf", 8);
 
-
-$c->xAxis->setTitle("SN", "arialbi.ttf", 8);
-
-$c->xAxis->setWidth(1);
-$c->yAxis->setWidth(1);
+//$c->xAxis->setWidth(1);
+//$c->yAxis->setWidth(1);
 
 
 //$c->addScatterLayer($labels, $dataY0, "TIME LENGTH", DiamondSymbol, 5, 0xff9933);
@@ -60,7 +60,7 @@ $c->yAxis->setWidth(1);
 
 
 //$c->addScatterLayer($times, $dataY0, "TIME LENGTH", DiamondSymbol, 5, 0x33ff33);
-$c->addScatterLayer($times, $dataY1, "PRICE WIDTH", TriangleSymbol, 5, 0x33ff33);
+$c->addScatterLayer($times, $dataY1, "PRICE WIDTH", TriangleSymbol, 3, 0xDC143C);
 
 
 show_png($c,"test.png");

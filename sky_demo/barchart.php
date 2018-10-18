@@ -1,7 +1,7 @@
 <?php
 require_once("phpchartdir.php");
 require_once("function.php");
-$db = new MySQLi("localhost","root","123456","test");
+$db = new MySQLi("localhost","root","","test");
 $sql = "select * from xau_15";
 $result = $db->query($sql);
 $arr = $result->fetch_all();
@@ -29,10 +29,10 @@ foreach($arr as $v){
 
 
 # Create a XYChart object of size 250 x 250 pixels
-$c = new XYChart(800, 510);
+$c = new XYChart(2000, 1010);
 
 # Set the plotarea at (30, 20) and of size 200 x 200 pixels
-$c->setPlotArea(0, 0, 800, 500);
+$c->setPlotArea(0, 0, 2000, 1000);
 
 # Add a bar chart layer using the given data
 $barLayerObj=$c->addBarLayer($dataY1);
