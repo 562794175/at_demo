@@ -72,40 +72,63 @@ echo sprintf("Std Error:%.4f",$trendLayer->getStdError());
 show_png($c,"test.png");
 
 
-//$line_list=[];
-//$start_pos=0;
-//$end_pos=count($dataY);
-//while($start_pos<$end_pos-1) {
-//    $line=[];
-//    for($i=$start_pos;$i<$end_pos;$i++) {
-//        $correlation=0;
-//        $line[]=$dataY[$i];
-//        if(count($line)>=2) {
-//            $c = new XYChart(450, 420, 0xFF000000);
-//            $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
-//            $c->addLineLayer($line);
-//            $trendLayer = $c->addTrendLayer($line);
-//            $trendLayer->addConfidenceBand(0.95,0x806666ff);
-//            $trendLayer->addPredictionBand(0.95,0x8066ff66);
-//            $correlation = abs(round($trendLayer->getCorrelation(),2));
-//            unset($c);
-//           
-//        }
-//
-//        if($correlation>=0.95) {
-//            $start_pos=$i;
-//        } else if(count($line)>2) {
-//            $start_pos=$i-1;
-//            array_pop( $line );
-//            $line_list[] = $line;
-//            break;
-//        }
-//
-//        
-//        
-//    }
-//}
-//echo count($line_list);
+$line_list=[];
+$start_pos=0;
+$end_pos=count($dataY);
+while($start_pos<$end_pos) {
+    $line=[];
+    for($i=$start_pos;$i<$end_pos;$i++) {
+        $correlation=0;
+        $line[]=$dataY[$i];
+        if(count($line)>=2) {
+            $c = new XYChart(450, 420, 0xFF000000);
+            $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
+            $c->addLineLayer($line);
+            $trendLayer = $c->addTrendLayer($line);
+            $trendLayer->addConfidenceBand(0.95,0x806666ff);
+            $trendLayer->addPredictionBand(0.95,0x8066ff66);
+            $correlation = abs(round($trendLayer->getCorrelation(),2));
+            unset($c);
+            
 
+            if($correlation>=0.95) {
+                //$start_pos=$i;
+                $start_pos= $i==$end_pos-1?$end_pos:$i;
+                if($start_pos==$end_pos) {
+                    $line_list[] = $line;
+                }
+            }else if(count($line)>2 ) {
+                
+                $start_pos= $i-1;
+                array_pop( $line );
+                $line_list[] = $line;
+                //show_png($c,"test".$start_pos.".png");
+                break;
+            }
+           
+        }//end if(count($line)>=2)
+
+    }//end for($i=$start_pos;$i<$end_pos;$i++)
+}
+echo count($line_list);
+
+    $offset=0;
+    $c = new XYChart(450, 420, 0xFF000000);
+    $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
+    $line=[];
+    for($i=0;$i<count($line_list);$i++) {
+        
+        $size=count($line_list[$i]);
+        
+        
+        for($n=0;$n<$size;$n++) {
+            $line[$offset]=$line_list[$i][$n];
+            $offset++;
+        }
+        $offset--;
+        $c->addLineLayer($line);
+    }
+    
+    show_png($c,"test2.png");
 
 ?>
