@@ -60,12 +60,13 @@ $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
 $c->addLineLayer($dataY);
 # Add a trend line layer for (dataX, dataY)
 $trendLayer = $c->addTrendLayer($dataY, 0x008000);
+$trendLayer->setRegressionType(ExponentialRegression);
 $trendLayer->addConfidenceBand(0.95, 0x806666ff);
 $trendLayer->addPredictionBand(0.95, 0x8066ff66);
 
-echo sprintf("Slope:%.4f",$trendLayer->getSlope());
-echo sprintf("Intercept:%.4f",$trendLayer->getIntercept());
-echo sprintf("Correlation:%.4f",$trendLayer->getCorrelation());
+echo sprintf("Slope:%.4f\t",$trendLayer->getSlope());
+echo sprintf("Intercept:%.4f\t",$trendLayer->getIntercept());
+echo sprintf("Correlation:%.4f\t",$trendLayer->getCorrelation());
 echo sprintf("Std Error:%.4f",$trendLayer->getStdError());
 
 
@@ -96,12 +97,16 @@ while($start_pos<$end_pos) {
                 $start_pos= $i==$end_pos-1?$end_pos:$i;
                 if($start_pos==$end_pos) {
                     $line_list[] = $line;
+//                    echo implode(",", $line)."\t";
+//                    echo count($line_list)."<br>";
                 }
             }else if(count($line)>2 ) {
-                
+                //echo $correlation."[".count($line)."]\t";
                 $start_pos= $i-1;
                 array_pop( $line );
                 $line_list[] = $line;
+//                echo implode(",", $line)."\t";
+//                echo count($line_list)."<br>";
                 //show_png($c,"test".$start_pos.".png");
                 break;
             }
@@ -110,25 +115,31 @@ while($start_pos<$end_pos) {
 
     }//end for($i=$start_pos;$i<$end_pos;$i++)
 }
-echo count($line_list);
+echo "\t - ".count($line_list);
 
-    $offset=0;
-    $c = new XYChart(450, 420, 0xFF000000);
-    $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
-    $line=[];
-    for($i=0;$i<count($line_list);$i++) {
-        
-        $size=count($line_list[$i]);
-        
-        
-        for($n=0;$n<$size;$n++) {
-            $line[$offset]=$line_list[$i][$n];
-            $offset++;
-        }
-        $offset--;
-        $c->addLineLayer($line);
+$offset=0;
+$c = new XYChart(450, 420, 0xFF000000);
+$c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
+$line=[];
+for($i=0;$i<count($line_list);$i++) {
+
+    $size=count($line_list[$i]);
+    for($n=0;$n<$size;$n++) {
+        $line[$offset]=$line_list[$i][$n];
+        $offset++;
     }
-    
-    show_png($c,"test2.png");
+    $offset--;
+    $c->addLineLayer($line);
+}
 
+show_png($c,"test2.png");
+
+$train_data=$line_list;
+//manually sample
+$svm = new SVM();
+$model = $svm->train($train_data);
+$data = array(1 => 0.43, 3 => 0.12, 9284 => 0.2);
+$result = $model->predict($data);
+echo $result;
+//auto sample
 ?>
