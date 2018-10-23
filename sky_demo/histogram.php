@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL^E_NOTICE);
 require_once("phpchartdir.php");
 require_once("function.php");
 require_once("page.class.php");
@@ -8,6 +9,7 @@ $sqlall = "select count(*) from xau_15";
 $resultall = $db->query($sqlall);
 $arr1 = $resultall->fetch_row();
 $c = $arr1[0];
+$pageindex=$_GET["page"]==null?0:$_GET["page"];
 $page = new page($c,1);
 $sql = "select * from xau_15 ".$page->limit;
 $result = $db->query($sql);
@@ -42,6 +44,8 @@ foreach($arr as $v){
 echo "<div align='center'>".$page->fpage()."</div>";//显示分页信息
 # The data for the line chart
 
+$filename1="test1_close".$pageindex.".png";
+$filename2="test2_close".$pageindex.".png";
 $dataY = $closeData;
 
 # The XY data of the first data series
@@ -70,7 +74,7 @@ echo sprintf("Correlation:%.4f\t",$trendLayer->getCorrelation());
 echo sprintf("Std Error:%.4f",$trendLayer->getStdError());
 
 
-show_png($c,"test.png");
+show_png($c,$filename1);
 
 
 $line_list=[];
@@ -118,28 +122,21 @@ while($start_pos<$end_pos) {
 echo "\t - ".count($line_list);
 
 $offset=0;
-$c = new XYChart(450, 420, 0xFF000000);
-$c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
+$c = new XYChart(300, 310, 0xFF000000);
+//$c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
+$c->setPlotArea(0, 0, 300, 300, 0xffffff, -1, 0xFF000000, 0xFF000000, -1);
+$c->yAxis()->setWidth(0);
 $line=[];
 for($i=0;$i<count($line_list);$i++) {
-
     $size=count($line_list[$i]);
     for($n=0;$n<$size;$n++) {
         $line[$offset]=$line_list[$i][$n];
         $offset++;
     }
     $offset--;
-    $c->addLineLayer($line);
+    $c->addAreaLayer($line);
 }
+show_png($c,$filename2);
 
-show_png($c,"test2.png");
 
-$train_data=$line_list;
-//manually sample
-$svm = new SVM();
-$model = $svm->train($train_data);
-$data = array(1 => 0.43, 3 => 0.12, 9284 => 0.2);
-$result = $model->predict($data);
-echo $result;
-//auto sample
 ?>
