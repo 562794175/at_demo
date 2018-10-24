@@ -8,109 +8,41 @@ $url=$_SERVER["REQUEST_URI"];
 $dopost="";
 if(strpos($url,"dopost")!== false) $dopost=$_REQUEST["dopost"];
 $db = new MySQLi("localhost","root","123456","test");
-$sqlall = "select count(*) from xau_15";
+$sqlall = "select count(*) from xau_sample";
 $resultall = $db->query($sqlall);
 $arr1 = $resultall->fetch_row();
 $c = $arr1[0];
 $pageindex=$_GET["page"]==null?0:$_GET["page"];
 $page = new page($c,1);
-$sql = "select * from xau_15 ".$page->limit;
+$sql = "select * from xau_sample ".$page->limit;
 $result = $db->query($sql);
 $arr = $result->fetch_all();
-$id=0;
-foreach($arr as $v){
-    $id=$v[0];
-    $timeframe=$v[1];
-    $begin=$v[2];
-    $end=$v[3];
-    $data_price=$v[4];
-    $data_volume=$v[5];
-    $data_obv=$v[6];
-    $data_rsi=$v[7];
-    $data_bolling=$v[8];
-    
-    $data_price = json_decode($data_price,TRUE);
-    $highData = explode(",", $data_price["high"]);
-    $lowData = explode(",", $data_price["low"]);
-    $openData = explode(",", $data_price["open"]);
-    $closeData = explode(",", $data_price["close"]);
-    
-//    $dataY0[]=time_length($data_obv);
-//    $dataY1[]=price_width($data_price);
-    $times[]=date("H",strtotime($end)).'.'.date("i",strtotime($end));
-    $labels[]=$i++;
-}
+$line_list= json_decode($arr[0][4]);
+$id=$arr[0][1];
+$filename1="sample_close_simple.png";
+$filename2="sample_close_complex.png";
+
 $head = "<a href='xau_sample.php'>sample</a> - <a href='xau_complex.php'>complex</a>";
 echo "<div align='center'>".$head."<br>".$page->fpage()."</div>";//显示分页信息
-
-$filename="sample_close".$pageindex.".png";
-$filename1="sample_close".$pageindex."_1.png";
-$dataY = $closeData;
-$line_list=[];
-$start_pos=0;
-$end_pos=count($dataY);
-while($start_pos<$end_pos) {
-    $line=[];
-    for($i=$start_pos;$i<$end_pos;$i++) {
-        $correlation=0;
-        $line[]=$dataY[$i];
-        if(count($line)>=2) {
-            $c = new XYChart(450, 420, 0xFF000000);
-            $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
-            $c->addLineLayer($line);
-            $trendLayer = $c->addTrendLayer($line);
-            $trendLayer->addConfidenceBand(0.95,0x806666ff);
-            $trendLayer->addPredictionBand(0.95,0x8066ff66);
-            $correlation = abs(round($trendLayer->getCorrelation(),2));
-            unset($c);
-            
-
-            if($correlation>=0.95) {
-                $start_pos= $i==$end_pos-1?$end_pos:$i;
-                if($start_pos==$end_pos) {
-                    $line_list[] = $line;
-                }
-            }else if(count($line)>2 ) {
-                $start_pos= $i-1;
-                array_pop( $line );
-                $line_list[] = $line;
-                break;
-            }
-           
-        }//end if(count($line)>=2)
-
-    }//end for($i=$start_pos;$i<$end_pos;$i++)
-}
-//echo "\t - ".count($line_list);
+$chart_width=$chart_height=300;
 $line_count=count($line_list);
-$chart_width=$chart_height=0;
-if($line_count<25) {
-    $chart_width=$chart_height=300;
-} else if($line_count>=25 && $line_count<35) {
-    $chart_width=$chart_height=400;
-} else if($line_count>=35 && $line_count<45) {
-    $chart_width=$chart_height=500;
-} else if($line_count>=45 && $line_count<55) {
-    $chart_width=$chart_height=600;
-} else if($line_count>=55 && $line_count<65) {
-    $chart_width=$chart_height=700;
-}
-
 $offset=0;
+$line=[];
 $c = new XYChart($chart_width, $chart_height+10, 0xFF000000);
 $c->setPlotArea(0, 0, $chart_width, $chart_height, 0xffffff, -1, 0xFF000000, 0xFF000000, -1);
 $c->yAxis()->setWidth(0);
-$line=[];
 for($i=0;$i<count($line_list);$i++) {
-    $size=count($line_list[$i]);
+    $tmp_line=$line_list[$i];
+    $size=count($tmp_line);
     for($n=0;$n<$size;$n++) {
-        $line[$offset]=$line_list[$i][$n];
+        $line[$offset]=$tmp_line[$n];
         $offset++;
     }
     $offset--;
     $c->addAreaLayer($line);
 }
-show_png($c,$filename);
+show_png($c,$filename1);
+
 
 
 if($dopost=="ajaxdel") {
@@ -142,7 +74,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
             $checkstr.=$_POST['W'.$n][$i].',';
         }
         $detail[$name]=$tmp;
-        $checkstr = substr($checkstr,0,strlen($checkstr)-1); 
+        $checkstr = substr($checkstr,0,strlen($checkstr)-1);
         $checkarr= explode(",", $checkstr);
         $begin=(int)$begin_arr[$i];
         foreach ($checkarr as $vl) {
@@ -154,7 +86,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
     }
     $detail_json=json_encode($detail);
     $sample = substr($sample,0,strlen($sample)-1); 
-    $sql = "INSERT INTO `xau_sample`
+    $sql = "INSERT INTO `xau_complex`
             (`orgin_id`,
              `sample`,
              `detail`)
@@ -166,7 +98,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
     if ($result ) {
         $output_html=$result;
     } else {   
-        $sql = "UPDATE `xau_sample`
+        $sql = "UPDATE `xau_complex`
                 SET `sample` = '$sample', 
                     `detail` = '$detail_json', 
                     `content` = '$content' 
@@ -241,7 +173,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
 		$.ajax({
 				type:"POST",
 				async:false,
-				url:"xau_sample.php",
+				url:"xau_complex.php",
 				data:"id="+id+"&dopost=ajaxdel",
 				success:function(data){
 					alert(data);
@@ -266,15 +198,15 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
 </style>
 <html>
     <body align='center'>
-        <form id="sampleForm" action="xau_sample.php?id=<?php echo $id;?>&dopost=ajaxsave&page=<?php echo $pageindex; ?>" method="post" >
+        <form id="sampleForm" action="xau_complex.php?id=<?php echo $id;?>&dopost=ajaxsave&page=<?php echo $pageindex; ?>" method="post" >
         <input type="hidden" name="id" value="<?php echo $id; ?>" />
         <input type="hidden" name="page" value="<?php echo $pageindex; ?>" />
         <button name="button1" type="button" onclick="addrow();">添加<?php echo $id." - ".$line_count; ?></button> <button type="submit" >提交</button>
 		<div class="list-div" align='center'>
 			<table id="tb1" >
 				<tr > 
-					<th  height="30"></th>
-					<th  height="30">开始</th>
+					<th  align="center" height="30"></th>
+					<th  align="center" height="30">开始</th>
 					<th  height="30">结束</th>
 					<th  height="30">类型</th>
 					<th  height="30">W1</th>
@@ -292,11 +224,11 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                                         <th  height="30">W13</th>
                                         <th  height="30">W14</th>
                                         <th  height="30">W15</th>
-					<th  height="30">操作</th> 
+					 <th  height="30">操作</th> 
 				</tr>
 				<?php 
                                         $new_line_list=[];
-                                        $sql = "select * from xau_sample where orgin_id=".$id;
+                                        $sql = "select * from xau_complex where orgin_id=".$id;
                                         $result = $db->query($sql);
                                         if($result)
                                             $samples = $result->fetch_all();
@@ -335,7 +267,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                                     <td ><?php  echo $i ; ?></td>
                                         
 					<input type="hidden" name="ids[]" value="<?php echo $i ?>" />
-                                        <td ><input name="begin[]" type="text" value="<?php echo $begin ?>"  /></td>
+                                        <td ><input name="begin[]"  type="text"   value="<?php echo $begin ?>"  /></td>
 					<td ><input name="end[]" type="text" value="<?php echo $end ?>"  /></td>
 					<td ><input name="type[]" type="text" value="<?php echo $type ?>"  /></td>
 					<td ><input name="W1[]" type="text" value="<?php echo $W1 ?>" id="long"  /></td>
@@ -379,7 +311,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                     $size=count($line_list[$i]);
                     $tmp_line=$line_list[$i];
                 } else {
-                    echo '<a href="xau_sample_chart.php?id='.$id.'&sn='.$sn.'">'.$sn.'</a> - ';
+                    echo '<a href="xau_complex_chart.php?id='.$id.'&sn='.$sn.'">'.$sn.'</a> - ';
                     $sample_pos.=$sn."|";
                 }
                 $sn++;
@@ -392,9 +324,9 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                 $c->addAreaLayer($line);
             }
             $sample_pos = substr($sample_pos,0,strlen($sample_pos)-1); 
-            show_png($c,$filename1);
+            show_png($c,$filename2);
             $content = json_encode($new_line_set);
-            $sql = "UPDATE `xau_sample`
+            $sql = "UPDATE `xau_complex`
                 SET `content` = '$content', 
                     `sample_pos` = '$sample_pos' 
                 WHERE `orgin_id` = ".$id;
