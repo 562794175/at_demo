@@ -1,5 +1,7 @@
 <?php
 
+define("CONFIDENCE", 0.95);
+
 function price_width($json_price) {
     $data_price = json_decode($json_price,TRUE);
     $highData = explode(",", $data_price["high"]);
@@ -174,6 +176,79 @@ function show_png($c,$filename) {
     $h = $c->getHeight();
     cut_png($realpath, 0, 0, $w, $h-10, $realpath);
     echo "<div align='center' ><img src='".$sitepath."'></div>";
+}
+
+function show_png_default($c,$filename) {
+    $realpath=realpath('.')."\\".$filename;
+    $sitepath="".$filename;
+    $c->makeChart($realpath);
+    $w = $c->getWidth();
+    $h = $c->getHeight();
+    cut_png($realpath, 0, 0, $w, $h-10, $realpath);
+    echo "<img src='".$sitepath."'>";
+}
+
+function show_svm_simple_png($dataY,$sn,$attr) {
+    $filename="png/svm/sample_close_simple_".$sn."_".$attr.".png";
+    $chart_width=$chart_height=100;
+   
+    $line_list = getlinelist($dataY);
+    
+    $offset=0;
+    $c = new XYChart($chart_width, $chart_height+10, 0xFF000000);
+    $c->setPlotArea(0, 0, $chart_width, $chart_height, 0xffffff, -1, 0xFF000000, 0xFF000000, -1);
+    $c->yAxis()->setWidth(0);
+    $line=[];
+    for($i=0;$i<count($line_list);$i++) {
+        $size=count($line_list[$i]);
+        for($n=0;$n<$size;$n++) {
+            $line[$offset]=$line_list[$i][$n];
+            $offset++;
+        }
+        $offset--;
+        $c->addAreaLayer($line);
+    }
+    show_png_default($c,$filename);
+}
+
+function getlinelist($dataY) {
+    
+    $line_list=[];
+    $start_pos=0;
+    $end_pos=count($dataY);
+    while($start_pos<$end_pos) {
+        $line=[];
+        for($i=$start_pos;$i<$end_pos;$i++) {
+            $correlation=0;
+            $line[]=$dataY[$i];
+            if(count($line)>=2) {
+                $c = new XYChart(450, 420, 0xFF000000);
+                $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
+                $c->addLineLayer($line);
+                $trendLayer = $c->addTrendLayer($line);
+                $trendLayer->addConfidenceBand(CONFIDENCE,0x806666ff);
+                $trendLayer->addPredictionBand(CONFIDENCE,0x8066ff66);
+                $correlation = abs(round($trendLayer->getCorrelation(),2));
+                unset($c);
+
+
+                if($correlation>=CONFIDENCE) {
+                    $start_pos= $i==$end_pos-1?$end_pos:$i;
+                    if($start_pos==$end_pos) {
+                        $line_list[] = $line;
+                    }
+                }else if(count($line)>2 ) {
+                    $start_pos= $i-1;
+                    array_pop( $line );
+                    $line_list[] = $line;
+                    break;
+                }
+
+            }//end if(count($line)>=2)
+
+        }//end for($i=$start_pos;$i<$end_pos;$i++)
+    }
+    return $line_list;
 }
 
 function setTransparency($new_image,$image_source) 

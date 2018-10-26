@@ -40,11 +40,11 @@ foreach($arr as $v){
     $times[]=date("H",strtotime($end)).'.'.date("i",strtotime($end));
     $labels[]=$i++;
 }
-$head = "<a href='xau_sample.php'>sample</a> - <a href='xau_complex.php'>complex</a>";
+$head = "<a href='xau_sample.php'>sample</a> - <a href='xau_complex.php'>complex</a> - <a href='xau_svm.php'>svm</a>";
 echo "<div align='center'>".$head."<br>".$page->fpage()."</div>";//显示分页信息
 
-$filename="sample_close".$pageindex.".png";
-$filename1="sample_close".$pageindex."_1.png";
+$filename="png/simple/sample_close".$pageindex.".png";
+$filename1="png/simple/sample_close".$pageindex."_1.png";
 $dataY = $closeData;
 $line_list=[];
 $start_pos=0;
@@ -59,13 +59,13 @@ while($start_pos<$end_pos) {
             $c->setPlotArea(55, 65, 350, 300, 0xffffff, -1, 0xc0c0c0, 0xc0c0c0, -1);
             $c->addLineLayer($line);
             $trendLayer = $c->addTrendLayer($line);
-            $trendLayer->addConfidenceBand(0.95,0x806666ff);
-            $trendLayer->addPredictionBand(0.95,0x8066ff66);
+            $trendLayer->addConfidenceBand(CONFIDENCE,0x806666ff);
+            $trendLayer->addPredictionBand(CONFIDENCE,0x8066ff66);
             $correlation = abs(round($trendLayer->getCorrelation(),2));
             unset($c);
             
 
-            if($correlation>=0.95) {
+            if($correlation>=CONFIDENCE) {
                 $start_pos= $i==$end_pos-1?$end_pos:$i;
                 if($start_pos==$end_pos) {
                     $line_list[] = $line;

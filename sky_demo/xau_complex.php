@@ -19,10 +19,10 @@ $result = $db->query($sql);
 $arr = $result->fetch_all();
 $line_list= json_decode($arr[0][4]);
 $id=$arr[0][1];
-$filename1="sample_close_simple.png";
-$filename2="sample_close_complex.png";
+$filename1="png/complex/sample_close_simple.png";
+$filename2="png/complex/sample_close_complex.png";
 
-$head = "<a href='xau_sample.php'>sample</a> - <a href='xau_complex.php'>complex</a>";
+$head = "<a href='xau_sample.php'>sample</a> - <a href='xau_complex.php'>complex</a> - <a href='xau_svm.php'>svm</a>";
 echo "<div align='center'>".$head."<br>".$page->fpage()."</div>";//显示分页信息
 $chart_width=$chart_height=300;
 $line_count=count($line_list);
