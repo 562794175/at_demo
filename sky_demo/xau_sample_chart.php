@@ -18,7 +18,7 @@ $c = new XYChart($chart_width, $chart_height+10, 0xFF000000);
 $c->setPlotArea(0, 0, $chart_width, $chart_height, 0xffffff, -1, 0xFF000000, 0xFF000000, -1);
 $c->yAxis()->setWidth(0);
 $c->addAreaLayer($line);
-show_png($c,$filename1);
+echo show_png($c,$filename1);
 
 $chart_width=$chart_height=300;
 $offset=0;
@@ -36,7 +36,7 @@ for($i=0;$i<count($line_arr);$i++) {
     $offset--;
     $c->addAreaLayer($line);
 }
-show_png($c,$filename2);
+echo show_png($c,$filename2);
 
 $back = "<a href='xau_sample.php?page=".$id."'>back</a>";
 $head = "<a href='xau_sample.php'>sample</a> - <a href='xau_complex.php'>complex</a>";

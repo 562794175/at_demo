@@ -43,8 +43,8 @@ foreach($arr as $v){
 $head = "<a href='xau_sample.php'>sample</a> - <a href='xau_complex.php'>complex</a> - <a href='xau_svm.php'>svm</a>";
 echo "<div align='center'>".$head."<br>".$page->fpage()."</div>";//显示分页信息
 
-$filename="png/simple/sample_close".$pageindex.".png";
-$filename1="png/simple/sample_close".$pageindex."_1.png";
+$filename="png".PATHSEP."simple".PATHSEP."sample_close".$pageindex.".png";
+$filename1="png".PATHSEP."simple".PATHSEP."sample_close".$pageindex."_1.png";
 $dataY = $closeData;
 $line_list=[];
 $start_pos=0;
@@ -110,8 +110,12 @@ for($i=0;$i<count($line_list);$i++) {
     $offset--;
     $c->addAreaLayer($line);
 }
-show_png($c,$filename);
 
+echo "<table align='center'><tr><td>";
+$image_file=show_png_default($c,$filename);
+echo "</td><td>";
+//echo "<div align='center' ><img src='".$filename1."'></div>";
+echo "</td></tr></table>";
 
 if($dopost=="ajaxdel") {
 	
@@ -400,7 +404,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
             }  
 
             $sample_pos = substr($sample_pos,0,strlen($sample_pos)-1); 
-            show_png($c,$filename1);
+            $image_file1=show_png_default($c,$filename1);
             $content = json_encode($new_line_set);
             $sql = "UPDATE `xau_sample`
                 SET `content` = '$content', 
@@ -412,7 +416,11 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
         
         </form>
         
-        
+        <table align='center'><tr><td>
+            <?php echo $image_file; ?>
+        </td><td>
+            <?php echo $image_file1; ?>
+        </td></tr></table>
     </body>
 </html>
 
