@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Considerations for Shared Hosting</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Considerations for Shared Hosting</p>
+<hr class="separator">
+<div class="content"><div style="background-color:#cccccc;width:99%;padding:10px;box-sizing:border-box;">
+<b>Note:</b> This section only applies if you cannot modify the "php.ini" or add files to the PHP extension directory (eg. due to limited access rights). You may skip this section if this is not the case.
+</div><br>
+One of the common issues in using PHP extensions in shared PHP hosting is that the web site developer may not have write access to the default "php.ini" or PHP extension directory. The followings are some common solutions:
+</div><p class="heading1a">Using a Custom "php.ini"</p><div class="content">
+Many PHP hosting companies nowadays support custom "php.ini". It means the web site developer can set up his own "php.ini", which applies to the web site only. With a custom "php.ini", the PHP extension directory can be configured to a directory within the hosting account, which the developer has full control. In this way, ChartDirector can be installed easily.<br><br>
+The exact steps of using a custom "php.ini" are different for different hosting companies. Most often, it is just a file "php.ini" in the web site document root, or in the same directory as the PHP script. However, some hosting companies may use a different directory or even different file name. From experience, many PHP hosting companies do not document this feature. You may need to ask for this feature, or check the forum or FAQ of the hosting company for information.<br><br>
+If you have not yet decided on a hosting company, it is suggested you select one that supports custom "php.ini". You may also consider to choose a hosting plan that allows root or superuser access, such as various types of "virtual private server" hosting.
+</div><p class="heading1a">Using a Private Instance of PHP through CGI</p><div class="content">
+If your hosting company does not support custom "php.ini", another method you may try is to launch a private instance of PHP through CGI.<br><br>
+The majority of Linux, FreeBSD or Solaris shared hosting supports CGI in addition to PHP. CGI may allow you to launch a program of your choice to handle a script. You can therefore launch a private instance of PHP to handle your PHP scripts, which would allow you to specify your private "php.ini".<br><br>
+The exact steps to perform the above depend on the configuration of the PHP, CGI, Apache and server OS. The following is an example just to demonstrate the general steps. It may need modification to work on your particular system, and this requires familiarity with PHP, CGI, Apache and the operating system. Please contact support@advsofteng.net or post to the <a href="http://www.chartdir.com" target="_top">ChartDirector Forum</a> if you need help.<br><br>
+<ul>
+<li>First, you would need to determine where is the CGI PHP executable in the server. It is typically an executable file called "php-cgi" or just "php" or other similar names. Most servers will have one in a system directory (such as /usr/bin, /usr/local/bin, etc). In some servers, you may be able to browse the system directories using FTP to look for the CGI PHP. You may also write a short PHP script to list out the contents of the directories. Instead of using an existing CGI PHP executable on the server, you may also upload your own CGI PHP to your private directory.<br><br>
+<li>Next, you would need to create a CGI script to launch the CGI PHP. Like all CGI scripts, the script should be readable and executable by everyone, and should be located in the CGI directory (typically called "cgi-bin"). The script should set all environmental variables required by the CGI PHP. The following is an example, which assumes the CGI PHP is at "/usr/bin/php-cgi". The CGI PHP will load the "php.ini" from the directory specified in the PHPRC environmental variable.<br><br>
+<div style="background-color:#cccccc;width:99%;padding:5px;box-sizing:border-box;"><pre>#!/bin/sh
+export REDIRECT_STATUS=200
+export PHPRC="/full/file/path/to/your/web/directory/ChartDirector/lib"
+export SCRIPT_NAME="$REDIRECT_URL"
+export SCRIPT_FILENAME="$PATH_TRANSLATED"
+/usr/bin/php-cgi</pre></div><br>
+<li>After that, you may use ".htaccess" to configure the Apache web server to redirect ".php" requests to the CGI script created above. An example is as follows. which assumes the CGI script is stored as "/cgi-bin/myphp.cgi". For testing, you may want to put the ".htaccess" to a new directory (to avoid affecting your existing ".php" files), and put a <a href="phpconcepts.htm#phpinfo">phpinfo</a> page in that directory. If the ".htaccess" and the CGI script work, the phpinfo should show that the PHP is configured to load the "php.ini" from  the PHPRC directory.<br><br>
+<div style="background-color:#cccccc;width:99%;padding:5px;box-sizing:border-box;"><pre>AddHandler php-cgi .php
+Action php-cgi /cgi-bin/myphp.cgi</pre></div><br>
+<li>You may now create a private "php.ini" in the PHPRC directory to configure the PHP extension directory and load the ChartDirector PHP extension. An example is as follows, which assumes you are using non-thread-safe PHP 5.4 on Linux, FreeBSD, Solaris or Mac OS X.<br><br>
+<div style="background-color:#cccccc;width:99%;padding:5px;box-sizing:border-box;"><pre>extension_dir="/full/file/path/to/your/web/directory/ChartDirector/lib"
+extension="phpchartdir540.dll"</pre></div><br>
+<li>Finally, you may copy the ".htaccess" to the "ChartDirector/phpdemo" subdirectory, and check if the ChartDirector sample scripts work normally.<br></ul></div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

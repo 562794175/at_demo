@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Simple Zooming and Scrolling</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Simple Zooming and Scrolling</p>
+<hr class="separator">
+<div class="content"><img src="images/simplezoomscroll_web.png"><br><br>
+This sample program demonstrates simple zoomable and scrollable chart with tooltips, using mouse click and drag to control zooming and scrolling.<br><br>
+The main source code listing of this sample program is included at the end of this section. The code consists of the following main parts:<br><br>
+<ul>
+<li><b>initViewer</b>: This function is for initializing the <a href="WebChartViewer.htm">WebChartViewer</a> during initial page request. It sets up the full data range of the view port, the initial visible range, as well as the maximum zoom in ratio allowed.<br><br>
+<li><b>drawChart</b>: This is the main charting code. It first gets the visible data range from the view port using <a href="WebChartViewer.getValueAtViewPort.htm">WebChartViewer.getValueAtViewPort</a>. Then it gets the data in that data range. After that it plots the chart as usual, with the x-axis configured to synchronize with the view port using <a href="WebChartViewer.syncDateAxisWithViewPort.htm">WebChartViewer.syncDateAxisWithViewPort</a>.<br><br>
+<li><b>HTML</b>: The HTML part of the code implements the web page. <a href="WebChartViewer.renderHTML.htm">WebChartViewer.renderHTML</a> is used to generate the tags for the chart image. Javascript code is used in the onclick handler of the radio buttons to allow them to control the mouse usage.<br><br>
+<li><b>window onload event handler</b>: The event handler, set up using <a href="JsChartViewer.addEventListener.htm">JsChartViewer.addEventListener</a>, is used to initialize the browser side user interface. It configures the <a href="JsChartViewer.ViewPortChanged.htm">JsChartViewer.ViewPortChanged</a> event to trigger an AJAX chart update. The  the mouse usage is initialized to <a href="JsChartViewer.Scroll.htm">JsChartViewer.Scroll</a> for drag to scroll.<br></ul>
+When the script starts to run , the first thing it does is to use <a href="WebChartViewer.isPartialUpdateRequest.htm">WebChartViewer.isPartialUpdateRequest</a> to detect if it is handling an AJAX chart update or an initial page request. If it is an AJAX chart update, it just draws the chart and sends back an AJAX response using <a href="WebChartViewer.partialUpdateChart.htm">WebChartViewer.partialUpdateChart</a>, then terminates the request. If it is an initial page request, it initializes the <a href="WebChartViewer.htm">WebChartViewer</a>, draws the chart, and sends the HTML contents to the browser as usual.
+</div><p class="heading1a">Files in this Demonstration</p><div class="content">
+This sample script requires the following files. When developing your own script using this sample script as a template, please ensure you copy the necessary files to the proper directories (typically the same directory as the script) and reference them using proper paths.<br><br>
+<table width="98%" border="1" cellpadding="5" cellspacing="0"> <tr><th width="24%">File<th width="74%">Description
+<tr><td>simplezoomscroll.php<td>Main source code for this demo.
+<tr><td>getchart.php<td>The standard utility script used in the image url for retrieving the chart image from a session variable (see <a href="BaseChart.makeSession.htm">BaseChart.makeSession</a>).
+<tr><td>cdjcv.js<br>zoomin.cur<br>zoomout.cur<br>wait.gif<br>spacer.gif<td>The script file for <a href="JsChartViewer.htm">JsChartViewer</a>, and the supporting cursor and image files. They must be in the same directory.
+</table></div><p class="heading1a">Source Code Listing</p><div class="content">
+<b>[File: phpdemo/simplezoomscroll.php]</b>
+<table width="98%" border="0" cellpadding="10"><tr><td bgcolor="#cccccc"><pre>&lt;?php
+require_once("../lib/phpchartdir.php");
+
+#
+# Initialize the WebChartViewer when the page is first loaded
+#
+function initViewer(&amp;$viewer) {
+    # The full x-axis range is from Jan 1, 2007 to Jan 1, 2012
+    $startDate = chartTime(2010, 1, 1);
+    $endDate = chartTime(2015, 1, 1);
+    $viewer-&gt;setFullRange("x", $startDate, $endDate);
+
+    # Initialize the view port to show the last 366 days (out of 1826 days)
+    $viewer-&gt;setViewPortWidth(366.0 / 1826);
+    $viewer-&gt;setViewPortLeft(1 - $viewer-&gt;getViewPortWidth());
+
+    # Set the maximum zoom to 10 days (out of 1826 days)
+    $viewer-&gt;setZoomInWidthLimit(10.0 / 1826);
+}
+
+#
+# Create a random table for demo purpose.
+#
+function getRandomTable() {
+    $r = new RanTable(127, 4, 1828);
+    $r-&gt;setDateCol(0, chartTime(2010, 1, 1), 86400);
+    $r-&gt;setCol(1, 150, -10, 10);
+    $r-&gt;setCol(2, 200, -10, 10);
+    $r-&gt;setCol(3, 250, -8, 8);
+    return $r;
+}
+
+#
+# Draw the chart
+#
+function drawChart(&amp;$viewer) {
+    # Determine the visible x-axis range
+    $viewPortStartDate = $viewer-&gt;getValueAtViewPort("x", $viewer-&gt;getViewPortLeft());
+    $viewPortEndDate = $viewer-&gt;getValueAtViewPort("x", $viewer-&gt;getViewPortLeft() +
+        $viewer-&gt;getViewPortWidth());
+
+    # We need to get the data within the visible x-axis range. In real code, this can be by using a
+    # database query or some other means as specific to the application. In this demo, we just
+    # generate a random data table, and then select the data within the table.
+    $r = getRandomTable();
+
+    # Select the data for the visible date range viewPortStartDate to viewPortEndDate. It is
+    # possible there is no data point at exactly viewPortStartDate or viewPortEndDate. In this case,
+    # we also need the data points that are just outside the visible date range to "overdraw" the
+    # line a little bit (the "overdrawn" part will be clipped to the plot area) In this demo, we do
+    # this by adding a one day margin to the date range when selecting the data.
+    $r-&gt;selectDate(0, $viewPortStartDate - 86400, $viewPortEndDate + 86400);
+
+    # The selected data from the random data table
+    $timeStamps = $r-&gt;getCol(0);
+    $dataSeriesA = $r-&gt;getCol(1);
+    $dataSeriesB = $r-&gt;getCol(2);
+    $dataSeriesC = $r-&gt;getCol(3);
+
+    #
+    # Now we have obtained the data, we can plot the chart.
+    #
+
+    #================================================================================
+    # Configure overall chart appearance.
+    #================================================================================
+
+    # Create an XYChart object 600 x 300 pixels in size, with pale blue (f0f0ff) background, black
+    # (000000) rounded border, 1 pixel raised effect.
+    $c = new XYChart(600, 300, 0xf0f0ff, 0x000000);
+    $c-&gt;setRoundedFrame();
+
+    # Set the plotarea at (52, 60) and of size 520 x 205 pixels. Use white (ffffff) background.
+    # Enable both horizontal and vertical grids by setting their colors to grey (cccccc). Set
+    # clipping mode to clip the data lines to the plot area.
+    $c-&gt;setPlotArea(55, 60, 520, 205, 0xffffff, -1, -1, 0xcccccc, 0xcccccc);
+
+    # As the data can lie outside the plotarea in a zoomed chart, we need to enable clipping.
+    $c-&gt;setClipping();
+
+    # Add a top title to the chart using 15pt Times New Roman Bold Italic font, with a light blue
+    # (ccccff) background, black (000000) border, and a glass like raised effect.
+    $textBoxObj = $c-&gt;addTitle("Product Line International Market Price", "timesbi.ttf", 15);
+    $textBoxObj-&gt;setBackground(0xccccff, 0x000000, glassEffect());
+
+    # Add a legend box at the top of the plot area with 9pt Arial Bold font with flow layout.
+    $legendObj = $c-&gt;addLegend(50, 33, false, "arialbd.ttf", 9);
+    $legendObj-&gt;setBackground(Transparent, Transparent);
+
+    # Set axes width to 2 pixels
+    $c-&gt;xAxis-&gt;setWidth(2);
+    $c-&gt;yAxis-&gt;setWidth(2);
+
+    # Add a title to the y-axis
+    $c-&gt;yAxis-&gt;setTitle("Price (USD)", "arialbd.ttf", 10);
+
+    #================================================================================
+    # Add data to chart
+    #================================================================================
+
+    #
+    # In this example, we represent the data by lines. You may modify the code below to use other
+    # representations (areas, scatter plot, etc).
+    #
+
+    # Add a line layer for the lines, using a line width of 2 pixels
+    $layer = $c-&gt;addLineLayer2();
+    $layer-&gt;setLineWidth(2);
+
+    # In this demo, we do not have too many data points. In real code, the chart may contain a lot
+    # of data points when fully zoomed out - much more than the number of horizontal pixels in this
+    # plot area. So it is a good idea to use fast line mode.
+    $layer-&gt;setFastLineMode();
+
+    # Now we add the 3 data series to a line layer, using the color red (ff0000), green (00cc00) and
+    # blue (0000ff)
+    $layer-&gt;setXData($timeStamps);
+    $layer-&gt;addDataSet($dataSeriesA, 0xff0000, "Product Alpha");
+    $layer-&gt;addDataSet($dataSeriesB, 0x00cc00, "Product Beta");
+    $layer-&gt;addDataSet($dataSeriesC, 0x0000ff, "Product Gamma");
+
+    #================================================================================
+    # Configure axis scale and labelling
+    #================================================================================
+
+    # Set the x-axis as a date/time axis with the scale according to the view port x range.
+    $viewer-&gt;syncDateAxisWithViewPort("x", $c-&gt;xAxis);
+
+    # In this demo, we rely on ChartDirector to auto-label the axis. We ask ChartDirector to ensure
+    # the x-axis labels are at least 75 pixels apart to avoid too many labels.
+    $c-&gt;xAxis-&gt;setTickDensity(75);
+
+    #================================================================================
+    # Output the chart
+    #================================================================================
+
+    # Output the chart
+    $chartQuery = $c-&gt;makeSession($viewer-&gt;getId());
+
+    # Include tool tip for the chart
+    $imageMap = $c-&gt;getHTMLImageMap("", "",
+        "title='[{dataSetName}] {x|mmm dd, yyyy}: USD {value|2}'");
+
+    # Set the chart URL, image map and chart metrics to the viewer
+    $viewer-&gt;setImageUrl("getchart.php?".$chartQuery);
+    $viewer-&gt;setImageMap($imageMap);
+    $viewer-&gt;setChartMetrics($c-&gt;getChartMetrics());
+}
+
+#
+# This script handles both the full page request, as well as the subsequent partial updates (AJAX
+# chart updates). We need to determine the type of request first before we processing it.
+#
+
+# Create the WebChartViewer object
+$viewer = new WebChartViewer("chart1");
+
+if ($viewer-&gt;isPartialUpdateRequest()) {
+    # Is a partial update request. Draw the chart and perform a partial response.
+    drawChart($viewer);
+    print($viewer-&gt;partialUpdateChart());
+    exit();
+}
+
+#
+# If the code reaches here, it is a full page request.
+#
+
+# In this exapmle, we just need to initialize the WebChartViewer and draw the chart.
+initViewer($viewer);
+drawChart($viewer);
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Simple Zooming and Scrolling&lt;/title&gt;
+    &lt;script type="text/javascript" src="cdjcv.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="margin:0px;"&gt;
+&lt;script type="text/javascript"&gt;
+
+//
+// Execute the following initialization code after the web page is loaded
+//
+JsChartViewer.addEventListener(window, 'load', function() {
+    // Update the chart when the view port has changed (eg. when the user zooms in using the mouse)
+    var viewer = JsChartViewer.get('&lt;?php echo $viewer-&gt;getId()?&gt;');
+    viewer.attachHandler("ViewPortChanged", viewer.partialUpdate);
+
+    // Set the initial mouse usage to "scroll"
+    viewer.setMouseUsage(JsChartViewer.Scroll);
+    document.getElementById("scrollChart").checked = true;
+});
+
+&lt;/script&gt;
+&lt;form method="post"&gt;
+&lt;table cellspacing="0" cellpadding="0" border="0"&gt;
+    &lt;tr&gt;
+        &lt;td align="right" colspan="2" style="background:#000088"&gt;
+            &lt;div style="padding:0px 3px 2px 0px; font:italic bold 10pt Arial;"&gt;
+                &lt;a style="color:#FFFF00; text-decoration:none" href="http://www.advsofteng.com/"&gt;Advanced Software Engineering&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr valign="top"&gt;
+        &lt;td style="width:127px; background:#c0c0ff; border-right:black 1px solid; border-bottom:black 1px solid;"&gt;
+        &lt;div style="font:9pt Verdana; padding:10px 0px 0px 3px; line-height:1.5; width:127px"&gt;
+            &lt;!-- The onclick handler of the following radio buttons sets the mouse usage mode. --&gt;
+            &lt;input name="mouseUsage" id="scrollChart" type="radio"
+                onclick="JsChartViewer.get('&lt;?php echo $viewer-&gt;getId()?&gt;').setMouseUsage(JsChartViewer.Scroll)" /&gt;
+            Drag To Scroll&lt;br /&gt;
+            &lt;input name="mouseUsage" id="zoomInChart" type="radio"
+                onclick="JsChartViewer.get('&lt;?php echo $viewer-&gt;getId()?&gt;').setMouseUsage(JsChartViewer.ZoomIn)" /&gt;
+            Zoom In&lt;br /&gt;
+            &lt;input name="mouseUsage" id="zoomOutChart" type="radio"
+                onclick="JsChartViewer.get('&lt;?php echo $viewer-&gt;getId()?&gt;').setMouseUsage(JsChartViewer.ZoomOut)" /&gt;
+            Zoom Out&lt;br /&gt;
+        &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;div style="font-weight:bold; font-size:20pt; margin:5px 0px 0px 5px; font-family:Arial"&gt;
+                Simple Zooming and Scrolling
+            &lt;/div&gt;
+            &lt;hr style="border:solid 1px #000080" /&gt;
+            &lt;div style="padding:0px 5px 5px 10px"&gt;
+                &lt;!-- ****** Here is the chart image ****** --&gt;
+                &lt;?php echo $viewer-&gt;renderHTML()?&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></td></tr></table></div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsDataSet.getDataColor</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsDataSet.htm">JsDataSet</a>.getDataColor</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+getDataColor()
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Gets the main color used to draw the data set.<br><br>
+This method returns the color in HTML color format. For example, the pure red color FF0000 will be returned as a text string "#FF0000". The returned value can therefore be used as the color of HTML elements.<br><br>
+Because the HTML color format does not support semi-transparent colors, the alpha channel in the color will be removed. For example, the semi-transparent green color 80FF0000 will be returned as "#00FF00", with the alpha channel "80" removed. If the color is totally transparent (corresponding to the <a href="phpchartdir.Transparent.htm">Transparent</a> color in the server side), this method returns null.<br><br>
+Also, the HTML color format does not support dynamic colors (such as gradients), so non-RGB colors are not supported.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">None</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+The main color used to draw the data set in HTML color format.
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

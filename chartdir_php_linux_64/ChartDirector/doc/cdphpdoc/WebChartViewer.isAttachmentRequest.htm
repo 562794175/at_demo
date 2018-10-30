@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>WebChartViewer.isAttachmentRequest</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="WebChartViewer.htm">WebChartViewer</a>.isAttachmentRequest</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+isAttachmentRequest()
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Checks if the current partial update request (AJAX request) is an attachment request sent using <a href="JsChartViewer.partialUpdateAsAttachment.htm">JsChartViewer.partialUpdateAsAttachment</a>.<br><br>
+This method only applies for partial update requests.<br><br>
+In partial update request, additional parameters and custom attributes will be included in the requests. The response can include the updated chart, image map, additional parameters and custom attributes. However, if it is an attachment request, then the response will only include the chart, with the HTTP header specifying it as an attachment.<br><br>
+This method allows the code that handles the partial update request to distinguish if it is an attachment request or not. If it is an attachment request, the code only needs to update the chart but not other things, as only the chart will be included in the response.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">None</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+True if the current partial update request is an attachment request sent using <a href="JsChartViewer.partialUpdateAsAttachment.htm">JsChartViewer.partialUpdateAsAttachment</a>., otherwise false.
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

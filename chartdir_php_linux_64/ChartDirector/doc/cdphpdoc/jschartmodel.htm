@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Javascript Chart Model</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Javascript Chart Model</p>
+<hr class="separator">
+<div class="content">The ChartDirector Javascript Chart Model is a read-only representation of a ChartDirector chart as Javascript objects on the browser side. It is designed to facilitate implementing track cursors on the browser side.<br><br>
+To draw track cursors on the browser side, certain chart configuration (such as the position and size of the plot area, the axis scale of all axes, the data values, etc) needs to be accessible on the browser side. To do this, <a href="BaseChart.getJsChartModel.htm">BaseChart.getJsChartModel</a> can be used on the server side to generate a data structure containing the chart configuration. The data structure can then be passed to the WebChartViewer using <a href="WebChartViewer.setChartModel.htm">WebChartViewer.setChartModel</a>, which will send it to the browser. On the browser side, the <a href='JsChartViewer.htm'>Javascript Chart Viewer</a> will use the data structure to construct Javascript objects representing the chart. These objects can be accessed using <a href="JsChartViewer.getChart.htm">JsChartViewer.getChart</a>.<br><br>
+Currently, the Javascript Chart Model only supports <a href="XYChart.htm">XYChart</a> objects.<br><br>
+A chart can contain a huge amount of data. Sending all of them over the network to the browser can be slow, inefficient and unnecessary for the purpose of drawing track cursors. ChartDirector addresses this issue by sending only a subset of the chart configuration that are commonly used to draw track cursors.<br><br>
+For example, consider a line layer containing 50000 data points with the line flowing horizontally. If the plot area is 500 pixels wide, a track cursor "sweep line" that moves with the mouse can have at most 500 different coordinates. It is because the mouse coordinate must be an integer. In other words, even on average there can be 500 data points between two pixels, the "sweep line" must jump from one pixel directly to the next pixel, skipping all the data points in between. In this case, in generating the Javascript Chart Model, ChartDirector will omit the data points that cannot be addressed by a track cursor. In practice, this method limits the data for each data set to no more than 2 times the number of x pixels in the plot area.
+</div><p class="heading1a">Classes in Javascript Chart Model</p><div class="content">
+<table width="98%" border="1" cellpadding="5" cellspacing="0"> <tr><th width="28%">Class<th width="70%">Description
+<tr><td><a href="JsXYChart.htm">JsXYChart</a><td>The JsXYChart class represents XY charts in the Javascript Chart Model. The corresponding server side class is <a href="XYChart.htm">XYChart</a>. JsXYChart objects can be obtained using <a href="JsChartViewer.getChart.htm">JsChartViewer.getChart</a>.
+<tr><td><a href="JsPlotArea.htm">JsPlotArea</a><td>The JsPlotArea class represents plot areas in the Javascript Chart Model. The corresponding server side class is <a href="PlotArea.htm">PlotArea</a>. JsPlotArea objects can be obtained using <a href="JsXYChart.getPlotArea.htm">JsXYChart.getPlotArea</a>.
+<tr><td><a href="JsAxis.htm">JsAxis</a><td>The JsAxis class represents axes in the Javascript Chart Model. The corresponding server side class is <a href="Axis.htm">Axis</a>. JsAxis objects can be obtained using <a href="JsXYChart.xAxis.htm">JsXYChart.xAxis</a>, <a href="JsXYChart.xAxis2.htm">JsXYChart.xAxis2</a>, <a href="JsXYChart.yAxis.htm">JsXYChart.yAxis</a>, <a href="JsXYChart.yAxis2.htm">JsXYChart.yAxis2</a> or <a href="JsDataSet.getUseYAxis.htm">JsDataSet.getUseYAxis</a>.
+<tr><td><a href="JsLayer.htm">JsLayer</a><td>The JsLayer class represents data layers in the Javascript Chart Model. The corresponding server side class is <a href="Layer.htm">Layer</a>. JsLayer objects can be obtained using <a href="JsXYChart.getLayer.htm">JsXYChart.getLayer</a> or <a href="JsXYChart.getLayerByZ.htm">JsXYChart.getLayerByZ</a>.
+<tr><td><a href="JsDataSet.htm">JsDataSet</a><td>The JsDataSet class represents data sets in the Javascript Chart Model. The corresponding server side class is <a href="DataSet.htm">DataSet</a>. JsDataSet objects can be obtained using <a href="JsLayer.getDataSet.htm">JsLayer.getDataSet</a> or <a href="JsLayer.getDataSetByZ.htm">JsLayer.getDataSetByZ</a>.
+</table></div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

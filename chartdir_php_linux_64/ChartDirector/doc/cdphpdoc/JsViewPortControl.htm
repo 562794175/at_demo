@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsViewPortControl</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">JsViewPortControl</p>
+<hr class="separator">
+<div class="content">
+The JsViewPortControl is a browser side Javascript control to let the user visualize and manipulate the viewport managed by the <a href="JsChartViewer.htm">JsChartViewer</a>. It needs to be used with the <a href="WebViewPortControl.htm">WebViewPortControl</a> on the server side.<br><br>
+In typical usage, the JsViewPortControl displays an "overall chart" that shows the full data range, and connects to the JsChartViewer using <a href="JsViewPortControl.setViewer.htm">JsViewPortControl.setViewer</a>. It can then include a rectangle on the overall chart to represent the viewport in the JsChartViewer. The region outside the rectangle can be dimmed out to highlight the viewport region. If the viewport is updated (such as if the user clicks on the chart while in "Zoom In" mode), the rectangle will also update automatically.<br><br>
+To manipulate the viewport, the user can drag the rectangle to move the viewport (equivalent to scrolling). The user can also resize the viewport by dragging the border of the rectangle (equivalent to zooming), or drag a new rectangular region on the overall chart to be used as the new viewport, or click on a point on the chart to center the viewport at that point.<br><br>
+To use JsViewPortControl in a web page, it is necessary to include the ChartDirector Javascript Library "cdjcv.js" and other supporting files in the web page. Please refer to <a href='javascriptlib.htm'>ChartDirector Javascript Library</a> for details.
+<br><br>
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Method</th><th width="19%">Inherited</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td><a href="JsViewPortControl.setViewer.htm">setViewer</a></td><td>(Self)</td><td>Associates a <a href="JsChartViewer.htm">JsChartViewer</a> object with this JsViewPortControl object.</td></tr><tr><td><a href="JsViewPortControl.getViewer.htm">getViewer</a></td><td>(Self)</td><td>Gets the <a href="JsChartViewer.htm">JsChartViewer</a> object provided by the previous <a href="JsViewPortControl.setViewer.htm">JsViewPortControl.setViewer</a> method call.</td></tr><tr><td><a href="JsViewPortControl.setDragInsideToMove.htm">setDragInsideToMove</a></td><td>(Self)</td><td>Enables or disables  dragging inside the viewport to move it.</td></tr><tr><td><a href="JsViewPortControl.getDragInsideToMove.htm">getDragInsideToMove</a></td><td>(Self)</td><td>Checks if  dragging inside the viewport to move it is enabled or disabled.</td></tr><tr><td><a href="JsViewPortControl.setDragBorderToResize.htm">setDragBorderToResize</a></td><td>(Self)</td><td>Enables or disables  dragging the viewport border to resize it.</td></tr><tr><td><a href="JsViewPortControl.getDragBorderToResize.htm">getDragBorderToResize</a></td><td>(Self)</td><td>Checks if  dragging the viewport border to resize it is enabled or disabled.</td></tr><tr><td><a href="JsViewPortControl.setDragOutsideToSelect.htm">setDragOutsideToSelect</a></td><td>(Self)</td><td>Enables or disables  dragging outside the viewport to select a new viewport.</td></tr><tr><td><a href="JsViewPortControl.getDragOutsideToSelect.htm">getDragOutsideToSelect</a></td><td>(Self)</td><td>Checks if  dragging outside the viewport to select a new viewport is enabled or disabled.</td></tr><tr><td><a href="JsViewPortControl.setClickToCenter.htm">setClickToCenter</a></td><td>(Self)</td><td>Enables or disables  centering the viewport at the clicked point.</td></tr><tr><td><a href="JsViewPortControl.getClickToCenter.htm">getClickToCenter</a></td><td>(Self)</td><td>Checks if  centering the viewport at the clicked point is enabled or disabled.</td></tr><tr><td><a href="JsViewPortControl.setViewPortExternalColor.htm">setViewPortExternalColor</a></td><td>(Self)</td><td>Sets the  fill color for the region outside the viewport.</td></tr><tr><td><a href="JsViewPortControl.getViewPortExternalColor.htm">getViewPortExternalColor</a></td><td>(Self)</td><td>Gets the  fill color for the region outside the viewport.</td></tr><tr><td><a href="JsViewPortControl.setViewPortBorderStyle.htm">setViewPortBorderStyle</a></td><td>(Self)</td><td>Sets the  viewport border style.</td></tr><tr><td><a href="JsViewPortControl.getViewPortBorderStyle.htm">getViewPortBorderStyle</a></td><td>(Self)</td><td>Gets the  viewport border style in CSS "border" style format.</td></tr><tr><td><a href="JsViewPortControl.setSelectionBorderStyle.htm">setSelectionBorderStyle</a></td><td>(Self)</td><td>Sets the  selection border style.</td></tr><tr><td><a href="JsViewPortControl.getSelectionBorderStyle.htm">getSelectionBorderStyle</a></td><td>(Self)</td><td>Gets the  selection border style in CSS "border" style format.</td></tr><tr><td><a href="JsViewPortControl.setMouseMargin.htm">setMouseMargin</a></td><td>(Self)</td><td>Sets the margin around the viewport border for mouse drag.</td>
+</tr>
+</table>
+
+</div>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

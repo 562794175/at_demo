@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Track Line with Vertical Legend</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Track Line with Vertical Legend</p>
+<hr class="separator">
+<div class="content"><img src="images/trackvlegend_web.png"><br><br>
+This sample program demonstrates a track cursor programmed with the following features:<br><br>
+<ul>
+<li>A vertical line that follows the mouse cursor on the plot area and snaps to the nearest x data value.<br><br>
+<li>Small dots that shows the data points at the nearest x data value.<br><br>
+<li>Dynamically updated legend entries that shows the value of the data points at the nearest x data value.<br></ul>
+On the server side, the code draws the chart as usual, and outputs both the image and the <a href="jschartmodel.htm">Javascript Chart Model</a> of the chart.<br><br>
+On the browser side, in the window onload event handler, Javascript is used to set up the event handler for the <a href="JsChartViewer.MouseMovePlotArea.htm">MouseMovePlotArea</a>, <a href="JsChartViewer.TouchStartPlotArea.htm">TouchStartPlotArea</a>, <a href="JsChartViewer.TouchMovePlotArea.htm">TouchMovePlotArea</a> and <a href="JsChartViewer.ChartMove.htm">ChartMove</a>  events. The event handler calls <b>trackVLegend</b> to draw the track cursor. It also calls <a href="JsChartViewer.setAutoHide.htm">JsChartViewer.setAutoHide</a> to automatically hide the track cursor when the <a href="JsChartViewer.MouseOutPlotArea.htm">MouseOutPlotArea</a> or <a href="JsChartViewer.TouchEndPlotArea.htm">TouchEndPlotArea</a> event occurs.<br><br>
+The <b>trackVLegend</b> Javascript function is the routine that draws the track cursor. Its key elements are:<br><br>
+<ul>
+<li>The code first uses <a href="JsChartViewer.hideObj.htm">JsChartViewer.hideObj</a> to clear the previous track cursor, if any.<br><br>
+<li>The nearest x data value is obtained using <a href="JsXYChart.getNearestXValue.htm">JsXYChart.getNearestXValue</a>.<br><br>
+<li>A vertical line is drawn at the nearest x data value using <a href="JsChartViewer.drawVLine.htm">JsChartViewer.drawVLine</a>.<br><br>
+<li>The code then iterates through all data sets in all layers to find all the data points at the nearest x data value. For each of these points, it formats a legend entry for the point, which consists of a colored square as the icon (creating using <a href="JsChartViewer.htmlRect.htm">JsChartViewer.htmlRect</a>), the data set name (obtained using <a href="JsDataSet.getDataName.htm">JsDataSet.getDataName</a>), and data value (obtained using <a href="JsDataSet.getValue.htm">JsDataSet.getValue</a>). The code also gets the point's y position using <a href="DataSet.getPosition.htm">DataSet.getPosition</a>, and draws a square dot using <a href="JsChartViewer.showTextBox.htm">JsChartViewer.showTextBox</a> and <a href="JsChartViewer.htmlRect.htm">JsChartViewer.htmlRect</a>.<br><br>
+<li>Finally, the code combines all the legend entries vertically and draws them at the top of the plot area using <a href="JsChartViewer.showTextBox.htm">JsChartViewer.showTextBox</a>. It puts the legend box on the left side of the plot area if the track cursor is on the right side and vice versa. This ensures the legend box would not block the region near the track cursor.<br></ul>
+</div><p class="heading1a">Source Code Listing</p><div class="content">
+<b>[File: phpdemo/trackvlegend.php]</b>
+<table width="98%" border="0" cellpadding="10"><tr><td bgcolor="#cccccc"><pre>&lt;?php
+require_once("../lib/phpchartdir.php");
+
+# In this example, we simply use random data for the 2 data series.
+$r = new RanSeries(127);
+$data0 = $r-&gt;getSeries(180, 70, -5, 5);
+$data1 = $r-&gt;getSeries(180, 150, -15, 15);
+$timeStamps = $r-&gt;getDateSeries(180, chartTime(2014, 3, 1), 86400);
+
+# Create a XYChart object of size 640 x 420 pixels
+$c = new XYChart(640, 420);
+
+# Add a title to the chart using 20pt Arial font
+$c-&gt;addTitle("    Plasma Stabilizer Energy Usage", "Arial", 20);
+
+# Set the plotarea at (55, 60) and of size 560 x 330 pixels, with transparent background and border
+# and light grey (0xcccccc) horizontal grid lines
+$c-&gt;setPlotArea(55, 60, 560, 330, -1, -1, Transparent, 0xcccccc);
+
+# Add a legend box at (55, 30) using horizontal layout, with 10pt Arial Bold as font and transparent
+# background and border.
+$legendObj = $c-&gt;addLegend(55, 30, false, "Arial Bold", 10);
+$legendObj-&gt;setBackground(Transparent);
+
+# Set axis label style to 10pt Arial
+$c-&gt;xAxis-&gt;setLabelStyle("arial.ttf", 10);
+$c-&gt;yAxis-&gt;setLabelStyle("arial.ttf", 10);
+
+# Set the x and y axis stems to transparent, and the x-axis tick color to grey (0xcccccc)
+$c-&gt;xAxis-&gt;setColors(Transparent, TextColor, TextColor, 0xcccccc);
+$c-&gt;yAxis-&gt;setColors(Transparent);
+
+# Configure the x-axis tick lengtht to 10 pixels internal to the plot area
+$c-&gt;xAxis-&gt;setTickLength(-10, 0);
+
+# With the ticks internal to the plot area, the x-axis labels will come very close to the axis stem,
+# so we configure a wider gap.
+$c-&gt;xAxis-&gt;setLabelGap(10);
+
+# For the automatic axis labels, set the minimum spacing to 80/40 pixels for the x/y axis.
+$c-&gt;xAxis-&gt;setTickDensity(80);
+$c-&gt;yAxis-&gt;setTickDensity(40);
+
+# Use "mm/yyyy" as the x-axis label format for the first plotted month of a year, and "mm" for other
+# months
+$c-&gt;xAxis-&gt;setMultiFormat(StartOfYearFilter(), "{value|mm/yyyy} ", StartOfMonthFilter(),
+    "{value|mm}");
+
+# Add a title to the y axis using dark grey (0x555555) 12pt Arial Bold font
+$c-&gt;yAxis-&gt;setTitle("Energy (kWh)", "arialbd.ttf", 14, 0x555555);
+
+# Add a line layer with 2-pixel line width
+$layer0 = $c-&gt;addLineLayer($data0, 0xcc0000, "Power Usage");
+$layer0-&gt;setXData($timeStamps);
+$layer0-&gt;setLineWidth(2);
+
+# Add an area layer using semi-transparent blue (0x7f0044cc) as the fill color
+$layer1 = $c-&gt;addAreaLayer($data1, 0x7f0044cc, "Effective Load");
+$layer1-&gt;setXData($timeStamps);
+$layer1-&gt;setBorderColor(SameAsMainColor);
+
+# Create the WebChartViewer object
+$viewer = new WebChartViewer("chart1");
+
+# Output the chart
+$chartQuery = $c-&gt;makeSession($viewer-&gt;getId());
+
+# Set the chart URL to the viewer
+$viewer-&gt;setImageUrl("getchart.php?".$chartQuery);
+
+# Output Javascript chart model to the browser to support tracking cursor
+$viewer-&gt;setChartModel($c-&gt;getJsChartModel());
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Track Line with Vertical Legend&lt;/title&gt;
+    &lt;script type="text/javascript" src="cdjcv.js"&gt;&lt;/script&gt;
+    &lt;style&gt;
+    .legend {border:solid 1px #888888; black;background:#eeeeee; font:13px Arial; padding:2px;
+             border-radius:4px; white-space:nowrap;-webkit-text-size-adjust:100%;}
+    .legend_caption {text-decoration:underline; font-weight:bold; padding-bottom:2px;}
+    .legend_table {border-spacing:0px;}
+    .legend_table td {padding:1px 0px 1px 3px;}
+    .legend_slide  {-webkit-transition:left 0.3s;}
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body style="margin:5px 0px 0px 5px"&gt;
+&lt;script type="text/javascript"&gt;
+
+//
+// Use the window load event to set up the MouseMovePlotArea event handler
+//
+JsChartViewer.addEventListener(window, 'load', function() {
+    var viewer = JsChartViewer.get('&lt;?php echo $viewer-&gt;getId()?&gt;');
+
+    // Draw track cursor when mouse is moving over plotarea. Hide it when mouse leaves plot area.
+    viewer.attachHandler(["MouseMovePlotArea", "TouchStartPlotArea", "TouchMovePlotArea", "ChartMove"],
+    function(e) {
+        this.preventDefault(e);   // Prevent the browser from using touch events for other actions
+        trackVLegend(viewer, viewer.getPlotAreaMouseX());
+        viewer.setAutoHide("all", ["MouseOutPlotArea", "TouchEndPlotArea"]);
+    });
+});
+
+//
+// Draw track line with axis labels
+//
+function trackVLegend(viewer, mouseX)
+{
+    // Remember whether we are displaying the legend initially or updating the display.
+    var legendIsVisible = viewer.isVisible("legend");
+
+    // Remove all previously drawn tracking object
+    viewer.hideObj("all");
+
+    // The chart and its plot area
+    var c = viewer.getChart();
+    var plotArea = c.getPlotArea();
+
+    // Get the data x-value that is nearest to the mouse, and find its pixel coordinate.
+    var xValue = c.getNearestXValue(mouseX);
+    var xCoor = c.getXCoor(xValue);
+
+    // Draw a vertical track line at the x-position
+    viewer.drawVLine("trackLine", xCoor, plotArea.getTopY(), plotArea.getBottomY(), "black 1px dotted");
+
+    // Array to hold the legend entries
+    var legendEntries = [];
+
+    // Iterate through all layers to draw the axis labels for the data points
+    for (var i = 0; i &lt; c.getLayerCount(); ++i)
+    {
+      var layer = c.getLayerByZ(i);
+
+        // The data array index of the x-value
+        var xIndex = layer.getXIndexOf(xValue);
+
+        // Iterate through all the data sets in the layer
+        for (var j = 0; j &lt; layer.getDataSetCount(); ++j)
+        {
+            var dataSet = layer.getDataSetByZ(j);
+
+            // Only visible data sets with names are included in the legend.
+            var dataName = dataSet.getDataName();
+            var color = dataSet.getDataColor();
+            var dataValue = dataSet.getValue(xIndex);
+            if ((!dataName) || (color == null) || (dataValue == null))
+                continue;
+
+            // Build the legend entry, consist of a colored square box, the name and the data value.
+            legendEntries.push("&lt;tr&gt;&lt;td&gt;" + viewer.htmlRect(7, 7, color, "black 1px solid") + " " +
+                dataSet.getDataName() + ":&lt;/td&gt;&lt;td&gt;" + dataValue.toPrecision(4) + "&lt;/td&gt;&lt;/tr&gt;");
+
+            // Draw a track dot for data points within the plot area
+            var yCoor = c.getYCoor(dataSet.getPosition(xIndex));
+            if ((yCoor != null) &amp;&amp; (yCoor &gt;= plotArea.getTopY()) &amp;&amp; (yCoor &lt;= plotArea.getBottomY()))
+            {
+                   viewer.showTextBox("dataPoint" + i + "_" + j, xCoor, yCoor, JsChartViewer.Center,
+                       viewer.htmlRect(7, 7, color, "black 1px solid"));
+            }
+        }
+    }
+
+    if (legendEntries.length &gt; 0)
+    {
+        // Create the legend by joining the legend entries
+        var legend = "&lt;div class='legend_caption'&gt;" + c.xAxis().getFormattedLabel(xValue, "yyyy-mm-dd")
+            + "&lt;/div&gt;&lt;table class='legend_table'&gt;" + legendEntries.reverse().join("") + "&lt;/table&gt;";
+
+        // Put the legend box at the opposite side of the mouse
+        var mouseOnRight = xCoor &gt;= (plotArea.getLeftX() + plotArea.getRightX()) / 2;
+        var legendX = mouseOnRight ? (plotArea.getLeftX() + 1) : (plotArea.getRightX() - 1);
+        var alignment = mouseOnRight ? JsChartViewer.TopLeft : JsChartViewer.TopRight;
+
+        var legendStyle = "class:legend" + (legendIsVisible ? " legend_slide" : "") + ";";
+        var legendBox = viewer.showClickableTextBox("legend", legendX, plotArea.getTopY(),
+            alignment, legend, legendStyle);
+    }
+}
+
+&lt;/script&gt;
+&lt;div style="font-size:18pt; font-family:verdana; font-weight:bold"&gt;
+    Track Line with Vertical Legend
+&lt;/div&gt;
+&lt;hr style="border:solid 1px #000080" /&gt;
+&lt;div style="font-size:10pt; font-family:verdana; margin-bottom:1.5em"&gt;
+    &lt;a href="viewsource.php?file=&lt;?php echo $_SERVER["SCRIPT_NAME"]?&gt;"&gt;View Source Code&lt;/a&gt;
+&lt;/div&gt;
+&lt;!-- ****** Here is the chart image ****** --&gt;
+&lt;?php echo $viewer-&gt;renderHTML()?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></td></tr></table></div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

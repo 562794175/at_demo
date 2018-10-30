@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>BaseChart.getJsChartModel</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="BaseChart.htm">BaseChart</a>.getJsChartModel</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+string getJsChartModel([ options ])
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Gets the <a href="jschartmodel.htm">Javascript Chart Model</a> for passing to <a href="WebChartViewer.setChartModel.htm">WebChartViewer.setChartModel</a> for the purpose of supporting track cursors in a web application.<br><br>
+To support track cursors in a web application, the browser would need know certain details of the chart, its data, chart type and axis configuration. The <a href="jschartmodel.htm">Javascript Chart Model</a> is a textual representation of those information. The <a href="WebChartViewer.htm">WebChartViewer</a> will send it to the browser to be used by the browser side <a href="JsChartViewer.htm">JsChartViewer</a>.<br><br>
+The format of the <a href="jschartmodel.htm">Javascript Chart Model</a> is not published.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>options</td><td>""</td><td>This parameter is reserved for future use. Please do not use it.</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+A text string representing the <a href="jschartmodel.htm">Javascript Chart Model</a>.
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

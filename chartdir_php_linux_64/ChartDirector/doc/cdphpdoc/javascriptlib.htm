@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Javascript Library</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Javascript Library</p>
+<hr class="separator">
+<div class="content">This section describes the ChartDirector Javascript Library, which is used to support browser side user interactions with charts.<br><br>
+The ChartDirector Javascript Library includes the following main parts:<br><br>
+<ul>
+<li><b><a href='JsChartViewer.htm'>Javascript Chart Viewer</a>:</b> A browser side Javascript control for supporting advanced chart user interactions, such as programmable track cursors, zooming and scrolling and AJAX chart updates.<br><br>
+<li><b><a href='JsViewPortControl.htm'>Javascript Viewport Control</a>:</b> A browser side Javascript control to let the user visualize and manipulate the viewport managed by the <a href='JsChartViewer.htm'>Javascript Chart Viewer</a>.<br><br>
+<li><b><a href="jschartmodel.htm">Javascript Chart Model</a>:</b> An object model of ChartDirector charts, making chart data and configuration accessible on the browser side. This facilitates implementation of programmable track cursors and other advanced user interface features.<br></ul>
+</div><p class="heading1a">Files Required</p><div class="content">
+The ChartDirector Javascript Library is implemented in the file "cdjcv.js". To use the ChartDirector Javascript Library, please include the following line in the &lt;HEAD&gt; section of the HTML code:<br><br>
+<div style="background-color:#cccccc;width:99%;padding:5px;box-sizing:border-box;"><pre>    &lt;SCRIPT SRC="/path/to/cdjcv.js"&gt;</pre></div><br>
+<b>Note:</b> Please replace <code>"/path/to"</code> above to the actual path you put the "cdjcv.js" to.<br><br>
+The "cdjcv.js" in turn may load the following files, which should be located in the same directory as "cdjcv.js".<br><br>
+<table width="98%" border="1" cellpadding="5" cellspacing="0"> <tr><th width="38%">Filename<th width="60%">Description <tr><td>wait.gif<td>Rotating clock wait symbol. <tr><td>spacer.gif<td>A 1-pixel transparent image. <tr><td>zoomin.cur<td>Zoom in cursor. <tr><td>zoomin.cur<td>Zoom out cursor. </table><br>
+At runtime, "cdjcv.js" will detect the absolute URL of itself, and use it to load the above files. (It does use relative URL, because the browser will interpret it to be relative to the URL of the containing HTML web page, not the URL of the "cdjcv.js".) If you would like "cdjcv.js" to load the above files from an alternative directory, you may put the URL of the directory in a global Javascript variable "cdjcv_path". "cdjcv.js" will look for this variable first before deriving the path from its own URL.</div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

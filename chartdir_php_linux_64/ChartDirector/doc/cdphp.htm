@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChartDirector 6.1 (PHP Edition)</title>
+<style>
+	html, body { overflow:hidden; margin:0px; padding:0px; height:100%; }
+    .frame_container { width:100%; height:100%; -webkit-overflow-scrolling:touch; overflow:auto; }
+    iframe { box-sizing:border-box; border:0px; width:100%; height:100%; margin:0px; padding:0px; display:block; }
+    td { padding:0px; }
+</style>
+<script>
+
+var originalTitle = "";
+var docDir = "cdphpdoc/";
+var currentHash = location.hash;
+
+function getFile(f)
+{
+	var ret = f.split("/");
+	ret = ret[ret.length - 1];
+	ret = ret.split("\\");
+	return ret[ret.length - 1];
+}
+function getIRHash()
+{
+	return "#" + getFile(ir.location.pathname) + ir.location.hash;
+}
+function onIRLoad()
+{
+	if (originalTitle)
+	{
+		try 
+		{
+			if (location.hash != getIRHash())
+			{
+				if (history.replaceState)
+					history.replaceState(null, document.title, ((location.protocol == "file:") ? "file:" : "") + location.pathname + getIRHash());
+				else
+					location.hash = getIRHash();
+				
+				currentHash = location.hash;
+			}
+
+			if (location.hash == "#cover.htm") 
+				document.title = originalTitle;
+			else
+				document.title = originalTitle + " - " + ir.document.title;
+			
+			if (indexleft) 
+			{
+				var syncpage = indexleft.syncpage || indexleft.contentWindow.syncpage;
+				if (syncpage)
+					syncpage(1);
+			}
+		}
+		catch(err)
+		{
+		}
+	}
+	else
+	{
+		originalTitle = document.title;
+		ir.location = docDir + (location.hash || "#cover.htm").substring(1);
+
+		window.onhashchange = function() 
+		{
+			currentHash = location.hash;	
+			if (location.hash != getIRHash())
+				ir.location = docDir + (location.hash || "#cover.htm").substring(1); 
+		};
+		
+		window.setInterval( function() {  
+			if (location.hash != currentHash) 
+				window.onhashchange();
+		}, 100);
+	}
+}
+
+</script>
+</head>
+<body>
+    <table style="height:100%; width:100%; border-spacing:0px;">
+        <tr>
+            <td colspan="3" style="height:20px;">
+                <iframe id="indextop" scrolling="no" style="overflow:hidden;" src="cdphpdoc/indextop.htm"></iframe>
+            </td>
+        </tr>
+        <tr>
+            <td id="leftpanel" style="height:100%; width:250px; border-right:1px solid #000000">
+                <div class="frame_container">
+                    <iframe id="indexleft" src="cdphpdoc/indexleft.htm"></iframe>
+                </div>
+            </td>
+            <td style="height:100%;">
+                <div class="frame_container">
+                    <iframe name="ir" onload='onIRLoad()'></iframe>
+                </div>
+            </td>
+    </table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsChartViewer.setAutoResizeImageMap</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsChartViewer.htm">JsChartViewer</a>.setAutoResizeImageMap</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+setAutoResizeImageMap(b)
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Determines if the automatically resize the image map.<br><br>
+Image maps are standard HTML &lt;area&gt; tags used to define hot spots on images. In ChartDirector, <a href="BaseChart.getHTMLImageMap.htm">BaseChart.getHTMLImageMap</a> can be used to automatically create image maps for the charts.<br><br>
+However, as according to HTML standard, an image map is only valid for a specific HTML pixel size (which is the size in CSS pixel units). If the image is resized to a different CSS pixel size, the image map will no longer be valid. Note that zooming in or out a web page with a browser will not affect the CSS pixel size, so the image map will remain valid. However, if the chart image is designed to resize to fit the browser window (which is common in mobile web page designs), it would mean the CSS pixel size has changed, and the image map will no longer be valid.<br><br>
+The setAutoResizeImageMap method can be used to automatically detect if the chart image CSS pixel size has changed, and modifies the image map so that it remains valid.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>b</td><td>(Mandatory)</td><td>True to automatically resize the image map, false otherwise.</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+None
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

@@ -1,0 +1,17 @@
+body {margin:2px 0px 0px 2px; padding:0px}
+div {font:9pt arial;}
+img {border-style:none; vertical-align:text-bottom;}
+.in0 {text-indent:-36px; margin-left:36px}
+.in1 {padding-left:12px;}
+.in2 {padding-left:12px;}
+.in3 {padding-left:12px;}
+.in4 {padding-left:12px;}
+.in5 {padding-left:12px;}
+.in6 {padding-left:12px;}
+.in7 {padding-left:12px;}
+.selectedIndex {background:#FF8080;}
+a {text-decoration:none}
+a:hover {background:#FFFF40;}
+a:visited {color:#000000;}
+a:link {color:#000000;}
+a:active {color:#000000;}

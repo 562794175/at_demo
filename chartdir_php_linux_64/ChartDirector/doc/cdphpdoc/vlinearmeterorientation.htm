@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>V-Linear Meter Orientation</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">V-Linear Meter Orientation</p>
+<hr class="separator">
+<div class="content">
+<img src="images/vlinearmeterorientation0.png">&nbsp;&nbsp;<img src="images/vlinearmeterorientation1.png">
+<br><br>
+This example demonstration various orientations for vertical linear meters.<br><br>
+In a vertical linear meter, the scale labels can be positioned on the left or right side of the meter scale. This is controlled by the last argument to <a href="LinearMeter.setMeter.htm">LinearMeter.setMeter</a>, which can be <a href="phpchartdir.Left.htm">Left</a> or <a href="phpchartdir.Right.htm">Right</a>.
+</div>
+<p class="heading1a">Source Code Listing</p>
+<div class="content">
+<b>[File: phpdemo/vlinearmeterorientation.php]</b>
+<table width="98%" border="0" cellpadding="10"><tr><td bgcolor="#cccccc"><pre>&lt;?php
+require_once("../lib/phpchartdir.php");
+
+# This script can draw different charts depending on the chartIndex
+$chartIndex = (int)($_REQUEST["img"]);
+
+# The value to display on the meter
+$value = 75.35;
+
+# Create a LinearMeter object of size 70 x 240 pixels with very light grey (0xeeeeee) backgruond and
+# a light grey (0xccccccc) 3-pixel thick rounded frame
+$m = new LinearMeter(70, 240, 0xeeeeee, 0xcccccc);
+$m-&gt;setRoundedFrame(Transparent);
+$m-&gt;setThickFrame(3);
+
+# This example demonstrates putting the text labels at the left or right side by setting the label
+# alignment and scale position.
+if ($chartIndex == 0) {
+    $m-&gt;setMeter(28, 18, 20, 205, Left);
+} else {
+    $m-&gt;setMeter(20, 18, 20, 205, Right);
+}
+
+# Set meter scale from 0 - 100, with a tick every 10 units
+$m-&gt;setScale(0, 100, 10);
+
+# Add a smooth color scale to the meter
+$smoothColorScale = array(0, 0x6666ff, 25, 0x00bbbb, 50, 0x00ff00, 75, 0xffff00, 100, 0xff0000);
+$m-&gt;addColorScale($smoothColorScale);
+
+# Add a blue (0x0000cc) pointer at the specified value
+$m-&gt;addPointer($value, 0x0000cc);
+
+# Output the chart
+header("Content-type: image/png");
+print($m-&gt;makeChart2(PNG));
+?&gt;</pre></td></tr></table>
+</div>
+<br><hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

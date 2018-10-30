@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Making Other Objects Clickable</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Making Other Objects Clickable</p>
+<hr class="separator">
+<div class="content">ChartDirector image map is "open-ended", which means you can insert custom &lt;AREA&gt; tags into the image map for custom hot spots.<br><br>
+In general, if an object contains multiple hot spots (e.g. the bars in a bar chart), the "getHTMLImageMap" method of that object may be used to generate &lt;AREA&gt; tags for all hot spots. If an object only has one hot spot (e.g. a single sector or a text box), the "getImageCoor" method of that object may be used for getting the image map coordinates of the hot spot, so that you can create an &lt;AREA&gt; tag for the object.<br><br>
+In case an object has no "getHTMLImageMap" or "getImageCoor" method, it may be necessary to compute or estimate its coordinates to create the &lt;AREA&gt; tag.<br><br>
+For example, suppose you want the vertical y-axis of an XYChart to be clickable. The end points of the y-axis are known. They are just the corners of the plot area. The "width" of the y-axis may be unknown, but for clickable purposes, it may be acceptable to assume a reasonable width. In this way, the coordinates of the bounding rectangle of the y-axis can be determined.<br><br>
+If the (x, y) coordinates of an object is only known by their data values, you can obtain their pixel coordinates using "getXCoor" and "getYCoor" methods of the <a href="Layer.htm">Layer</a>, <a href="XYChart.htm">XYChart</a>, <a href="PolarChart.htm">PolarChart</a> or <a href="ThreeDChart.htm">ThreeDChart</a> object.</div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsChartViewer.showTextBox</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsChartViewer.htm">JsChartViewer</a>.showTextBox</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+showTextBox(id, x, y, align, text [, boxStyle ])
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Draws a textbox on the chart.<br><br>
+The textbox will be drawn as an HTML element overlaid on top of the chart, with the specified HTML <b>id</b> attribute. The <b>id</b> argument should therefore comply to the HTML standard (eg. begins with A-Z or a-z, followed by letters from A-Z, a-z, 0-9, '-' and '_').<br><br>
+If the <b>id</b> is already used by an existing HTML element, JsChartViewer will assume the element is created earlier by showTextBox, and will reuse the same element instead of creating a new one.<br><br>
+The textbox can be hidden using <a href="JsChartViewer.hideObj.htm">JsChartViewer.hideObj</a>.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>id</td><td>(Mandatory)</td><td>The id of the HTML element representing the textbox.</td></tr><tr><td>x</td><td>(Mandatory)</td><td>The x pixel coordinate of the reference point of the textbox, relative to the chart.</td></tr><tr><td>y</td><td>(Mandatory)</td><td>The y pixel coordinate of the reference point of the textbox, relative to the chart.</td></tr><tr><td>align</td><td>(Mandatory)</td><td>The alignment of the textbox relative to the reference point. It must be one of <a href="JsChartViewer.TopLeft.htm">JsChartViewer.TopLeft</a>, <a href="JsChartViewer.TopCenter.htm">JsChartViewer.TopCenter</a>, <a href="JsChartViewer.TopRight.htm">JsChartViewer.TopRight</a>, <a href="JsChartViewer.Left.htm">JsChartViewer.Left</a>, <a href="JsChartViewer.Center.htm">JsChartViewer.Center</a>, <a href="JsChartViewer.Right.htm">JsChartViewer.Right</a>, <a href="JsChartViewer.BottomLeft.htm">JsChartViewer.BottomLeft</a>, <a href="JsChartViewer.BottomCenter.htm">JsChartViewer.BottomCenter</a> or <a href="JsChartViewer.BottomRight.htm">JsChartViewer.BottomRight</a>. It specifies the point of the textbox that should be the reference point. For example, if TopLeft is used, it means the textbox should be positioned such that the top-left of the text box is at the reference point.</td></tr><tr><td>text</td><td>(Mandatory)</td><td>The text to be displayed.</td></tr><tr><td>boxStyle</td><td>""</td><td>The box style in the same format used in the HTML "style" attribute. An example is "border:solid 1px black;background:#ffffcc;padding:3px;font:bold 11px Arial;".</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+A DOM element representing the textbox.
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Track Line with Axis Labels</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Track Line with Axis Labels</p>
+<hr class="separator">
+<div class="content"><img src="images/trackaxis_web.png"><br><br>
+This sample program demonstrates a track cursor programmed with the following features:<br><br>
+<ul>
+<li>A vertical line that connects the data points to the x-axis, with an x-axis label displaying the x value.<br><br>
+<li>Horizontal lines that connect the data points to the y-axes, with y-axis labels displaying their values.<br></ul>
+On the server side, the code draws the chart as usual, and outputs both the image and the <a href="jschartmodel.htm">Javascript Chart Model</a> of the chart.<br><br>
+The <b>trackLineAxis</b> Javascript function is the routine that draws the track cursor. Its key elements are:<br><br>
+<ul>
+<li>The code first uses <a href="JsChartViewer.hideObj.htm">JsChartViewer.hideObj</a> to clear the previous track cursor, if any.<br><br>
+<li>The nearest x data value is obtained using <a href="JsXYChart.getNearestXValue.htm">JsXYChart.getNearestXValue</a>.<br><br>
+<li>The code iterates through all data sets in all layers to find the highest data point at the nearest x data value. It then draws a vertical line from that point to the x-axis using <a href="JsChartViewer.drawVLine.htm">JsChartViewer.drawVLine</a>, and the corresponding x-axis label using <a href="JsChartViewer.showTextBox.htm">JsChartViewer.showTextBox</a>.<br><br>
+<li>The code iterates through all data sets in all layers once more to find all the data points at the nearest x data value. For each of these points, it draws a horizontal line to connect the point to the y-axis using <a href="JsChartViewer.drawHLine.htm">JsChartViewer.drawHLine</a>, draws the axis label using <a href="JsChartViewer.showTextBox.htm">JsChartViewer.showTextBox</a>, and draws a square dot at the point using <a href="JsChartViewer.showTextBox.htm">JsChartViewer.showTextBox</a> and <a href="JsChartViewer.htmlRect.htm">JsChartViewer.htmlRect</a>.<br></ul>
+</div><p class="heading1a">Source Code Listing</p><div class="content">
+<b>[File: phpdemo/trackaxis.php]</b>
+<table width="98%" border="0" cellpadding="10"><tr><td bgcolor="#cccccc"><pre>&lt;?php
+require_once("../lib/phpchartdir.php");
+
+# Data for the chart as 2 random data series
+$r = new RanSeries(127);
+$data0 = $r-&gt;getSeries(180, 10, -1.5, 1.5);
+$data1 = $r-&gt;getSeries(180, 150, -15, 15);
+$timeStamps = $r-&gt;getDateSeries(180, chartTime(2011, 1, 1), 86400);
+
+# Create a XYChart object of size 670 x 400 pixels
+$c = new XYChart(670, 400);
+
+# Add a title to the chart using 18pt Times New Roman Bold Italic font
+$c-&gt;addTitle("Plasma Stabilizer Energy Usage", "timesbi.ttf", 18);
+
+# Set the plotarea at (50, 55) with width 100 pixels less than chart width, and height 90 pixels
+# less than chart height. Use a vertical gradient from light blue (f0f6ff) to sky blue (a0c0ff) as
+# background. Set border to transparent and grid lines to white (ffffff).
+$c-&gt;setPlotArea(50, 55, $c-&gt;getWidth() - 100, $c-&gt;getHeight() - 90, $c-&gt;linearGradientColor(0, 55,
+    0, $c-&gt;getHeight() - 35, 0xf0f6ff, 0xa0c0ff), -1, Transparent, 0xffffff, 0xffffff);
+
+# Add a legend box at (50, 25) using horizontal layout. Use 10pt Arial Bold as font. Set the
+# background and border color to Transparent.
+$legendObj = $c-&gt;addLegend(50, 25, false, "arialbd.ttf", 10);
+$legendObj-&gt;setBackground(Transparent);
+
+# Set axis label style to 8pt Arial Bold
+$c-&gt;xAxis-&gt;setLabelStyle("arialbd.ttf", 8);
+$c-&gt;yAxis-&gt;setLabelStyle("arialbd.ttf", 8);
+$c-&gt;yAxis2-&gt;setLabelStyle("arialbd.ttf", 8);
+
+# Set the axis stem to transparent
+$c-&gt;xAxis-&gt;setColors(Transparent);
+$c-&gt;yAxis-&gt;setColors(Transparent);
+$c-&gt;yAxis2-&gt;setColors(Transparent);
+
+# Configure x-axis label format
+$c-&gt;xAxis-&gt;setMultiFormat(StartOfYearFilter(), "{value|mm/yyyy} ", StartOfMonthFilter(),
+    "{value|mm}");
+
+# Add axis title using 10pt Arial Bold Italic font
+$c-&gt;yAxis-&gt;setTitle("Power Usage (Watt)", "arialbi.ttf", 10);
+$c-&gt;yAxis2-&gt;setTitle("Effective Load (kg)", "arialbi.ttf", 10);
+
+# Add a line layer to the chart using a line width of 2 pixels.
+$layer = $c-&gt;addLineLayer2();
+$layer-&gt;setLineWidth(2);
+
+# Add 2 data series to the line layer
+$layer-&gt;setXData($timeStamps);
+$layer-&gt;addDataSet($data0, 0xcc0000, "Power Usage");
+$dataSetObj = $layer-&gt;addDataSet($data1, 0x008800, "Effective Load");
+$dataSetObj-&gt;setUseYAxis2();
+
+# Create the WebChartViewer object
+$viewer = new WebChartViewer("chart1");
+
+# Output the chart
+$chartQuery = $c-&gt;makeSession($viewer-&gt;getId());
+
+# Set the chart URL to the viewer
+$viewer-&gt;setImageUrl("getchart.php?".$chartQuery);
+
+# Output Javascript chart model to the browser to support tracking cursor
+$viewer-&gt;setChartModel($c-&gt;getJsChartModel());
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Track Line with Axis Labels&lt;/title&gt;
+    &lt;script type="text/javascript" src="cdjcv.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="margin:5px 0px 0px 5px"&gt;
+&lt;script type="text/javascript"&gt;
+
+//
+// Use the window load event to set up the MouseMovePlotArea event handler
+//
+JsChartViewer.addEventListener(window, 'load', function() {
+    var viewer = JsChartViewer.get('&lt;?php echo $viewer-&gt;getId()?&gt;');
+
+    // Draw track cursor when mouse is moving over plotarea. Hide it when mouse leaves plot area.
+    viewer.attachHandler(["MouseMovePlotArea", "TouchStartPlotArea", "TouchMovePlotArea", "ChartMove"],
+    function(e) {
+        this.preventDefault(e);   // Prevent the browser from using touch events for other actions
+        trackLineAxis(viewer, viewer.getPlotAreaMouseX());
+        viewer.setAutoHide("all", ["MouseOutPlotArea", "TouchEndPlotArea"]);
+    });
+});
+
+//
+// Draw track line with axis labels
+//
+function trackLineAxis(viewer, mouseX)
+{
+    // Remove all previously drawn tracking object
+    viewer.hideObj("all");
+
+    // The chart and its plot area
+    var c = viewer.getChart();
+    var plotArea = c.getPlotArea();
+
+    // Get the data x-value that is nearest to the mouse, and find its pixel coordinate.
+    var xValue = c.getNearestXValue(mouseX);
+    var xCoor = c.getXCoor(xValue);
+
+    // The vertical track line is drawn up to the highest data point (the point with smallest
+    // y-coordinate). We need to iterate all datasets in all layers to determine where it is.
+    var minY = plotArea.getBottomY();
+
+    // Iterate through all layers to find the highest data point
+    for (var i = 0; i &lt; c.getLayerCount(); ++i)
+    {
+        var layer = c.getLayerByZ(i);
+
+        // The data array index of the x-value
+        var xIndex = layer.getXIndexOf(xValue);
+
+        // Iterate through all the data sets in the layer
+        for (var j = 0; j &lt; layer.getDataSetCount(); ++j)
+        {
+            var dataSet = layer.getDataSetByZ(j);
+            var yCoor = c.getYCoor(dataSet.getPosition(xIndex), dataSet.getUseYAxis());
+            if ((yCoor != null) &amp;&amp; (dataSet.getDataColor() != null))
+                minY = Math.min(minY, yCoor);
+        }
+    }
+
+    // Draw a vertical track line at the x-position up to the highest data point.
+    viewer.drawVLine("trackLine", xCoor, Math.max(minY, plotArea.getTopY()),
+        plotArea.getBottomY() + 3, "black 1px dotted");
+
+    // Draw a label on the x-axis to show the track line position
+    viewer.showTextBox("xAxisLabel", xCoor, plotArea.getBottomY() + 3, JsChartViewer.Top,
+        c.xAxis().getFormattedLabel(xValue, "mmm dd, yyyy"),
+        "font:bold 11px Arial;color:#FFFFFF;background-color:#000000;padding:2px 3px");
+
+    // Iterate through all layers to draw the axis labels for the data points
+    for (var i = 0; i &lt; c.getLayerCount(); ++i)
+    {
+      var layer = c.getLayerByZ(i);
+
+        // The data array index of the x-value
+        var xIndex = layer.getXIndexOf(xValue);
+
+        // Iterate through all the data sets in the layer
+        for (var j = 0; j &lt; layer.getDataSetCount(); ++j)
+        {
+            var dataSet = layer.getDataSetByZ(j);
+
+            // The positional value, axis binding, pixel coordinate and color of the data point.
+            var dataPoint = dataSet.getPosition(xIndex);
+            var yAxis = dataSet.getUseYAxis();
+            var yCoor = c.getYCoor(dataPoint, yAxis);
+            var color = dataSet.getDataColor();
+
+            // Draw the axis label only for visible data points of named data sets
+            if ((yCoor != null) &amp;&amp; (yCoor &gt;= plotArea.getTopY()) &amp;&amp; (yCoor &lt;= plotArea.getBottomY()) &amp;&amp;
+                (color != null))
+            {
+                // The axis label consists of 3 parts - a track dot for the data point, an axis label,
+                // and a line joining the track dot to the axis label.
+
+                // Draw the line first. The end point of the line at the axis label side depends on
+                // whether the label is at the left or right side of the axis (that is, on whether
+                // the axis is on the left or right side of the plot area).
+                var xPos = yAxis.getX() + ((yAxis.getAlignment() == JsChartViewer.Left) ? -4 : 4);
+                viewer.drawHLine("joinLine" + i + "_" + j, yCoor, xPos, xCoor, color + " 1px dotted");
+
+                // Draw the axis label. If the axis is on the left side of the plot area, the labels
+                // should right aligned to the axis, and vice versa.
+                viewer.showTextBox("yAxisLabel" + i + "_" + j, xPos, yCoor,
+                    (yAxis.getAlignment() == JsChartViewer.Left) ? JsChartViewer.Right : JsChartViewer.Left,
+                    dataPoint.toPrecision(4), "padding:2px 3px;font:bold 11px Arial;background-color:" +
+                    color + ";color:#FFFFFF;-webkit-text-size-adjust:100%;");
+
+                // Draw the track dot
+                viewer.showTextBox("dataPoint" + i + "_" + j, xCoor, yCoor, JsChartViewer.Center,
+                    viewer.htmlRect(7, 7, color));
+            }
+        }
+    }
+}
+
+&lt;/script&gt;
+&lt;div style="font-size:18pt; font-family:verdana; font-weight:bold"&gt;
+    Track Line with Axis Labels
+&lt;/div&gt;
+&lt;hr style="border:solid 1px #000080" /&gt;
+&lt;div style="font-size:10pt; font-family:verdana; margin-bottom:1.5em"&gt;
+    &lt;a href="viewsource.php?file=&lt;?php echo $_SERVER["SCRIPT_NAME"]?&gt;"&gt;View Source Code&lt;/a&gt;
+&lt;/div&gt;
+&lt;!-- ****** Here is the chart image ****** --&gt;
+&lt;?php echo $viewer-&gt;renderHTML()?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></td></tr></table></div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

@@ -1,0 +1,20 @@
+body {font-size:100%; font-family:verdana;}
+p.heading0 {font:bold italic 80% verdana; margin:0px; padding-left:5px; color:#000000; background:#ccccff}
+p.heading1 {font:bold 160% verdana; margin:0px; padding-top:5px; padding-left:5px; color:#000000;}
+p.heading1a {font:bold 110% verdana; margin:0px; margin-top:1.2em; padding-left:5px; color:#4040FF;}
+p.heading1aa {font:bold 110% verdana; margin:0px; padding-left:5px; color:#4040FF;}
+p.heading2a {font:bold 90% verdana; margin:0px; padding-left:5px; color:#000000;}
+p.heading2 {font:bold 90% verdana; margin:0px; margin-top:20px; padding-left:5px; color:#000000;}
+div.content {font:80% verdana; margin-top:5px; margin-right:5px; margin-bottom:0px; padding-left:5px; color:#000000;}
+div.copyright {font:80% verdana; padding-bottom:5px; padding-left:5px; color:#000000; page-break-after:always;}
+hr.separator {border-color:#9999ff; color:#9999ff;}
+table , th, td { border-color:#aaaaaa; border-collapse:collapse;}
+table.VbCs td {border:1px solid #ffffff; padding:5px;}
+th { background:#c0c0c0; font:bold 100% verdana; color:#000000; text-align:left;}
+td { font:100% verdana; color:#000000; text-align:left; vertical-align:top;}
+xmp { margin:0px; font:100% "courier new", courier;}
+pre { margin:0px; font:100% "courier new", courier;}
+code { font:100% "courier new", courier;}
+ul {margin-top:0px; list-style:square;}
+ol {margin-top:0px;}
+a:hover {background:#FFFF40;}

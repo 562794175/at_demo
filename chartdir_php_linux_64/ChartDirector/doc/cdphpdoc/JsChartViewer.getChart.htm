@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsChartViewer.getChart</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsChartViewer.htm">JsChartViewer</a>.getChart</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+getChart([ index ])
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Gets the specified chart in the <a href="jschartmodel.htm">Javascript Chart Model</a>.<br><br>
+If the underlying chart is a <a href="MultiChart.htm">MultiChart</a> (including a <a href="FinanceChart.htm">FinanceChart</a>), this method returns a chart contained within the MultiChart. The <b>index</b> argument can be used to select which chart to return. If the underlying chart is not a MultiChart, this method returns the chart itself, and the <b>index</b> argument must be 0.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>index</td><td>0</td><td>The index of the chart. The index of the first chart set added to the MultiChart is 0. The index of the Nth data set added to the MultiChart is N - 1.</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+The specified <a href="JsXYChart.htm">JsXYChart</a> object.
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

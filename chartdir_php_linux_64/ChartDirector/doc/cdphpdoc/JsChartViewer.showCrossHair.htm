@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsChartViewer.showCrossHair</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsChartViewer.htm">JsChartViewer</a>.showCrossHair</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+showCrossHair(x, y[, lineStyle[, leftMargin[, rightMargin[, topMargin[, bottomMargin[, centerOffset]]]]]]);
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Displays the crosshair cursor.<br><br>
+The crosshair cursor is a horizontal line and a vertical line that intersects at (x, y). By default, the end points of these lines terminate at the edges of the plot area. The position of the end points are configurable with the <b>leftMargin</b>, <b>rightMargin</b>, <b>topMargin</b> and <b>bottomMargin</b> arguments.<br><br>
+By default, the horizontal and vertical lines are not continuous, but are broken near (x, y). So there is gap around (x, y) where the lines are broken. The gap size is configurable with the <b>centerOffset</b> argument.<br><br>
+The reason for the gap is because the crosshair cursor is frequently used to track the mouse cursor in a <a href="JsChartViewer.MouseMovePlotArea.htm">JsChartViewer.MouseMovePlotArea</a> event, in which (x, y) is the mouse cursor position. By leaving a gap at (x, y), the underlying chart can receive mouse events. Without the gap, the horizontal or vertical lines will be under the mouse cursor. The browsers may then send mouse events to the horizontal or vertical lines (which are themselves HTML elements) instead of the chart.<br><br>
+The crosshair cursor can be hidden using <a href="JsChartViewer.hideObj.htm">JsChartViewer.hideObj</a>.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>x</td><td>(Mandatory)</td><td>The x pixel coordinate of the crosshair, relative to the chart.</td></tr><tr><td>y</td><td>(Mandatory)</td><td>The y pixel coordinate of the crosshair, relative to the chart.</td></tr><tr><td>lineStyle</td><td>"1px</td><td>dotted black"  The line style of the crosshair in CSS border property format, like "1px solid black" or "2px dotted #FF0000".</td></tr><tr><td>leftMargin</td><td>0</td><td>The number of pixels that the crosshair cursor will extend outside the left side of the plot area. A negative number means that the crosshair cursor will be shortened instead of extended.</td></tr><tr><td>rightMargin</td><td>0</td><td>The number of pixels that the crosshair cursor will extend outside the right side of the plot area. A negative number means that the crosshair cursor will be shortened instead of extended.</td></tr><tr><td>topMargin</td><td>0</td><td>The number of pixels that the crosshair cursor will extend outside the top side of the plot area. A negative number means that the crosshair cursor will be shortened instead of extended.</td></tr><tr><td>bottomMargin</td><td>0</td><td>The number of pixels that the crosshair cursor will extend outside the bottom side of the plot area. A negative number means that the crosshair cursor will be shortened instead of extended.</td></tr><tr><td>centerOffset</td><td>5</td><td>The radius in pixels of the region around (x, y) where the crosshair cursor lines should be broken.</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+None
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

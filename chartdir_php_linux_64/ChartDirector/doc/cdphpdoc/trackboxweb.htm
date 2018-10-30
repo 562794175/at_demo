@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Track Box with Floating Legend</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Track Box with Floating Legend</p>
+<hr class="separator">
+<div class="content"><img src="images/trackbox_web.png"><br><br>
+This sample program demonstrates a track cursor programmed with the following features:<br><br>
+<ul>
+<li>A box that horizontally centers around the x data value nearest to the mouse cursor.<br><br>
+<li>A floating legend box that moves with the mouse cursor, displaying the data values at the x data value nearest to the mouse cursor.<br></ul>
+On the server side, the code draws the chart as usual, and outputs both the image and the <a href="jschartmodel.htm">Javascript Chart Model</a> of the chart.<br><br>
+The <b>trackBoxLegend</b> Javascript function is the routine that draws the track cursor. Its key elements are:<br><br>
+The <b>trackBoxLegend</b> Javascript function is the routine that draws the track cursor. Its key elements are:<br><br>
+<ul>
+<li>The code first uses <a href="JsChartViewer.hideObj.htm">JsChartViewer.hideObj</a> to clear the previous track cursor, if any.<br><br>
+<li>The nearest x data value is obtained using <a href="JsXYChart.getNearestXValue.htm">JsXYChart.getNearestXValue</a>.<br><br>
+<li>The code draws a rectangle that horizontally spans from (x - 0.5) to (x + 0.5) with <a href="JsChartViewer.showTextBox.htm">JsChartViewer.showTextBox</a>. The +/- 0.5 offset is the suitable value to use for a label based x-axis (that is, for axis set up with <a href="Axis.setLabels.htm">Axis.setLabels</a> or <a href="Axis.setLabels2.htm">Axis.setLabels2</a>). For this type of axis, the label distance is assumed to be 1 x-axis unit irrespective of what are the labels, so an offset of 0.5 refers to the middle position between two labels.<br><br>
+<li>The code then iterates through all data sets in all layers to find all the data points at the nearest x data value. For each of these points, it formats a legend entry for the point, which consists of a colored square as the icon (creating using <a href="JsChartViewer.htmlRect.htm">JsChartViewer.htmlRect</a>), data set name (obtained using <a href="JsDataSet.getDataName.htm">JsDataSet.getDataName</a>), and the data value (obtained using <a href="JsDataSet.getValue.htm">JsDataSet.getValue</a>).<br><br>
+<li>Finally, the code combines all the legend entries into a legend box and draws it near the mouse cursor using <a href="JsChartViewer.showTextBox.htm">JsChartViewer.showTextBox</a>.<br></ul>
+</div><p class="heading1a">Source Code Listing</p><div class="content">
+<b>[File: phpdemo/trackbox.php]</b>
+<table width="98%" border="0" cellpadding="10"><tr><td bgcolor="#cccccc"><pre>&lt;?php
+require_once("../lib/phpchartdir.php");
+
+# The data for the bar chart
+$data0 = array(100, 125, 245, 147, 67);
+$data1 = array(85, 156, 179, 211, 123);
+$data2 = array(97, 87, 56, 267, 157);
+$labels = array("Mon", "Tue", "Wed", "Thur", "Fri");
+
+# Create a XYChart object of size 540 x 375 pixels
+$c = new XYChart(540, 375);
+
+# Add a title to the chart using 18pt Times Bold Italic font
+$c-&gt;addTitle("Average Weekly Network Load", "timesbi.ttf", 18);
+
+# Set the plotarea at (50, 55) and of 440 x 280 pixels in size. Use a vertical gradient color from
+# light blue (f9f9ff) to blue (6666ff) as background. Set border and grid lines to white (ffffff).
+$c-&gt;setPlotArea(50, 55, 440, 280, $c-&gt;linearGradientColor(0, 55, 0, 335, 0xf9f9ff, 0x6666ff), -1,
+    0xffffff, 0xffffff);
+
+# Add a legend box at (50, 28) using horizontal layout. Use 10pt Arial Bold as font, with
+# transparent background.
+$legendObj = $c-&gt;addLegend(50, 28, false, "arialbd.ttf", 10);
+$legendObj-&gt;setBackground(Transparent);
+
+# Set the x axis labels
+$c-&gt;xAxis-&gt;setLabels($labels);
+
+# Draw the ticks between label positions (instead of at label positions)
+$c-&gt;xAxis-&gt;setTickOffset(0.5);
+
+# Set axis label style to 8pt Arial Bold
+$c-&gt;xAxis-&gt;setLabelStyle("arialbd.ttf", 8);
+$c-&gt;yAxis-&gt;setLabelStyle("arialbd.ttf", 8);
+
+# Set axis line width to 2 pixels
+$c-&gt;xAxis-&gt;setWidth(2);
+$c-&gt;yAxis-&gt;setWidth(2);
+
+# Add axis title
+$c-&gt;yAxis-&gt;setTitle("Throughput (MBytes Per Hour)");
+
+# Add a multi-bar layer with 3 data sets
+$layer = $c-&gt;addBarLayer2(Side);
+$layer-&gt;addDataSet($data0, 0xff0000, "Server #1");
+$layer-&gt;addDataSet($data1, 0x00ff00, "Server #2");
+$layer-&gt;addDataSet($data2, 0xff8800, "Server #3");
+
+# Set bar border to transparent. Use glass lighting effect with light direction from left.
+$layer-&gt;setBorderColor(Transparent, glassEffect(NormalGlare, Left));
+
+# Configure the bars within a group to touch each others (no gap)
+$layer-&gt;setBarGap(0.2, TouchBar);
+
+# Create the WebChartViewer object
+$viewer = new WebChartViewer("chart1");
+
+# Output the chart
+$chartQuery = $c-&gt;makeSession($viewer-&gt;getId());
+
+# Set the chart URL to the viewer
+$viewer-&gt;setImageUrl("getchart.php?".$chartQuery);
+
+# Output Javascript chart model to the browser to support tracking cursor
+$viewer-&gt;setChartModel($c-&gt;getJsChartModel());
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Track Box with Floating Legend&lt;/title&gt;
+    &lt;script type="text/javascript" src="cdjcv.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="margin:5px 0px 0px 5px"&gt;
+&lt;script type="text/javascript"&gt;
+
+//
+// Use the window load event to set up the MouseMovePlotArea event handler
+//
+JsChartViewer.addEventListener(window, 'load', function() {
+    var viewer = JsChartViewer.get('&lt;?php echo $viewer-&gt;getId()?&gt;');
+
+    // Draw track cursor when mouse is moving over plotarea. Hide it when mouse leaves plot area.
+    viewer.attachHandler(["MouseMovePlotArea", "TouchStartPlotArea", "TouchMovePlotArea", "ChartMove"],
+    function(e) {
+        this.preventDefault(e);   // Prevent the browser from using touch events for other actions
+        trackBoxLegend(viewer, viewer.getPlotAreaMouseX(), viewer.getPlotAreaMouseY());
+        viewer.setAutoHide("all", ["MouseOutPlotArea", "TouchEndPlotArea"]);
+    });
+});
+
+//
+// Draw track box with legend
+//
+function trackBoxLegend(viewer, mouseX, mouseY)
+{
+    // Remove all previously drawn tracking object
+    viewer.hideObj("all");
+
+    // The chart and its plot area
+    var c = viewer.getChart();
+    var plotArea = c.getPlotArea();
+
+    // Get the data x-value that is nearest to the mouse
+    var xValue = c.getNearestXValue(mouseX);
+
+    // Compute the position of the box. This example assumes a label based x-axis, in which the labeling spacing
+    // is one x-axis unit. So the left and right sides of the box is 0.5 unit from the central x-value.
+    var boxLeft = Math.min(c.getXCoor(xValue - 0.5), c.getXCoor(xValue + 0.5));
+    var boxWidth = Math.max(0, Math.abs(c.getXCoor(xValue + 0.5) - c.getXCoor(xValue - 0.5)) - 1);
+    var boxTop = plotArea.getTopY();
+    var boxHeight = Math.max(0, plotArea.getHeight() - 2);
+
+    // Draw the track box
+    viewer.showTextBox("trackBox", boxLeft, boxTop, JsChartViewer.TopLeft, "",
+        "width:" + boxWidth + "px;height:" + boxHeight + "px;border:solid 1px black;");
+
+    // Array to hold the legend entries
+    var legendEntries = [];
+
+    // Iterate through all layers to build the legend array
+    for (var i = 0; i &lt; c.getLayerCount(); ++i)
+    {
+        var layer = c.getLayerByZ(i);
+
+        // The data array index of the x-value
+        var xIndex = layer.getXIndexOf(xValue);
+
+        // Iterate through all the data sets in the layer
+        for (var j = 0; j &lt; layer.getDataSetCount(); ++j)
+        {
+            var dataSet = layer.getDataSetByZ(j);
+
+            // Build the legend entry, consist of a colored square box, the name and the data value.
+            var dataColor = dataSet.getDataColor();
+            var dataValue = dataSet.getValue(xIndex);
+            if ((dataValue != null) &amp;&amp; (dataColor != null))
+            {
+                legendEntries.push("&lt;nobr&gt;" + viewer.htmlRect(7, 7, dataColor) + " " +
+                    dataSet.getDataName() + ": " + dataValue.toPrecision(4) + "&lt;/nobr&gt; ");
+            }
+        }
+    }
+
+    // Create the legend by joining the legend entries
+    if (legendEntries.length &gt; 0)
+    {
+        var legend = "&lt;u&gt;" + c.xAxis().getFormattedLabel(xValue) + "&lt;/u&gt;&lt;br /&gt;" + legendEntries.reverse().join("&lt;br /&gt;");
+
+        // Display the legend at the bottom-right side of the mouse cursor
+        viewer.showTextBox("legend", mouseX + 16, mouseY + 16, JsChartViewer.TopLeft, legend,
+            "border:solid 1px black;background:#ffffcc;padding:3px;font:bold 11px Arial;-webkit-text-size-adjust:100%;");
+    }
+}
+
+&lt;/script&gt;
+&lt;div style="font-size:18pt; font-family:verdana; font-weight:bold"&gt;
+    Track Box with Floating Legend
+&lt;/div&gt;
+&lt;hr style="border:solid 1px #000080" /&gt;
+&lt;div style="font-size:10pt; font-family:verdana; margin-bottom:1.5em"&gt;
+    &lt;a href="viewsource.php?file=&lt;?php echo $_SERVER["SCRIPT_NAME"]?&gt;"&gt;View Source Code&lt;/a&gt;
+&lt;/div&gt;
+&lt;!-- ****** Here is the chart image ****** --&gt;
+&lt;?php echo $viewer-&gt;renderHTML()?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></td></tr></table></div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

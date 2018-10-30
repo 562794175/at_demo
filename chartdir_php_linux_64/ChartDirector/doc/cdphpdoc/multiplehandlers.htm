@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Using Multiple Click Handlers</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Using Multiple Click Handlers</p>
+<hr class="separator">
+<div class="content">In the clickable chart examples in the documentation, all data objects in a chart invoke the same handler, but with different query parameters. In some cases, it may be desirable to go to different handler for different data objects. The followings are some of the methods on how this can be done:
+</div><p class="heading2">Use Extra Fields</p><div class="content">
+You can prepared an array of text strings containing the URLs you would like to use, and add this array to the chart using <a href="Layer.addExtraField.htm">Layer.addExtraField</a> or <a href="BaseChart.addExtraField.htm">BaseChart.addExtraField</a>, depending on the chart type. You can then use the extra field as the first argument to <a href="BaseChart.getHTMLImageMap.htm">BaseChart.getHTMLImageMap</a> or <a href="Layer.setHTMLImageMap.htm">Layer.setHTMLImageMap</a>.<br><br>
+Please refer to !;paramsub.htm for the different ways of binding the extra field to the data objects (the {field<i>N</i>}, {dsField<i>N</i>} and {dsdiField<i>N</i>} parameter). You may also use "{noescape_url}" to ensure URL reserved characters are not escaped. (By default, all {....} fields are treated as data and URL reserved characters are escaped. For example "?xxx=123" will become "%3fxxx=%3d123", which is not what we want.)
+</div><p class="heading2">Use Forwarding or Redirection</p><div class="content">
+You may use the same handler for all data objects. In the handler, you can forward or redirect to different URLs based on the query parameter.
+</div><p class="heading2">Use Javascript</p><div class="content">
+You can use a client side Javascript function as the handler. In the Javascript function, you can go to different URLs depending on which data object is clicked.</div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

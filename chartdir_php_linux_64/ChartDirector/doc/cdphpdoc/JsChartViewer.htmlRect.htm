@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsChartViewer.htmlRect</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsChartViewer.htm">JsChartViewer</a>.htmlRect</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+htmlRect(w, h, color [, border ])
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Generates HTML code that represents an inline color box.<br><br>
+Inline color boxes are useful as legend icons in creating legends dynamically. However, it is not easy to create inline color boxes (boxes that can flow with text similar to a character) that behaves consistently in all browsers.<br><br>
+This method returns an HTML inline color box that is designed to work consistently in all browsers supported by <a href="JsChartViewer.htm">JsChartViewer</a>. Note that to support IE 7 or below, this method requires the file "spacer.gif" to be in the same directory as the Javascript. (The "spacer.gif" is a file included in the ChartDirector distribution. It is a transparent GIF image 1 x 1 pixel in size.) Without this file, the box will always have a grey border in IE 7 or below.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>w</td><td>(Mandatory)</td><td>The width of the box in pixels.</td></tr><tr><td>h</td><td>(Mandatory)</td><td>The height of the box in pixels.</td></tr><tr><td>color</td><td>(Mandatory)</td><td>The color of the box in HTML color format (eg. "#FF0000" or "red")</td></tr><tr><td>border</td><td>""</td><td>The border style of the box in CSS border property format (eg. "1px solid black").</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+A text string containing HTML that represents an inline color box.
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>Realtime Charts</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1">Realtime Charts</p>
+<hr class="separator">
+<div class="content">For web applications, a realtime chart may be achieved by using browser side Javascript using one of the following methods:<br><br>
+<ul>
+<li> Periodically reloads the &lt;IMG&gt; tag that displays the chart, using <a href="JsChartViewer.streamUpdate.htm">JsChartViewer.streamUpdate</a>. This method sends a "stream update request" to the server to update the chart image without refreshing the web page. The charting code in the server always draws the chart using the most up-to-date data. By using a timer to call JsChartViewer.streamUpdate periodically, we can get a real time chart.<br><br>
+The examples <a href="realtimedemoweb.htm">Simple Realtime Chart</a> and <a href="realtimesnapshotweb.htm">Realtime Chart with Snapshot</a> demonstrate using the <a href="JsChartViewer.streamUpdate.htm">JsChartViewer.streamUpdate</a> method.<br><br>
+<li> Periodically sends AJAX chart update requests to the server using <a href="JsChartViewer.partialUpdate.htm">JsChartViewer.partialUpdate</a>. The charting code in the server always draws the chart using the most up-to-date data. By using a timer to call JsChartViewer.partialUpdate periodically, we can get a real time chart.<br><br>
+On the server side, when the script starts to run, the first thing it does is to use <a href="WebChartViewer.isPartialUpdateRequest.htm">WebChartViewer.isPartialUpdateRequest</a> to detect if it is handling an AJAX chart update or an initial page request. If it is an AJAX chart update, it just draws the chart and sends back an AJAX response using <a href="WebChartViewer.partialUpdateChart.htm">WebChartViewer.partialUpdateChart</a>. If it is an initial page request, it processes the request as usual.<br><br>
+The example <a href="realtimetrackweb.htm">Realtime Chart with Track Line</a> demonstrates using the <a href="JsChartViewer.partialUpdate.htm">JsChartViewer.partialUpdate</a> method.<br></ul></div><br>
+<hr class="separator"><div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div></body>
+</HTML>

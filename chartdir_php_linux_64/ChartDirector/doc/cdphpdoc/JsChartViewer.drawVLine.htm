@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsChartViewer.drawVLine</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsChartViewer.htm">JsChartViewer</a>.drawVLine</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+drawVLine(id, x, y1, y2, lineStyle)
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Draws a vertical line on the chart.<br><br>
+The line will be drawn as an HTML element overlaid on top of the chart, with the specified HTML <b>id</b> attribute. The <b>id</b> argument should therefore comply to the HTML standard (eg. begins with A-Z or a-z, followed by letters from A-Z, a-z, 0-9, '-' and '_').<br><br>
+If the <b>id</b> is already used by an existing HTML element, JsChartViewer will assume the element is created earlier by drawVLine. In this case, instead of creating a new HTML element, it will move the existing element to the required position and sets its line style to <b>lineStyle</b>. Recalling this method with different coordinates will have the effect of moving the line around.<br><br>
+The line can be hidden using <a href="JsChartViewer.hideObj.htm">JsChartViewer.hideObj</a>.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>id</td><td>(Mandatory)</td><td>The id of the HTML element representing the line.</td></tr><tr><td>x</td><td>(Mandatory)</td><td>The x pixel coordinate of the line, relative to the chart.</td></tr><tr><td>y1</td><td>(Mandatory)</td><td>The y pixel coordinate of the first end point of the line, relative to the chart.</td></tr><tr><td>y2</td><td>(Mandatory)</td><td>The y pixel coordinate of the second end point of the line, relative to the chart.</td></tr><tr><td>lineStyle</td><td>(Mandatory)</td><td>The line style in CSS border property format (eg. "1px solid black").</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+A DOM element representing the line.
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD><meta name="viewport" content="width=device-width, initial-scale=1">
+<Title>JsChartViewer.partialUpdateAsAttachment</Title>
+<link type='text/css' rel='Stylesheet' href="maxchartapi.css" />
+</HEAD>
+<body bgcolor="#FFFFFF" text="#000000" topmargin="0" leftmargin="0" rightmargin="0" marginwidth="0" marginheight="0">
+
+<p class="heading0">ChartDirector 6.1 (PHP Edition)</p>
+<p class="heading1"><a href="JsChartViewer.htm">JsChartViewer</a>.partialUpdateAsAttachment</p>
+<hr class="separator">
+<p class="heading2a">Usage</p>
+<div class="content">
+partialUpdateAsAttachment(extraQuery, target)
+</div>
+<p class="heading2">Description</p>
+<div class="content">
+Sends an attachment request using the partial update (AJAX request) mechanism.<br><br>
+For an attachment request, the server should send back the chart image directly as the response, without any associated data such as the image map, Javascript Chart Model or custom attributes, and mark it as an attachment in the HTTP header. When the browser receives the attachment, instead of displaying it, it should save it as a  file. The exact behaviour depends on the browser. Some browsers may immediately save the  attachment as a file in a download directory; some browsers may prompt the user for the  filename and directory; some browsers that do not support downloading files may ignore the  content..<br><br>
+In HTML, the attachment request needs to be sent as the URL of a browser window or an IFRAME. By default, ChartDirector will create an hidden IFRAME to sent the request. The <b>target</b> argument can be used to configure using another browser window to send the request.
+</div>
+<p class="heading2">Arguments</p>
+<div class="content">
+<table border="1" cellpadding="5" cellspacing="0" width="98%"> 
+<tr>
+<th width="19%">Argument</th><th width="19%">Default</th><th width="60%">Description</th>
+</tr>
+<tr>
+<td>extraQuery</td><td>""</td><td>Extra query parameters that can be sent with the request. An example is "a=b&c=d".</td></tr><tr><td>target</td><td>""</td><td>The name of the browser window used to send the request, in the same format as the name used in the Javascript window.open method.</td>
+</tr>
+</table>
+</div>
+<p class="heading2">Return Value</p>
+<div class="content">
+None
+</div>
+<br><hr class="separator">
+<div class="copyright">&copy; 2017 Advanced Software Engineering Limited. All rights reserved.</div>
+</body>
+</HTML>
