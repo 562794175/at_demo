@@ -6,3 +6,10 @@ http://citopatperu.com/ChartDirector_linux/doc/cdphpdoc/phpdiag.htm
 
 NetBeans配置Xdebug 远程调试PHP
 https://blog.csdn.net/21aspnet/article/details/47756651
+
+linux php 7.0 libsvm
+https://rpmfind.net/linux/rpm2html/search.php?query=libsvm&submit=Search+...&system=&arch=
+安装过程参考 xdebug
+phpize
+./configure --with-php-config=/path/to/php-config
+make && make install

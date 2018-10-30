@@ -383,8 +383,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                     $size=count($line_list[$i]);
                     $tmp_line=$line_list[$i];
                     
-                }
-                else {
+                } else {
                     $pos_pre=getPosEnd($sample_arr,($i+1));
                     echo '<a href="xau_sample_chart.php?id='.$id.'&sn='.$sn.'">'.$sn.' - ['.$pos_pre.']</a> - ';
                     $sample_pos.=$pos_pre.":".$sn."|";
