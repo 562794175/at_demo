@@ -35,7 +35,7 @@ function cut_png($background, $cut_x, $cut_y, $cut_width, $cut_height, $location
 
 function show_price_png($id,$period,$data_json) {
     $filename=$id."_".$period."_price.png";
-    $realpath=realpath('.')."\\png\\price\\".$filename;
+    $realpath=realpath('.')."/png/price/".$filename;
     $sitepath="png/price/".$filename;
     if(file_exists($sitepath) && $period!="last") return $sitepath;
     $data_price = json_decode($data_json,TRUE);
@@ -59,7 +59,7 @@ function show_price_png($id,$period,$data_json) {
 
 function show_price_close_png($id,$period,$data_json) {
     $filename=$id."_".$period."_price_close.png";
-    $realpath=realpath('.')."\\png\\price\\".$filename;
+    $realpath=realpath('.')."/png/price/".$filename;
     $sitepath="png/price/".$filename;
     if(file_exists($sitepath) && $period!="last") return $sitepath;
     $data_price = json_decode($data_json,TRUE);
@@ -78,7 +78,7 @@ function show_price_close_png($id,$period,$data_json) {
 function show_price_bands_png($id,$period,$data_json,$price_json) {
     
     $filename=$id."_".$period."_price_bands.png";
-    $realpath=realpath('.')."\\png\\bands\\".$filename;
+    $realpath=realpath('.')."/png/bands/".$filename;
     $sitepath="png/bands/".$filename;
     if(file_exists($sitepath) && $period!="last") return $sitepath;
     $data_bands = json_decode($data_json,TRUE);
@@ -110,7 +110,7 @@ function show_price_bands_png($id,$period,$data_json,$price_json) {
 
 function show_price_close_bands_png($id,$period,$data_json,$price_json) {
     $filename=$id."_".$period."_price_close_bands.png";
-    $realpath=realpath('.')."\\png\\bands\\".$filename;
+    $realpath=realpath('.')."/png/bands/".$filename;
     $sitepath="png/bands/".$filename;
     if(file_exists($sitepath) && $period!="last") return $sitepath;
     $data_bands = json_decode($data_json,TRUE);
@@ -136,7 +136,7 @@ function show_price_close_bands_png($id,$period,$data_json,$price_json) {
 
 function show_obv_png($id,$period,$string_data) {
     $filename=$id."_".$period."_obv.png";
-    $realpath=realpath('.')."\\png\\obv\\".$filename;
+    $realpath=realpath('.')."/png/obv/".$filename;
     $sitepath="png/obv/".$filename;
     if(file_exists($sitepath) && $period!="last") return $sitepath;
     $obvData = explode(",", $string_data);
@@ -153,7 +153,7 @@ function show_obv_png($id,$period,$string_data) {
 
 function show_price_close_obv_png($id,$period,$obv_png,$price_close_bands_png) {
     $filename=$id."_".$period."_price_close_obv.png";
-    $realpath=realpath('.')."\\png\\obv\\".$filename;
+    $realpath=realpath('.')."/png/obv/".$filename;
     $sitepath="png/obv/".$filename;
     if(file_exists($sitepath) && $period!="last") return $sitepath;
     $image_1 = imagecreatefrompng($price_close_bands_png);
@@ -169,7 +169,7 @@ function show_price_close_obv_png($id,$period,$obv_png,$price_close_bands_png) {
 }
 
 function show_png($c,$filename) {
-    $realpath=realpath('.')."\\".$filename;
+    $realpath=realpath('.')."/".$filename;
     $sitepath="".$filename;
     $c->makeChart($realpath);
     $w = $c->getWidth();
@@ -179,7 +179,7 @@ function show_png($c,$filename) {
 }
 
 function show_png_default($c,$filename) {
-    $realpath=realpath('.')."\\".$filename;
+    $realpath=realpath('.')."/".$filename;
     $sitepath="".$filename;
     $c->makeChart($realpath);
     $w = $c->getWidth();
@@ -188,8 +188,8 @@ function show_png_default($c,$filename) {
     echo "<img src='".$sitepath."'>";
 }
 
-function show_svm_simple_png($dataY,$sn,$attr) {
-    $filename="png/svm/sample_close_simple_".$sn."_".$attr.".png";
+function show_svm_simple_png($dataY,$sn,$attr,$orgin_id) {
+    $filename="png/svm/sample_close_simple_".$sn."_".$attr."_".$orgin_id.".png";
     $chart_width=$chart_height=100;
    
     $line_list = getlinelist($dataY);

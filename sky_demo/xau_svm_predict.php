@@ -48,14 +48,22 @@
             $content=$v[4];
             $sample_pos=$v[5];
             
+           
             $sample_arr=explode('|',$sample);
             $line_arr= json_decode($content);
+            
             $sample_pos_arr=explode('|',$sample_pos);
             for($i=0;$i<count($sample_pos_arr);$i++) {
-                $pos=$sample_pos_arr[$i];
+                
+                $pos_map=$sample_pos_arr[$i];
+                $sample=explode(':',$pos_map)[0];
+                $pos=explode(':',$pos_map)[1];
+                
                 $count_all++;
-                $stype_arr = explode('+',$sample_arr[$i]);
+                $stype_arr = explode('+',$sample);
                 $type = end($stype_arr);
+                
+                
                 $sample_image[$type][]=$line_arr[$pos-1];
                 if(predict_line($model,$i,$type,$line_arr[$pos-1],$orgin_id)) ++$count_predict_right;
                 //echo show_svm_simple_png($line_arr[$pos-1],$i,$sample_arr[$i]);
@@ -87,7 +95,7 @@ function predict_line($model,$sn,$key,$value,$orgin_id)
     echo"<tr>";
     echo"<td>".$key."</td>";
     echo"<td>";
-    echo show_svm_simple_png($value,$sn,$key);
+    echo show_svm_simple_png($value,$sn,$key,$orgin_id);
     echo"</td>";
     //归一化
     $td=array();
@@ -111,36 +119,6 @@ function predict_line($model,$sn,$key,$value,$orgin_id)
 }
 
 
-function predict_del()
-{
-    $model = new SVMModel();
-    $model->load(dirname(__FILE__) . '/model.svm');
-    //$class_arr=[''=>'-1','3f'=>'+1','3r'=>'-1','5r'=>'-1','5f'=>'-1','3p'=>'-1','3t'=>'-1','3rt'=>'-1','7r'=>'-1','7f'=>'-1','5t'=>'-1'];
-    $class_arr=['','3f','3r','5r','5f','3p','3t','3rt','7r','7f','5t'];
-    foreach ($sample_image as $key => $value) {
-        echo"<tr>";
-        echo"<td>".$key."</td>";
 
-        foreach ($value as $k => $v) {
-            echo"<td>";
-            echo show_svm_simple_png($v,$k,$key);
-            echo"</td>";
-            //归一化
-            $td=array();
-            $MinValue=min($v);
-            $MaxValue=max($v);
-            $lower=-1;
-            $upper=1;
-            foreach ($v as $kl => $vl) {
-                $one = $lower+($upper-$lower)*($vl-$MinValue)/($MaxValue-$MinValue);
-                array_push($td,$one);
-            }            
-            $result = $model->predict($td);
-            echo"<td>".$class_arr[$result]."</td>";
-        }
-
-        echo"</tr>";
-    }
-}
 
 ?>

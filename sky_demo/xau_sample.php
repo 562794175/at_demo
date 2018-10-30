@@ -371,16 +371,24 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
             $new_line_set=[];
             $sn=1;
             $sample_pos="";
+            $begin=$end=0;
             for($i=0;$i<count($line_list);$i++) {
-                if($new_line_list[$i]===true) continue;
+                
+                if($new_line_list[$i]===true){
+                    continue;
+                }
                 $tmp_line=$new_line_list[$i];
                 $size=count($tmp_line);
                 if($size===0) {
                     $size=count($line_list[$i]);
                     $tmp_line=$line_list[$i];
-                } else {
-                    echo '<a href="xau_sample_chart.php?id='.$id.'&sn='.$sn.'">'.$sn.'</a> - ';
-                    $sample_pos.=$sn."|";
+                    
+                }
+                else {
+                    $pos_pre=getPosEnd($sample_arr,($i+1));
+                    echo '<a href="xau_sample_chart.php?id='.$id.'&sn='.$sn.'">'.$sn.' - ['.$pos_pre.']</a> - ';
+                    $sample_pos.=$pos_pre.":".$sn."|";
+                    
                 }
                 $sn++;
                 for($n=0;$n<$size;$n++) {
@@ -390,7 +398,8 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                 $offset--;
                 array_push($new_line_set, $tmp_line);
                 $c->addAreaLayer($line);
-            }
+            }  
+
             $sample_pos = substr($sample_pos,0,strlen($sample_pos)-1); 
             show_png($c,$filename1);
             $content = json_encode($new_line_set);
@@ -408,3 +417,17 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
     </body>
 </html>
 
+<?php
+function getPosEnd($sample_arr,$begin_pos)
+{
+    if(empty($sample_arr)) return "";
+    foreach($sample_arr as $v) { 
+        $sample= explode("+", $v);
+        $begin=$sample[0];
+        $end=$sample[1];
+        $type=$sample[2];
+        if($begin==$begin_pos) return $v;
+    }
+}
+
+?>

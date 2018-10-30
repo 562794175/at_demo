@@ -18,6 +18,9 @@
 <head>
     <meta charset="UTF-8">
 </head>
+<style>
+    td { font-size:4px}
+</style>
 <body>
     <h1 align="center">lib svm train</h1>
     <div>
@@ -57,12 +60,15 @@
             $sample_pos_arr=explode('|',$sample_pos);
             
             for($i=0;$i<count($sample_pos_arr);$i++) {
-                $pos=$sample_pos_arr[$i];
+                $pos_map=$sample_pos_arr[$i];
                 
-                $stype_arr = explode('+',$sample_arr[$i]);
+                $sample=explode(':',$pos_map)[0];
+                $pos=explode(':',$pos_map)[1];
+                
+                $stype_arr = explode('+',$sample);
                 $type = end($stype_arr);
                 $sample_image[$type][]=$line_arr[$pos-1];
-                $sample_image_info[$type][]=$orgin_id.'-'.$sample_arr[$i];
+                $sample_image_info[$type][]=$orgin_id.'-'.$sample;
                 //echo show_svm_simple_png($line_arr[$pos-1],$i,$sample_arr[$i]);
             }
         }
@@ -79,9 +85,10 @@
 //            x、y为转换前、后的值，MaxValue、MinValue分别为样本每一列最大值和最小值
 //            libsvm程序默认范围为：[-1,1]
             foreach ($value as $k => $v) {
-                
-                echo"<td title='".$sample_image_info[$key][$k]."'>";
-                echo show_svm_simple_png($v,$k,$key);
+                $attr=$sample_image_info[$key][$k];
+                echo"<td title='".$attr."'>";
+                echo show_svm_simple_png($v,$k,$key,explode("-",$attr)[0]);
+                echo $attr;
                 echo"</td>";
                 if(($k+1)%10==0) echo "</tr><tr><td></td>";
                 $strLine=$class_arr[$key];

@@ -10,8 +10,8 @@ $result = $db->query($sql);
 $arr = $result->fetch_all();
 $line_arr= json_decode($arr[0][4]);
 $line=$line_arr[$sn-1];
-$filename1="png/simple/sample_close_simple_".$sn.".png";
-$filename2="png/simple/sample_close_simple_1_".$sn.".png";
+$filename1="png/simple/sample_close_simple_".$sn."_".$id.".png";
+$filename2="png/simple/sample_close_simple_1_".$sn."_".$id.".png";
 $chart_width=$chart_height=100;
 
 $c = new XYChart($chart_width, $chart_height+10, 0xFF000000);
