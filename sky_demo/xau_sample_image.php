@@ -8,7 +8,7 @@
     $resultall = $db->query($sqlall);
     $arr1 = $resultall->fetch_row();//获取一个数组  只有一个值的数组
     $c = $arr1[0];//用一个变量获取这个数组的值
-    $page = new page($c,5);//一共多少条 每页显示多少条
+    $page = new page($c,100);//一共多少条 每页显示多少条
     $sql = "select *  from xau_sample  order by id desc " .$page->limit;
     $result = $db->query($sql);
     
@@ -88,23 +88,9 @@
                 $attr=$sample_image_info[$key][$k];
                 echo"<td title='".$attr."'>";
                 echo show_svm_simple_png($v,$k,$key,explode("-",$attr)[0]);
-                echo $attr;
+                echo "<br>".$attr;
                 echo"</td>";
                 if(($k+1)%10==0) echo "</tr><tr><td></td>";
-                $strLine=$class_arr[$key];
-                $td=array($class_arr[$key]);
-                $MinValue=min($v);
-                $MaxValue=max($v);
-                $lower=-1;
-                $upper=1;
-                foreach ($v as $kl => $vl) {
-                    $one = $lower+($upper-$lower)*($vl-$MinValue)/($MaxValue-$MinValue);
-                    array_push($td,$one);
-                    $strLine.=" ".($kl+1).":".$one;
-                }
-                $train_data[]=$td;
-                $strLine.="\r\n";
- 
             }
             echo"</tr>";
         }

@@ -196,6 +196,7 @@ function show_png_default($c,$filename) {
 
 function show_svm_simple_png($dataY,$sn,$attr,$orgin_id) {
     $filename="png".PATHSEP."svm".PATHSEP."sample_close_simple_".$sn."_".$attr."_".$orgin_id.".png";
+    //return $filename;
     $chart_width=$chart_height=100;
    
     $line_list = getlinelist($dataY);

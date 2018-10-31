@@ -1,5 +1,5 @@
  <?php
-    set_time_limit(0);
+    //set_time_limit(0);
     require_once("phpchartdir.php");
     require_once("function.php");
     require_once("page.class.php");
@@ -66,6 +66,11 @@
                 $attr=$sample_image_info[$key][$k];
                 $strLine=$class_arr[$key];
                 $td=array($class_arr[$key]);
+                if(!is_array($v)) {
+                    echo $k." - ".$key." - ".$attr;
+                    die();
+                }
+                
                 $MinValue=min($v);
                 $MaxValue=max($v);
                 $lower=-1;

@@ -92,7 +92,7 @@ if($line_count<25) {
     $chart_width=$chart_height=500;
 } else if($line_count>=45 && $line_count<55) {
     $chart_width=$chart_height=600;
-} else if($line_count>=55 && $line_count<65) {
+} else if($line_count>=55) {
     $chart_width=$chart_height=700;
 }
 
