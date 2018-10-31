@@ -45,6 +45,17 @@ echo "<div align='center'>".$head."<br>".$page->fpage()."</div>";//显示分页�
 <table border=1 align='center'>
 <?php
 foreach($kdata as $value) {
+    $c = new XYChart(100, 110);
+    $plotAreaObj =$c->setPlotArea(0, 0, 100, 100);
+    $plotAreaObj->setGridColor(Transparent, Transparent);
+    $plotAreaObj->setBackground(Transparent, Transparent, Transparent);
+    $c->yAxis()->setColors(Transparent, Transparent);
+    $layer = $c->addCandleStickLayer($highData, $lowData, $openData, $closeData, 0x00ff00, 0xff0000);
+    $layer->setLineWidth(2);
+    $c->makeChart($realpath);
+    cut_png($realpath, 0, 0, 100, 100, $realpath);
+
+    
     echo "<tr>";
     echo "<td>xc</td><td><input name=xx type='text'></td>";
     echo "</tr>";
