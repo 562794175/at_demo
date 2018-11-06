@@ -107,8 +107,14 @@ function predict_line($model,$sn,$key,$value,$orgin_id)
         $one = $lower+($upper-$lower)*($vl-$MinValue)/($MaxValue-$MinValue);
         array_push($td,$one);
     }            
-    $result = $model->predict($td);
-    $predict_cls=$class_arr[$result];
+    $class = $model->predict($td);
+    $return = array();
+    $result = $model->predict_probability($td, $return);
+    arsort($return);
+    reset($return);
+    $result = key($return);
+    
+    $predict_cls=$class_arr[$class];
     echo"<td>".$predict_cls." - ".$orgin_id."</td>";
     if($key==$predict_cls) echo"<td>正确</td>";
     

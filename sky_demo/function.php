@@ -1,6 +1,6 @@
 <?php
 
-define("CONFIDENCE", 0.95);
+define("CONFIDENCE", 0.98);
 
 if(isOnWindows()) {
     define("PATHSEP", "\\");

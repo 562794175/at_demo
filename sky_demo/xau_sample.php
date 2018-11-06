@@ -35,6 +35,8 @@ foreach($arr as $v){
     $openData = explode(",", $data_price["open"]);
     $closeData = explode(",", $data_price["close"]);
     
+    getRate($highData,$lowData,$openData,$closeData);
+    
 //    $dataY0[]=time_length($data_obv);
 //    $dataY1[]=price_width($data_price);
     $times[]=date("H",strtotime($end)).'.'.date("i",strtotime($end));
@@ -220,22 +222,14 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
 				tbody.removeChild(tr);   
 			
 			}else{
-			
-			
 				alert("网络问题，删除失败，请联检查网络！");
-			
 			}
 
 		}else{
-		
 			var tr=obj.parentNode.parentNode;   
-			 
 			var tbody=tr.parentNode;
-			 
 			tbody.removeChild(tr);   
 		}
-		
-		
 	}
 //异步删除
 	function  ajaxdel(id){
@@ -437,4 +431,16 @@ function getPosEnd($sample_arr,$begin_pos)
     }
 }
 
+function getRate($highData,$lowData,$openData,$closeData)
+{
+    $r=0;
+    $f=0;
+    foreach ($highData as $key => $value) {
+        if($openData[$key]>$closeData[$key]) $f++;
+        if($openData[$key]<$closeData[$key]) $r++;
+    }
+    echo "r:".$r." - ".round($r/($r+$f),2);
+    
+    echo "f:".$f.' - '.round($f/($r+$f),2);
+}
 ?>
