@@ -34,6 +34,9 @@ foreach($arr as $v){
             $kdata[$i]['l'][]=$lowData[$i-$m];
             $kdata[$i]['o'][]=$openData[$i-$m];
             $kdata[$i]['c'][]=$closeData[$i-$m];
+            $kdata[$i]['id']=$id;
+            $kdata[$i]['tf']=$timeframe;
+            $kdata[$i]['sn']=$i;
         }
     }//end for
 }
@@ -43,23 +46,46 @@ echo "<div align='center'>".$head."<br>".$page->fpage()."</div>";//显示分页�
 ?>
 <form id="sampleForm" action="xau_sample_k.php?id=<?php echo $id;?>&dopost=ajaxsave&page=<?php echo $pageindex; ?>" method="post" >
 <table border=1 align='center'>
+    <tr>
 <?php
-foreach($kdata as $value) {
-    $c = new XYChart(100, 110);
-    $plotAreaObj =$c->setPlotArea(0, 0, 100, 100);
+foreach($kdata as $key=> $value) {
+    
+    $image=getCandlePng($value);
+
+    echo "<td><img src='".$image."'></td><td><button name='button1' type='button' onclick='addsample();'>采样</button></td>";
+    if($key%10==0) echo "</tr><tr>";
+
+}
+?>
+    </tr>
+</table>
+<?php
+    $data['h']=$highData;
+    $data['l']=$lowData;
+    $data['o']=$openData;
+    $data['c']=$closeData;
+    $data['id']=$id;
+    $data['tf']=$timeframe;
+    $data['sn']=$pageindex;
+    $imageall=getCandlePng($data,600,600);
+    echo "<div align='center' ><img src='".$imageall."'></div>";
+?>
+</form>
+<?php
+function getCandlePng($data,$width=50,$height=50)
+{
+    $c = new XYChart($width, $height+10);
+    $plotAreaObj =$c->setPlotArea(0, 0, $width, $height);
     $plotAreaObj->setGridColor(Transparent, Transparent);
     $plotAreaObj->setBackground(Transparent, Transparent, Transparent);
     $c->yAxis()->setColors(Transparent, Transparent);
-    $layer = $c->addCandleStickLayer($highData, $lowData, $openData, $closeData, 0x00ff00, 0xff0000);
+    $layer = $c->addCandleStickLayer($data['h'],$data['l'], $data['o'], $data['c'], 0x00ff00, 0xff0000);
     $layer->setLineWidth(2);
+    $filename=$data['id']."_".$data['tf']."_".$data['sn'].".png";
+    $realpath=realpath('.')."".PATHSEP."png".PATHSEP."k".PATHSEP."".$filename;
     $c->makeChart($realpath);
-    cut_png($realpath, 0, 0, 100, 100, $realpath);
-
-    
-    echo "<tr>";
-    echo "<td>xc</td><td><input name=xx type='text'></td>";
-    echo "</tr>";
+    cut_png($realpath, 0, 0, $width, $height, $realpath);
+    $sitepath="png".PATHSEP."k".PATHSEP."".$filename;
+    return $sitepath;
 }
 ?>
-</table>
-</form>
