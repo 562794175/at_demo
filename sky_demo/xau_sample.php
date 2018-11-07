@@ -142,21 +142,21 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
         $sample.=$name."|";
         $tmp=array();
         $checkstr="";
-        for($n=1;$n<16;$n++) {
-            if(empty($_POST['W'.$n][$i])) continue;
-            $tmp['W'.$n]=$_POST['W'.$n][$i];
-            $checkstr.=$_POST['W'.$n][$i].',';
-        }
+//        for($n=1;$n<16;$n++) {
+//            if(empty($_POST['W'.$n][$i])) continue;
+//            $tmp['W'.$n]=$_POST['W'.$n][$i];
+//            $checkstr.=$_POST['W'.$n][$i].',';
+//        }
         $detail[$name]=$tmp;
         $checkstr = substr($checkstr,0,strlen($checkstr)-1); 
         $checkarr= explode(",", $checkstr);
         $begin=(int)$begin_arr[$i];
-        foreach ($checkarr as $vl) {
-            if($begin!==(int)$vl) {
-                echo $name." 顺序不对！";
-            } 
-            $begin++;
-        }//end foreach
+//        foreach ($checkarr as $vl) {
+//            if($begin!==(int)$vl) {
+//                echo $name." 顺序不对！";
+//            } 
+//            $begin++;
+//        }//end foreach
     }
     $detail_json=json_encode($detail);
     $sample = substr($sample,0,strlen($sample)-1); 
@@ -263,7 +263,18 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
     #long{ width:100px;}
 </style>
 <html>
-    <body align='center'>
+    <body align='center' title="            '3f'=>'1',//三浪下跌
+            '3r'=>'2',//三浪上涨
+            '5r'=>'3',//五浪上涨
+            '5f'=>'4',//五浪下跌
+            '7r'=>'5',//七浪上涨
+            '7f'=>'6',//七浪下跌
+            'rp'=>'5',//上涨金字塔
+            'fp'=>'7',//下跌金字塔
+            '3lt'=>'8',//左大右小三角形
+            '3rt'=>'9',//左小右大三角形
+            'd'=>'10',//菱形">
+
         <form id="sampleForm" action="xau_sample.php?id=<?php echo $id;?>&dopost=ajaxsave&page=<?php echo $pageindex; ?>" method="post" >
         <input type="hidden" name="id" value="<?php echo $id; ?>" />
         <input type="hidden" name="page" value="<?php echo $pageindex; ?>" />
@@ -275,7 +286,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
 					<th  height="30">开始</th>
 					<th  height="30">结束</th>
 					<th  height="30">类型</th>
-					<th  height="30">W1</th>
+<!--					<th  height="30">W1</th>
                                         <th  height="30">W2</th>
                                         <th  height="30">W3</th>
                                         <th  height="30">W4</th>
@@ -289,7 +300,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                                         <th  height="30">W12</th>
                                         <th  height="30">W13</th>
                                         <th  height="30">W14</th>
-                                        <th  height="30">W15</th>
+                                        <th  height="30">W15</th>-->
 					<th  height="30">操作</th> 
 				</tr>
 				<?php 
@@ -336,7 +347,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                                         <td ><input name="begin[]" type="text" value="<?php echo $begin ?>"  /></td>
 					<td ><input name="end[]" type="text" value="<?php echo $end ?>"  /></td>
 					<td ><input name="type[]" type="text" value="<?php echo $type ?>"  /></td>
-					<td ><input name="W1[]" type="text" value="<?php echo $W1 ?>" id="long"  /></td>
+<!--					<td ><input name="W1[]" type="text" value="<?php echo $W1 ?>" id="long"  /></td>
                                         <td ><input name="W2[]" type="text" value="<?php echo $W2 ?>" id="long"  /></td>
                                         <td ><input name="W3[]" type="text" value="<?php echo $W3 ?>" id="long"  /></td>
                                         <td ><input name="W4[]" type="text" value="<?php echo $W4 ?>" id="long"  /></td>
@@ -350,7 +361,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
                                         <td ><input name="W12[]" type="text" value="<?php echo $W12 ?>"  /></td>
                                         <td ><input name="W13[]" type="text" value="<?php echo $W13 ?>"  /></td>
                                         <td ><input name="W14[]" type="text" value="<?php echo $W14 ?>"  /></td>
-                                        <td ><input name="W15[]" type="text" value="<?php echo $W15 ?>"  /></td>
+                                        <td ><input name="W15[]" type="text" value="<?php echo $W15 ?>"  /></td>-->
                                         
 					<td ><a href="javascript:void();" onclick='{if(confirm("确定要删除?")) {deleteCurrentRow(this,0 ); }else {}}'>删除</a> </td>
 				</tr>
