@@ -1,5 +1,4 @@
  <?php
-    header("Content-Type: text/html;charset=utf-8");
     //set_time_limit(0);
     //分类训练
     require_once("phpchartdir.php");
@@ -8,9 +7,12 @@
     $db = new MySQLi("localhost","root","123456","test");
     $sql = "select *  from xau_sample  ";
     $result = $db->query($sql);
+    $file= realpath('.').PATHSEP."darknet.py";
+    //echo shell_exec("id -a");
+    $cmd="python ".$file;
+    echo shell_exec($cmd);
     
-    $output = shell_exec('python darknet.py');
-    echo $output;
+die();
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -26,7 +28,6 @@
 
 
 <?php
-
     if($result){
         $arr = $result->fetch_all();
         $sample_image=[];

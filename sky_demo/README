@@ -13,3 +13,8 @@ https://rpmfind.net/linux/rpm2html/search.php?query=libsvm&submit=Search+...&sys
 phpize
 ./configure --with-php-config=/path/to/php-config
 make && make install
+
+
+PHP中exec、system等函数调用linux命令问题
+https://blog.csdn.net/shaobingj126/article/details/7029407
+php.ini里disable_function删除exec,shell_exec函数
