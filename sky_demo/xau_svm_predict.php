@@ -90,8 +90,7 @@
 
 function predict_line($model,$sn,$key,$value,$orgin_id)
 {
-    //$class_arr=[''=>'-1','3f'=>'+1','3r'=>'-1','5r'=>'-1','5f'=>'-1','3p'=>'-1','3t'=>'-1','3rt'=>'-1','7r'=>'-1','7f'=>'-1','5t'=>'-1'];
-    $class_arr=['','3f','3r','5r','5f','3p','3t','3rt','7r','7f','5t','5p','4t'];
+    $class_arr=array_keys(getClassArray());
     echo"<tr>";
     echo"<td>".$key."</td>";
     echo"<td>";

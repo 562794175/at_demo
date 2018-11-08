@@ -263,17 +263,7 @@ if($dopost=="ajaxsave" && !empty($_POST['id'])) {
     #long{ width:100px;}
 </style>
 <html>
-    <body align='center' title="            '3f'=>'1',//三浪下跌
-            '3r'=>'2',//三浪上涨
-            '5r'=>'3',//五浪上涨
-            '5f'=>'4',//五浪下跌
-            '7r'=>'5',//七浪上涨
-            '7f'=>'6',//七浪下跌
-            'rp'=>'5',//上涨金字塔
-            'fp'=>'7',//下跌金字塔
-            '3lt'=>'8',//左大右小三角形
-            '3rt'=>'9',//左小右大三角形
-            'd'=>'10',//菱形">
+    <body align='center' title="<?php print_r(getClassArray());?>">
 
         <form id="sampleForm" action="xau_sample.php?id=<?php echo $id;?>&dopost=ajaxsave&page=<?php echo $pageindex; ?>" method="post" >
         <input type="hidden" name="id" value="<?php echo $id; ?>" />

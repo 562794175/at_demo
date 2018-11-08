@@ -7,6 +7,25 @@ if(isOnWindows()) {
 } else {
     define("PATHSEP", "/");
  }
+ 
+ function getClassArray() {
+    $class_arr=[
+          ''=>'0',
+          '3f'=>'1',//三浪下跌
+          '3r'=>'2',//三浪上涨
+          '5r'=>'3',//五浪上涨
+          '5f'=>'4',//五浪下跌
+          '7r'=>'5',//七浪上涨
+          '7f'=>'6',//七浪下跌
+          'rp'=>'7',//上涨金字塔
+          'fp'=>'8',//下跌金字塔
+          '3lt'=>'9',//左大右小三角形
+          '3rt'=>'10',//左小右大三角形
+          'd'=>'11',//菱形
+          ];
+    return $class_arr;
+ }
+ 
 
 function price_width($json_price) {
     $data_price = json_decode($json_price,TRUE);
