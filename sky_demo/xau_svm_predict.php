@@ -28,7 +28,7 @@
         <tr>
             <td>org_class</td>
             <td>image</td>
-            <td>predict_class</td>
+            <td>svm_predict_class</td>
             <td>result</td>
         </tr>
 <?php
@@ -107,11 +107,11 @@ function predict_line($model,$sn,$key,$value,$orgin_id)
         array_push($td,$one);
     }            
     $class = $model->predict($td);
-    $return = array();
-    $result = $model->predict_probability($td, $return);
-    arsort($return);
-    reset($return);
-    $result = key($return);
+//    $return = array();
+//    $result = $model->predict_probability($td, $return);
+//    arsort($return);
+//    reset($return);
+//    $result = key($return);
     
     $predict_cls=$class_arr[$class];
     echo"<td>".$predict_cls." - ".$orgin_id."</td>";

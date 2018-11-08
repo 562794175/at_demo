@@ -1,5 +1,6 @@
  <?php
     //set_time_limit(0);
+    //类别归类显示
     require_once("phpchartdir.php");
     require_once("function.php");
     require_once("page.class.php");
@@ -78,10 +79,6 @@
         foreach ($sample_image as $key => $value) {
             echo"<tr>";
             echo"<td>".$key."</td>";
-//            Libsvm中的svm-scale归一化范围 ： [lower,upper]
-//            所使用的规则： y=lower+（upper-lower）*(x-MinValue)/(MaxValue-MinValue)
-//            x、y为转换前、后的值，MaxValue、MinValue分别为样本每一列最大值和最小值
-//            libsvm程序默认范围为：[-1,1]
             foreach ($value as $k => $v) {
                 $attr=$sample_image_info[$key][$k];
                 echo"<td title='".$attr."'>";

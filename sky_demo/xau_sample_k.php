@@ -1,4 +1,5 @@
 <?php
+//
 require_once("phpchartdir.php");
 require_once("function.php");
 require_once("page.class.php");

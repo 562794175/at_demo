@@ -2,7 +2,7 @@
     require_once("phpchartdir.php");
     require_once("function.php");
     require_once("page.class.php");
-    $db = new MySQLi("localhost","root","","test");
+    $db = new MySQLi("localhost","root","123456","test");
     $tj = " 1=1 ";
     $name="";
     if(!empty($_GET["begin"])){

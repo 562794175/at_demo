@@ -1,5 +1,7 @@
  <?php
+    header("Content-Type: text/html;charset=utf-8");
     //set_time_limit(0);
+    //分类训练
     require_once("phpchartdir.php");
     require_once("function.php");
     require_once("page.class.php");
@@ -18,12 +20,13 @@
     td { font-size:4px}
 </style>
 <body>
-    <h1 align="center">lib svm train</h1>
+    <h1 align="center">lib svm - YOLO3 train</h1>
     <div>
 
 
 <?php
-
+    $output = shell_exec('python darknet.py');
+    echo $output;
     if($result){
         $arr = $result->fetch_all();
         $sample_image=[];
@@ -63,8 +66,9 @@
 //            libsvm程序默认范围为：[-1,1]
             foreach ($value as $k => $v) {
                 $attr=$sample_image_info[$key][$k];
-                $strLine=$class_arr[$key];
-                $td=array($class_arr[$key]);
+                $class=array_key_exists($key,$class_arr)?$class_arr[$key]:0;
+                $strLine=$class;
+                $td=array($class);
                 if(!is_array($v)) {
                     echo $k." - ".$key." - ".$attr;
                     die();
