@@ -9,7 +9,8 @@
     $sql = "select *  from xau_sample  ";
     $result = $db->query($sql);
     
-
+    $output = shell_exec('python darknet.py');
+    echo $output;
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -25,8 +26,7 @@
 
 
 <?php
-    $output = shell_exec('python darknet.py');
-    echo $output;
+
     if($result){
         $arr = $result->fetch_all();
         $sample_image=[];
