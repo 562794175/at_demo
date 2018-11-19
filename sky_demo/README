@@ -18,3 +18,6 @@ make && make install
 PHP中exec、system等函数调用linux命令问题
 https://blog.csdn.net/shaobingj126/article/details/7029407
 php.ini里disable_function删除exec,shell_exec函数
+
+https://www.cnblogs.com/songxingzhu/p/6383005.html
+Linux安装pear包

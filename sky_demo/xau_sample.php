@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL^E_NOTICE);
+//error_reporting(E_ALL^E_NOTICE);
 require_once("phpchartdir.php");
 require_once("function.php");
 require_once("page.class.php");
