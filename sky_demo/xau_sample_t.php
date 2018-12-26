@@ -53,20 +53,34 @@ $chart_width=getImageWidth($line_count)[0];
 $chart_height=getImageWidth($line_count)[1];
 //显示线性集合
 $image_file=getLineArea($line_list,$chart_width, $chart_height,$filename);
-
+$str="";
+$last_x=0;
 for($i=0;$i<$line_count;$i++)
 {
     $pos1=$i;
     $pos2=$pos1+1;
+    $pt1_x=$last_x;
+    $pt1_y=$line_list[$pos1][0];
+    $pt2_x=$pt1_x+count($line_list[$pos1])-1;
+    $pt2_y=end($line_list[$pos1]);
+    $pt3_x=$pt2_x+count($line_list[$pos2])-1;;
+    $pt3_y=end($line_list[$pos2]);
+    
+    $str.= $pt1_x."-".$pt1_y."|";
+    $str.= $pt2_x."-".$pt2_y."|";
+    $str.= $pt3_x."-".$pt3_y."|";
+    
+    $last_x=$pt2_x;
+    
     //判断类型：Acute，Right,Obtuse
-    $a=getCalcuLength($line_list[$pos1]);
-    $b=getCalcuLength($line_list[$pos2]);
-    $c=getDistance($line_list[$pos1],$line_list[$pos2]);
-    echo $i;
-    //echo checkShapeAngle($a,$b,$c);
-    echo checkShape($a,$b,$c);
+//    $a=getCalcuLength($line_list[$pos1]);
+//    $b=getCalcuLength($line_list[$pos2]);
+//    $c=getDistance($line_list[$pos1],$line_list[$pos2]);
+//    $str.= $i."-";
+//    //echo checkShapeAngle($a,$b,$c);
+//    $str.= checkShape(round($a,2),round($b,2),round($c,2));
+    $str.= "<br>";
 }
-
 function checkShape($a,$b,$c)
 {
     $arr=[$a,$b,$c];
@@ -80,12 +94,13 @@ function checkShape($a,$b,$c)
     $l1=$arr[0];
     $l2=$arr[1];
     $l=$l1*$l1+$l2*$l2;
+    $str= $l1.'.'.$l2.'.'.$max;
     if($l>$max*$max) {
-        return "Acute";
+        return $str."Acute";
     } else if($l==$max*$max) {
-        return "Right";
+        return $str."Right";
     } else if($l<$max*$max) {
-        return "Obtuse";
+        return $str."Obtuse";
     }
     
 }
@@ -103,6 +118,7 @@ function checkShapeAngle($a,$b,$c)
             $max = $c;
             $angle = acos(($a*$a+$b*$b-$c*$c)/(2*$a*$b))*180.0/M_PI;
         }
+        echo $angle;
         if($angle > 90.0){
             return "Obtuse";
         } else if($angle < 90.0){
@@ -110,8 +126,6 @@ function checkShapeAngle($a,$b,$c)
         } else {
             return "Right";
         }
-        return "   ";
-
     } else {
         return "false";
     }
@@ -124,7 +138,9 @@ function getCalcuLength($line)
     $end=end($line);
     $size=count($line)-1;
     if($size<1) return 0;
-    $lenth=sqrt((0-$size)*(0-$size)+($begin-$end)*($begin-$end));
+    $a=(0-$size)*(0-$size);
+    $b=($begin-$end)*($begin-$end);
+    $lenth=sqrt($a+$b);
     return $lenth;
 }
 
@@ -136,14 +152,17 @@ function getDistance($line1,$line2)
     if($size<2) return 0;
     $lenth=sqrt((0-$size)*(0-$size)+($begin-$end)*($begin-$end));
     return $lenth;
-    
 }
 
 ?>
 
 <html>
     <body align='center' >     
-        <table align='center'><tr><td>
+        <table align='center'><tr>
+                <td>
+                    <?php echo $str; ?>
+                </td>    
+                <td>
             <?php echo $image_file; ?>
         </td><td>
             <?php echo $image_file1; ?>
