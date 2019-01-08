@@ -144,7 +144,7 @@ static void handle_client_proc(int srvfd)
 
     while (1) {
         /*每次调用select前都要重新设置文件描述符和时间，因为事件发生后，文件描述符和时间都被内核修改啦*/
-        /*1. 每次调用时要重复地从用户态读入参数*/
+        
         FD_ZERO(readfds);
         /*添加监听套接字*/
         FD_SET(srvfd, readfds);
@@ -165,6 +165,7 @@ static void handle_client_proc(int srvfd)
         }
 
         /*开始轮询接收处理服务端和客户端套接字*/
+        /*1. 每次调用时要重复地从用户态读入参数*/
         /*3. 每次在调用开始时，要把当前进程放入各个文件描述符的等待队列。在调用结束后,又把进程从各个等待队列中删除*/
         retval = select(s_srv_ctx->maxfd + 1, readfds, NULL, NULL, &tv);
         if (retval == -1) {
