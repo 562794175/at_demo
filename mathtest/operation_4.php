@@ -43,7 +43,7 @@ function getFourMulti($pre='<li>',$equal='=') {
         if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$equal;  
+    return $pre.$ct[0].$s[0].$ct[1].$equal.$mod;  
 }
 
 function getFourSub($pre='<li>',$equal='=') {
@@ -68,7 +68,7 @@ function getFourSub($pre='<li>',$equal='=') {
         if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$equal;  
+    return $pre.$ct[0].$s[0].$ct[1].$equal.$mod;  
 }
 
 function getFourAdd($pre='<li>',$equal='=') {
@@ -85,6 +85,28 @@ function getFourAdd($pre='<li>',$equal='=') {
                 (substr_count($check,'×')==1 && substr_count($check,'÷')==1 )) {
             continue;
         }
+		//只能出现多位数乘单位数
+		if($s[0]=="×" || $s[0]=="÷") {
+			$ct1=$ct2="";
+			$temp = $ct[0];
+			for($i=strlen($temp)-1;$i>=0;$i--)
+			{
+				$re=substr($temp,$i,1);
+				if(is_numeric($re)) $ct1.=$re;
+				else
+					break;
+			}
+			
+			$temp = $ct[1];
+			for($i=0;$i<strlen($temp);$i++)
+			{
+				$re=substr($temp,$i,1);
+				if(is_numeric($re)) $ct2.=$re;
+				else
+					break;
+			}
+			if(strlen($ct1)>1 && strlen($ct1)>1) continue;
+		}
         $e=$ct[0].$s[0].$ct[1];
         $e=str_replace('×','*',$e);
         $e=str_replace('÷','/',$e);
@@ -93,7 +115,7 @@ function getFourAdd($pre='<li>',$equal='=') {
         if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$equal;
+    return $pre.$ct[0].$s[0].$ct[1].$equal.$mod;
 }
 
 function getFourDivision($pre='<li>',$equal='=') {
@@ -112,5 +134,5 @@ function getFourDivision($pre='<li>',$equal='=') {
         if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$equal;
+    return $pre.$ct[0].$s[0].$ct[1].$equal.$mod;
 }
