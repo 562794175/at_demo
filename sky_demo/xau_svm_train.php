@@ -7,10 +7,11 @@
     $db = new MySQLi("localhost","root","123456","test");
     $sql = "select *  from xau_sample  ";
     $result = $db->query($sql);
-    $file= realpath('.').PATHSEP."darknet.py";
-    //echo shell_exec("id -a");
+    $file= realpath('.').PATHSEP."darknet".PATHSEP."darknet.py";
     $cmd="python ".$file;
     echo shell_exec($cmd);
+    
+
     
 die();
 ?>
