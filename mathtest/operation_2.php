@@ -43,7 +43,18 @@ function getTwoMulti($count,$pre='<li>',$equal='=') {
             $pos_2=mt_rand(0,2);
         }
         $li=$ct[$pos_1]."×".$ct[$pos_2];
-        $items.=$pre.$li.$equal;
+		
+		
+		//答案
+		$e=$li;
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
+		
+		if($equal=='=') $items.=$pre.$li.$equal.$mod;
+		else $items.=$pre.$li.$equal;
     }
     return $items;
 }
@@ -54,13 +65,24 @@ function getTwoDivision($pre='<li>',$equal='=') {
     $s[0]="÷";
     $sym=["+","-","×","÷"];
     while(1) {
-        $ct[0] = mt_rand(1,999);
+        $ct[0] = mt_rand(1,99);
         $ct[1] = mt_rand(1,9);
         $mod=$ct[0]%$ct[1];
         if($mod!=0) continue;
+		
+		//答案
+		$e=$ct[0]/$ct[1];
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
+		
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$equal;
+	if($equal=='=')
+		return $pre.$ct[0].$s[0].$ct[1].$equal.$mod;
+	else return $pre.$ct[0].$s[0].$ct[1].$equal;
 }
 
 function getTwoSub($count,$pre='<li>',$equal='=') {
@@ -69,7 +91,17 @@ function getTwoSub($count,$pre='<li>',$equal='=') {
         $ct[0] = mt_rand(1,999);
         $ct[1] = mt_rand(1,$ct[0]);
         $li=$ct[0]."-".$ct[1];
-        $items.=$pre.$li.$equal;
+		
+		//答案
+		$e=$li;
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
+		if($equal=='=')
+			$items.=$pre.$li.$equal.$mod;
+		else $items.=$pre.$li.$equal;
     }
     return $items;
 }
@@ -80,7 +112,18 @@ function getTwoAdd($count,$pre='<li>',$equal='=') {
         $ct[0] = mt_rand(1,999);
         $ct[1] = mt_rand(1,999);
         $li=$ct[0]."+".$ct[1];
-        $items.=$pre.$li.$equal;
+		
+		//答案
+		$e=$li;
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
+		if($equal=='=')
+			$items.=$pre.$li.$equal.$mod;
+		else $items.=$pre.$li.$equal;
     }
+
     return $items;
 }

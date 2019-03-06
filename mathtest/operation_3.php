@@ -50,9 +50,16 @@ function getThreeMulti($pre='<li>',$equal='=') {
             $mod=0;
         }
         if($mod!=0) continue;
+		//答案
+		$e=$ct[0].$s[0].$ct[1].$s[1].$ct[2];
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal;    
+    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal.$mod; 
 }
 
 function getThreeSub($pre='<li>',$equal='=') {
@@ -81,9 +88,16 @@ function getThreeSub($pre='<li>',$equal='=') {
             $mod=0;
         }
         if($mod!=0) continue;
+		//答案
+		$e=$ct[0].$s[0].$ct[1].$s[1].$ct[2];
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal;    
+    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal.$mod;   
 }
 
 function getThreeAdd($pre='<li>',$equal='=') {
@@ -110,9 +124,16 @@ function getThreeAdd($pre='<li>',$equal='=') {
             $mod=0;
         }
         if($mod!=0) continue;
+		//答案
+		$e=$ct[0].$s[0].$ct[1].$s[1].$ct[2];
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal;
+    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal.$mod;
 }
 
 function getThreeDivision($pre='<li>',$equal='=') {
@@ -121,7 +142,7 @@ function getThreeDivision($pre='<li>',$equal='=') {
     $s[0]="÷";
     $sym=["+","-","×","÷"];
     while(1) {
-        $ct[0] = mt_rand(1,999);
+        $ct[0] = mt_rand(1,99);
         $ct[1] = mt_rand(1,9);
         $mod=$ct[0]%$ct[1];
         if($mod!=0) continue;
@@ -140,7 +161,14 @@ function getThreeDivision($pre='<li>',$equal='=') {
             $mod=0;
         }
         if($mod!=0) continue;
+		//答案
+		$e=$ct[0].$s[0].$ct[1].$s[1].$ct[2];
+		$e=str_replace('×','*',$e);
+		$e=str_replace('÷','/',$e);
+		$mod=eval("return ".$e.";");
+		if($mod<0) continue;
+		if(floor($mod)!=$mod) continue;
         break;
     }
-    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal;
+    return $pre.$ct[0].$s[0].$ct[1].$s[1].$ct[2].$equal.$mod;
 }
