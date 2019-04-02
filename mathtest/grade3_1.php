@@ -1,5 +1,12 @@
 <?php 
-
+require_once 'operation_2.php';
+echo "xxx";
+$path="E:\\code\\at_demo\\mathtest\\tt.png";
+$s="http://thirdwx.qlogo.cn/mmopen/2tW9sibNiawYs73rhITCUTI8p8bUwTLlb39UJgmnBqVMuedaNloNOqe33OMOYEcO7cqliauq9FnpBalpSftNnjbhA/96";
+$data=curl_file_get_contents($s);
+//echo $cfg;
+file_put_contents($path, $data);
+die();
 require_once 'operation_2.php';
 require_once 'operation_3.php';
 require_once 'operation_4.php';
