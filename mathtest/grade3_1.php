@@ -1,4 +1,19 @@
 <?php 
+$sLessIds="9233,17269,17268,13705,";
+$sLessIds=substr($sLessIds, 0, -1);
+echo $sLessIds;
+die();
+
+$signkey = "apibib1b7b0d2a8d827e2a946b1861ea";
+
+$sLessIds="9233,17269,17268,13705,";
+$s1=strtolower(md5($signkey . $sLessIds . $signkey));
+
+echo $s1;
+
+
+
+die();
 require_once 'operation_2.php';
 echo "xxx";
 $path="E:\\code\\at_demo\\mathtest\\tt.png";
