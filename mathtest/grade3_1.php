@@ -1,7 +1,8 @@
 <?php 
-$sLessIds="9233,17269,17268,13705,";
-$sLessIds=substr($sLessIds, 0, -1);
-echo $sLessIds;
+
+$sHtml = file_get_contents("http://static.ewt360.com/upload/ewt/image/2018/09/04/20180904181426450.png");
+echo $sHtml;
+
 die();
 
 $signkey = "apibib1b7b0d2a8d827e2a946b1861ea";
