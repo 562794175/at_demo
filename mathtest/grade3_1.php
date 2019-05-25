@@ -1,74 +1,946 @@
 <?php 
+$aReference=[
+  "code"=> 200,
+  "msg"=> "获取成功",
+  "data"=> [
+    [
+      "id"=> "7",
+      "title"=> "2018寒假提分冬令营",
+      "description"=> "针对2018寒假，e网通为高一、高二学生，提供上学期重难点复习课程和下学期新课预习课程，为高三学生提供一轮、二轮复习课程，同时为新高考地区提供生涯规划，学考、选考相关的知识点课程及17年新高考试卷解析。",
+      "start_time"=> "1516239180",
+      "end_time"=> "1519747200",
+      "pc_url"=> "//zt.ewt360.com/winter/index.html",
+      "h5_url"=> "//zt.ewt360.com/winter_h5/index.html",
+      "report_url"=> "//huodong.ewt360.com/report.html?theme=6",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-01-18/5a5ff9f1ad770.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-01-18/5a5ff9f8850c4.jpg",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "10",
+      "title"=> "升学e网通首届心灵成长活动月",
+      "description"=> "5月25日为大中学生心理健康节，升学e网通为学校提供心理普查，为高一、高二学生提供认识自己、悦纳自己的内容和活动，为高三学生提供高考心态辅导内容。帮助学生树立积极的自我概念，更好地面对学习和生活。",
+      "start_time"=> "1524737280",
+      "end_time"=> "1528966800",
+      "pc_url"=> "//web.ewt360.com/ztpc/xljcy.html",
+      "h5_url"=> "//web.ewt360.com/zth5/xljcy_h5.html",
+      "report_url"=> "//web.ewt360.com/reportB-publish/index.html",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-04-26/5ae1a4da8d341.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-04-26/5ae1a4dfc91e2.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "11",
+      "title"=> "升学e网通家长学堂",
+      "description"=> "据调查，在问题行为学生中，80%的形成原因主要和家长缺乏专业的家庭教育理念、科学的家庭教育方式有关。升学e网通家长学堂旨在帮助家长培养专业的家庭教育理念与科学的家庭教育方式。",
+      "start_time"=> "1524798780",
+      "end_time"=> "1535796000",
+      "pc_url"=> "//zt.ewt360.com/dist/patriarch/patriarch.html",
+      "h5_url"=> "//zt.ewt360.com/dist/patriarch_h5/patriarch_h5.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-04-27/5ae29920a39f6.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-04-27/5ae29924a1421.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "14",
+      "title"=> "期中备考专题",
+      "description"=> "针对高一、高二期中考试，升学e网通精心为学生设计各科模拟试卷，提供新高考地区历年真题试卷。同时为学生有效提分，推出一大波答题技巧课程及必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1524899940",
+      "end_time"=> "1526829300",
+      "pc_url"=> "//huodong.ewt360.com/tifen/newMidterm.html",
+      "h5_url"=> "//huodong.ewt360.com/tifen/newMidterm/h5.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-04-28/5ae420e447e89.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-04-28/5ae420ff5ee4e.jpg",
+      "grade"=> "1,2"
+    ],
+    [
+      "id"=> "13",
+      "title"=> "2018级新高一专题",
+      "description"=> "提前起航 助力成长 2018级新高一学生学习平台，提供学科、生涯、心理、励志多方面的学习内容，帮助学生在入学前做好初升高的适应工作。",
+      "start_time"=> "1525104000",
+      "end_time"=> "1554039600",
+      "pc_url"=> "//zt.ewt360.com/dist/pc/newsenior/index.html",
+      "h5_url"=> "//zt.ewt360.com/dist/h5/newsenior/index.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-05-24/5b064fb3dbba3.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-05-24/5b064fb8a4884.jpg",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "15",
+      "title"=> "期末备考专题",
+      "description"=> "针对高一、高二期末考试，升学e网通为学生提供各科历年真题试卷。同时为帮助学生有效提分，推出一大波答题技巧课程及必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1529574300",
+      "end_time"=> "1530783900",
+      "pc_url"=> "//huodong.ewt360.com/tifen/NewTermEnd.html",
+      "h5_url"=> "//huodong.ewt360.com/tifen/NewTermEnd/h5.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-06-21/5b2b71e34093e.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-06-21/5b2b71e8ea673.jpg",
+      "grade"=> "1,2"
+    ],
+    [
+      "id"=> "16",
+      "title"=> "学考备考专题",
+      "description"=> "针对浙江高一新学考，升学e网通为学生提供历年学考真题及名师经典分析，帮助学生精准把握考试要点。同时推出一大波学考必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1529984820",
+      "end_time"=> "1530848700",
+      "pc_url"=> "//huodong.ewt360.com/tifen/NewScreen.html",
+      "h5_url"=> "//huodong.ewt360.com/tifen/NewScreen/h5.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-06-26/5b31b8a7a213b.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-06-26/5b31b8abb155f.png",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "17",
+      "title"=> "暑期21天学习计划",
+      "description"=> "为高一升高二、高二升高三量身打造21天个性化学习计划，学生可根据自身需要选择3-5个待提升的知识模块，系统为其排布21天学习课表，并进行每个模块的结业测试。",
+      "start_time"=> "1530149700",
+      "end_time"=> "1535680500",
+      "pc_url"=> "//study.ewt360.com/pc_tifen/#/activity/summer/index",
+      "h5_url"=> "https=>//web.ewt360.com/scope_h5/#/activity/summer/index",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-07-12/5b46ae641c12c.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-06-28/5b344158cb8a6.jpg",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "22",
+      "title"=> "高一开学季",
+      "description"=> "针对历届高一新生，进入高中都会遇到的问题，升学e网通精心打造开学季专题，涵盖各科学习方法、心态调整、学业规划、高中生活适应等内容，帮助学生赢在起跑线，打赢开学战。",
+      "start_time"=> "1534845060",
+      "end_time"=> "1538995800",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=18",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=19",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-08-31/5b88e7d510322.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-08-31/5b88e7dbcb906.png",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "19",
+      "title"=> "高一适应专题",
+      "description"=> "精心为高一新生适应新环境定制的内容，通过心晴FM和心理文章的引导，帮助学生更快地了解高中学习方法和计划、人际关系等问题，并有效地解决新生这个阶段的心理问题。",
+      "start_time"=> "1535730900",
+      "end_time"=> "1538322900",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=7",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=6",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-08-31/5b88cba812584.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-08-31/5b88cbb40bdff.png",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "23",
+      "title"=> "英语听力满分养成记",
+      "description"=> "听力其实很简单！升学e网通，英语名师团，从发音、语音的基础入手，配以实用备考技巧及常考题型的规律点拨，同时深入剖析近3年高考真题，阶梯式打造听力盛宴，给你一个满分的理由！",
+      "start_time"=> "1536315060",
+      "end_time"=> "1551363000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=29",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=30",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-07/5b924f9beacbd.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-07/5b924fa231731.png",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "24",
+      "title"=> "高考一轮复习大通关",
+      "description"=> "高三复习是一个连续、漫长、渐进的过程，一轮复习尤为关键，直接影响二、三轮复习的效果，为此升学e网通精心打造一轮复习系列专题，围绕各科的知识模块，从课本知识、考点串联及高考题型，全方位、系统性提升学生一轮复习效果。",
+      "start_time"=> "1537435200",
+      "end_time"=> "1539076800",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=59",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=60",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-21/5ba4ac7f48803.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-21/5ba4ac83b9947.png",
+      "grade"=> "3"
+    ],
+    [
+      "id"=> "25",
+      "title"=> "高二逆袭季",
+      "description"=> "高二关键词——“分化”，在学习上两极分化日益明显，出现较严重的偏科现象，同时对高考目标的不明确，逐渐产生孤独感和焦虑感。 针对高二学生的特点，升学e网通精心打造本专题，帮助学生逆袭高二分水岭。",
+      "start_time"=> "1537435620",
+      "end_time"=> "1539077100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=57",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=58",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-21/5ba4ba0dc77cc.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-21/5ba4ba1287848.png",
+      "grade"=> "2"
+    ],
+    [
+      "id"=> "26",
+      "title"=> "国庆专题",
+      "description"=> "针对学生阶段性特点，整合学习、心理、生涯等优质资源，配以趣味性活动，通过任务方式布置给学生。高一，适应高中学习、生活，完成高中生的蜕变；高二，强化知识体系，夯实基础，成功跨越分水岭；高三，明确目标，巩固一轮复习内容，系统提升复习效率。",
+      "start_time"=> "1538213940",
+      "end_time"=> "1539596100",
+      "pc_url"=> "//web.ewt360.com/community/nationalDaySpecial-pc/index.html",
+      "h5_url"=> "//web.ewt360.com/community/nationalDaySpecial-h5/index.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-29/5baf4abe77f5f.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-09-29/5baf4c7b54883.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "29",
+      "title"=> "函数特训营",
+      "description"=> "函数其实很简单！升学e网通，数学名师团，从函数的定义、基本性质入手，帮助高一学生梳理知识，夯实基础，同时精讲基本初等函数、函数的应用等相关知识，阶梯式打造函数盛宴，让你函数不丢分！",
+      "start_time"=> "1539939480",
+      "end_time"=> "1540983300",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=87",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=88",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-10-19/5bc99d0e87332.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-10-19/5bc99d144c01a.png",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "32",
+      "title"=> "高一期中备考专题",
+      "description"=> "针对高一期中考试，升学e网通为学生有效提分，推出一波答题技巧课程、必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1540536240",
+      "end_time"=> "1543560000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=105",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=107",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-10-26/5bd2c2b09bad0.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-10-26/5bd2c2b5ca303.png",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "33",
+      "title"=> "高二期中备考专题",
+      "description"=> "针对高二期中考试，升学e网通为学生有效提分，推出一波答题技巧课程、必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1540536600",
+      "end_time"=> "1543560600",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=106",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=108",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-10-26/5bd2c2b09bad0.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-10-26/5bd2c2b5ca303.png",
+      "grade"=> "2"
+    ],
+    [
+      "id"=> "35",
+      "title"=> "中国古代政治制度（基础篇）",
+      "description"=> "升学e网通，历史名师团，立足于高考，推出《中国古代政治制度》系列，该系列分\"基础-迁移-能力\"三个层次，构建梯度式立体学习方案，同时打造“学-练-测-学”四步学习环节：每课有练习，学完有测试，每题有课程，让知识无遗漏，提分更显著！",
+      "start_time"=> "1541731680",
+      "end_time"=> "1544870700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=123",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=124",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-16/5bee5ac356a1d.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-16/5bee5ac72a83c.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "38",
+      "title"=> "名词性从句大通关",
+      "description"=> "语法其实很简单！升学e网通，英语名师团，从名从的基础入手，帮助学生理清概念，掌握四大名从的特点和考法，以及名从在写作中的运用，同时打造学-练-测-学四步学习新模式：每课有练习，学完有测试，每题有课程，让知识无遗漏，语法更扎实！",
+      "start_time"=> "1542274500",
+      "end_time"=> "1543574100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=129",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=130",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-15/5bed40fcb21bc.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-15/5bed410012568.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "40",
+      "title"=> "生物·必修1 分子与细胞（基础）",
+      "description"=> "期中没考好，期末来翻盘。升学e网通，生物名师团，系统梳理必修1相关知识，建立知识脉络，同时提供基础、拔高2个学习方案，方案中不仅有学习课程，课后针对性习题，同时针对不同的方案，提供相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1542354840",
+      "end_time"=> "1546257000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=149",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=150",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-16/5bee7a3d65055.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-16/5bee7a40d9638.png",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "39",
+      "title"=> "【重磅推出】自主招生系列课程",
+      "description"=> "适用人群：高中成绩突出，竞赛成绩优异，特长明显，综合素质全面，有志于通过自主招生进入重点大学的学生。\r\n名师课堂：特级名师授课，基于名校原题设计，涵盖数学、语文、物理三大学科约170讲课程，系统性讲解自主招生考试应对策略。",
+      "start_time"=> "1542470400",
+      "end_time"=> "1561824000",
+      "pc_url"=> "//web.ewt360.com/community/self-enrollmen-pc/index.html",
+      "h5_url"=> "//web.ewt360.com/community/self-enrollmen-h5/index.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-16/5bee7370bf26d.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-16/5bee7370bf26d.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "41",
+      "title"=> "生物·必修3 稳态与环境（基础）",
+      "description"=> "期中没考好，期末来翻盘。升学e网通，生物名师团，系统梳理必修3相关知识，建立知识脉络，同时提供基础、拔高2个学习方案，方案中不仅有学习课程，课后针对性习题，同时针对不同的方案，提供相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1542866040",
+      "end_time"=> "1546253400",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/#/detail?id=160",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/#/detail?id=161",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-30/5c00fbb4cf0fc.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-11-30/5c00fbb93e332.png",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "42",
+      "title"=> "生物·必修1 分子与细胞（提高）",
+      "description"=> "期中没考好，期末来翻盘。升学e网通，生物名师团，系统梳理必修1相关知识，建立知识脉络，同时提供基础、拔高2个学习方案，方案中不仅有学习课程，课后针对性习题，同时针对不同的方案，提供相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1544090340",
+      "end_time"=> "1546264500",
+      "pc_url"=> "//web.ewt360.com/community/pc-special?id=181",
+      "h5_url"=> "//web.ewt360.com/community/h5-special?id=182",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-06/5c08f370a9402.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-06/5c08f35a874ab.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "43",
+      "title"=> "生物·必修3 稳态与环境（提高）",
+      "description"=> "期中没考好，期末来翻盘。升学e网通，生物名师团，系统梳理必修3相关知识，建立知识脉络，同时提供基础、拔高2个学习方案，方案中不仅有学习课程，课后针对性习题，同时针对不同的方案，提供相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1544682900",
+      "end_time"=> "1548916200",
+      "pc_url"=> "//web.ewt360.com/community/pc-special?id=187",
+      "h5_url"=> "//web.ewt360.com/community/h5-special?id=188",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-13/5c11fdf6e6cb1.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-13/5c11fdfb77858.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "44",
+      "title"=> "元素及其化合物（基础）",
+      "description"=> "升学e网通，化学名师团，系统梳理《元素及其化合物》相关知识，构建知识脉络，针对学生的不同层次，提供基础同步、巩固拔高2个学习方案，方案中不仅有学习课程，课后针对性习题，同时针对不同的学习方案，提供相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1544683680",
+      "end_time"=> "1548917100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special?id=207",
+      "h5_url"=> "//web.ewt360.com/community/h5-special?id=208",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-13/5c1201296d3a0.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-13/5c12012c953c2.png",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "46",
+      "title"=> "元素及其化合物·提高",
+      "description"=> "升学e网通，化学名师团，系统梳理《元素及其化合物》相关知识，构建知识脉络，针对学生的不同层次，提供基础同步、巩固拔高2个学习方案，方案中不仅有学习课程，课后针对性习题，同时针对不同的学习方案，提供相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1545371520",
+      "end_time"=> "1548914100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=213",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=214",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-21/5c1c802581061.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-21/5c1c802869b54.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "47",
+      "title"=> "暴强英语作文",
+      "description"=> "升学e网通，英语名师团。精心打造《暴强英语作文》满分系列专题，解决“不知道写什么及不知道如何写”、“学了单词不知道怎么用”的难题。每期课程布置练习作业，“你写我改”手把手教学，让你的作文写得对，写得漂亮。包教包会，让你的作文进步看得见！",
+      "start_time"=> "1545548400",
+      "end_time"=> "1548931800",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=236",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=235",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-26/5c23282a7293f.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-26/5c23282e9ff9c.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "48",
+      "title"=> "句子成分消消乐",
+      "description"=> "升学e网通，英语名师团。精心打造《句子成分消消乐》专题，旨在从根本上让学生明白句子成分的概念，了解句子中哪些成分必不可少，哪些成分可有可无，让学生在有趣的氛围中轻松掌握枯燥难懂的知识，解决看不懂英语句子这一重大难题，就在这里!",
+      "start_time"=> "1545967500",
+      "end_time"=> "1548935700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=241",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=245",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-28/5c2597ec5143e.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-28/5c2597f0015ee.jpg",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "49",
+      "title"=> "高一期末备考专题",
+      "description"=> "针对高一期末考试，升学e网通为学生有效提分，推出一波答题技巧课程、必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1545979620",
+      "end_time"=> "1548931500",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=237",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=238",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-28/5c25c7533a194.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-28/5c25c7574bd0e.png",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "50",
+      "title"=> "高二期末备考专题",
+      "description"=> "针对高二期末考试，升学e网通为学生有效提分，推出一波答题技巧课程、必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1545979800",
+      "end_time"=> "1548939000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=239",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=240",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-28/5c25c7533a194.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-28/5c25c7574bd0e.png",
+      "grade"=> "2"
+    ],
+    [
+      "id"=> "51",
+      "title"=> "新高考如何应对选科--科学合理做决策",
+      "description"=> "适用人群：新高考地区的高一学生\r\nEWT推出新高考选科指导课程“选科一点通”共12讲，旨在帮助学校更好地指导学生、家长完成选科决策。",
+      "start_time"=> "1546068300",
+      "end_time"=> "1561910100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=250",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=251",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-29/5c270baec8942.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2018-12-29/5c270baa2c6b7.jpg",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "52",
+      "title"=> "高考志愿早规划，正确选择让你少奋斗十年",
+      "description"=> "寒假将至，家长、学生利用好这段时间提前规划高考志愿，才不至于在志愿填报时手忙脚乱，填得好、填得对。",
+      "start_time"=> "1546843500",
+      "end_time"=> "1551369300",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=222\t",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=221\t",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-07/5c32fef5defc8.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-07/5c32ff1089705.png",
+      "grade"=> "3"
+    ],
+    [
+      "id"=> "86",
+      "title"=> "你的学习动力有多少——寒假特别篇",
+      "description"=> "【仅限APP端使用】学生放假回家作业总是做不完？一回到家心就散了？\r\n如何帮助学生假期保持学习状态？\r\n\r\n布置本专题，协助您解决学生寒假学习动力问题。",
+      "start_time"=> "1547025660",
+      "end_time"=> "1551246300",
+      "pc_url"=> "//web.ewt360.com/community/h5-special/index.html?id=234",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=234",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-09/5c35c05db32de.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-09/5c35c05db32de.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "87",
+      "title"=> "中国古代政治制度（迁移篇）",
+      "description"=> "升学e网通，历史名师团，立足于高考，推出《中国古代政治制度》系列，该系列分\"基础-迁移-能力\"三个层次，构建梯度式立体学习方案，让知识无遗漏，提分更显著！",
+      "start_time"=> "1547088420",
+      "end_time"=> "1548932100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=272",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=273",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-10/5c36b2f4b510c.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-10/5c36b2f893b29.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "90",
+      "title"=> "直播-寒假直播冬令营",
+      "description"=> "寒假自主学习太枯燥怎么办？\r\n如何利用寒假进行高效查漏补缺？\r\n高三一轮复习掉队了怎么办？\r\n升学e网通寒假直播专题来拯救！",
+      "start_time"=> "1547198940",
+      "end_time"=> "1549814100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=292",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=291",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-14/5c3c2249488fa.png",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "93",
+      "title"=> "高考提分系列——解题模型",
+      "description"=> "冲刺高考，用模必胜！e网通名师团，立足高考，精析多年高考真题，历时数月打磨，覆盖九大学科解题模型，集课、题、卷一站式高效提分体系，恰似庖丁解牛，得心应手！",
+      "start_time"=> "1547459460",
+      "end_time"=> "1551351000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=294",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=295",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-14/5c3c5bbb905d8.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-14/5c3c5bbf34814.png",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "95",
+      "title"=> "英语满分作文进阶",
+      "description"=> "学习语言的目的就是为了应用，写作，无论高考还是应用，都是重头戏。本专题涵盖了各种类型的应用文写作，并对不同层次的同学设置了不同课程，无论你是作文小白还是大神，都能有所收获。",
+      "start_time"=> "1547802060",
+      "end_time"=> "1551365100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=297",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=298",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-18/5c41963945174.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-18/5c41963945174.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "100",
+      "title"=> "高一寒假超车季",
+      "description"=> "提分新助力，弯道必超车！",
+      "start_time"=> "1548576960",
+      "end_time"=> "1551369000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=315",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=316",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-28/5c4eab8dd57b6.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-28/5c4eab8dd57b6.png",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "101",
+      "title"=> "高二寒假超车季",
+      "description"=> "提分新助力，弯道必超车！",
+      "start_time"=> "1548644280",
+      "end_time"=> "1551369000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=318",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=317",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-28/5c4eab8dd57b6.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-01-28/5c4eab8dd57b6.png",
+      "grade"=> "2"
+    ],
+    [
+      "id"=> "114",
+      "title"=> "英语作文大赛",
+      "description"=> "第一届升学e网通，“超越梦想”杯，英语作文大赛。",
+      "start_time"=> "1550107440",
+      "end_time"=> "1552665000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=351",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=350",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-02-14/5c64c4cf12e12.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-02-14/5c64c4cf12e12.png",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "121",
+      "title"=> "高考百日誓师专题",
+      "description"=> "基于高三学生在百日阶段的学习特点，本专题包括心理调节与薄弱学科突破两个部分。通过布置本专题，可以调整学生临考压力和学习焦虑情绪，提高学生学习动机；帮助学生高效提分，迎战高考。",
+      "start_time"=> "1551241200",
+      "end_time"=> "1567233000",
+      "pc_url"=> "//web.ewt360.com/community/100day/index.html",
+      "h5_url"=> "//web.ewt360.com/community/100day/index.html",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-02-27/5c7614a2528e2.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-02-27/5c761365e8111.png",
+      "grade"=> "3"
+    ],
+    [
+      "id"=> "124",
+      "title"=> "物理·必修2 必刷题",
+      "description"=> "高中物理越来越难？开始没学好，不知从何学起？不怕，必修二必刷题来了！每周一套卷，学完即测，学习成果立马可见，同时针对薄弱知识提供学习方案，帮助学生逐个攻克知识点。逆袭，只需16周让我们开始吧！",
+      "start_time"=> "1551775740",
+      "end_time"=> "1577807100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=374",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=375",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-07/5c80cca864072.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-07/5c80cca864072.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "125",
+      "title"=> "导数及其应用",
+      "description"=> "升学e网通，数学名师团，系统梳理《导数及其应用》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有做题必备公式、知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1551929220",
+      "end_time"=> "1577807700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=376",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=377",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-07/5c80cc24c410a.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-07/5c80cc24c410a.png",
+      "grade"=> "3"
+    ],
+    [
+      "id"=> "128",
+      "title"=> "遗传因子的发现",
+      "description"=> "升学e网通，生物名师团，系统梳理《遗传因子的发现》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1552461360",
+      "end_time"=> "1577340600",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=388",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=387",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-13/5c88aeb8a9e44.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-13/5c88aeb8a9e44.png",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "129",
+      "title"=> "三角函数",
+      "description"=> "升学e网通，数学名师团，系统梳理《三角函数》相关知识，构建知识脉络，同时提供同步和巩固两类课程，实现一站式逆袭。",
+      "start_time"=> "1552465680",
+      "end_time"=> "1577336700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=390",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=389",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-13/5c88bf7989e6d.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-13/5c88bf7989e6d.png",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "131",
+      "title"=> "元素周期律",
+      "description"=> "升学e网通，化学名师团，系统梳理《元素周期律》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1552615860",
+      "end_time"=> "1576747800",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=392",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=393",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-15/5c8b0a11dc334.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-15/5c8b0a11dc334.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "132",
+      "title"=> "电磁感应",
+      "description"=> "升学e网通，物理名师团，系统梳理《电磁感应》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1552618800",
+      "end_time"=> "1574214300",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=396",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=398",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-15/5c8b15b044784.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-15/5c8b15b044784.png",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "134",
+      "title"=> "启航！一轮复习",
+      "description"=> "一轮不打牢，二轮赶不上，三轮学不会，怎么破？升学e网通，生物名师团，推出一轮复习抢跑计划，每周一套卷，学完即测，学习成果立马可见，同时针对薄弱知识提供学习方案，提升学生一轮复习效果。",
+      "start_time"=> "1553054220",
+      "end_time"=> "1577807700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=450",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=412",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-20/5c91ba7b43a13.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-20/5c91ba7b43a13.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "135",
+      "title"=> "100分提分系列",
+      "description"=> "专治地理主观题失分痛点",
+      "start_time"=> "1553146440",
+      "end_time"=> "1577807700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=415",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=424",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-21/5c93236534b6a.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-21/5c93236534b6a.png",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "136",
+      "title"=> "生物·必修2 必刷题",
+      "description"=> "遗传没学好，成绩高不了，怎么办？不怕，必修二必刷题来了！每周一套卷，学完即测，学习成果立马可见，同时针对薄弱知识提供学习方案，帮助学生逐个攻克知识点。逆袭，需要坚持！",
+      "start_time"=> "1553156460",
+      "end_time"=> "1577807700",
+      "pc_url"=> "//web.ewt360.com/community/h5-special/index.html?id=411",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=411",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-21/5c9349f506215.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-21/5c9349f506215.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "139",
+      "title"=> "曲线运动",
+      "description"=> "升学e网通，物理名师团，系统梳理《曲线运动》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1553246520",
+      "end_time"=> "1577807400",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=448",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=446",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-22/5c94a9b27b8dd.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-22/5c94a9b27b8dd.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "141",
+      "title"=> "化学反应与能量",
+      "description"=> "升学e网通，化学名师团，系统梳理《化学反应与能量》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1553572860",
+      "end_time"=> "1577807100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=452",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=453",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-26/5c99a467a7027.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-26/5c99a467a7027.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "142",
+      "title"=> "高考考前冲刺（化学）",
+      "description"=> "升学e网通，化学名师团，围绕高考考前冲刺，搭建以考前复习（必考知识、重难点专题、选考内容）、考前练兵（高考模拟卷）、真题精讲为核心的一体化高考冲刺方案。",
+      "start_time"=> "1553669040",
+      "end_time"=> "1577807400",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=454",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=456",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-27/5c9b1c30429d4.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-27/5c9b1c30429d4.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "143",
+      "title"=> "数列破袭战",
+      "description"=> "升学e网通，数学名师团，系统梳理《数列》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1553752620",
+      "end_time"=> "1577807400",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=459",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=460",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-28/5c9c62b4761e6.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-28/5c9c62b4761e6.png",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "144",
+      "title"=> "万有引力与航天",
+      "description"=> "升学e网通，物理名师团，系统梳理《万有引力与航天》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1553837760",
+      "end_time"=> "1577807400",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=463",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=464",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-29/5c9daf8a5845f.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-29/5c9daf8a5845f.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "140",
+      "title"=> "2019新生暑期学习方案",
+      "description"=> "努力在今夏，领跑新高一\r\n",
+      "start_time"=> "1554048000",
+      "end_time"=> "1569859140",
+      "pc_url"=> "//web.ewt360.com/community/newSeniorOne2019pc/#/homework",
+      "h5_url"=> "//web.ewt360.com/community/newSeniorOne2019H5/index.html#/list",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-25/5c987b2cc72f0.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-03-25/5c987b2cc72f0.jpg",
+      "grade"=> "-1"
+    ],
+    [
+      "id"=> "151",
+      "title"=> "高一期中抢分特训营",
+      "description"=> "针对高一期中考试，升学e网通为学生有效提分，推出一波答题技巧课程、必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1554371820",
+      "end_time"=> "1557482100",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=476",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=482",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-04/5ca5d5744aa13.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-04/5ca5d5744aa13.jpg",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "152",
+      "title"=> "高二期中抢分特训营",
+      "description"=> "针对高二期中考试，升学e网通为学生有效提分，推出一波答题技巧课程、必考知识点复习课程，让学生复习更有效，提分更显著。",
+      "start_time"=> "1554371940",
+      "end_time"=> "1557481800",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=483",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=484",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-04/5ca5d5744aa13.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-04/5ca5d5744aa13.jpg",
+      "grade"=> "2"
+    ],
+    [
+      "id"=> "155",
+      "title"=> "数学·必修5 必刷题",
+      "description"=> "数学·必修5 必刷题",
+      "start_time"=> "1554774600",
+      "end_time"=> "1577699400",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=510",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=511",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-10/5cad4d4e4968b.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-10/5cad4d4e4968b.jpg",
+      "grade"=> "1,3"
+    ],
+    [
+      "id"=> "156",
+      "title"=> "物理·必修2 必刷题（第二季）",
+      "description"=> "物理·必修2 必刷题（第二季）",
+      "start_time"=> "1554864420",
+      "end_time"=> "1577281500",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=512",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=513",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-10/5cad598a8ca59.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-10/5cad598a8ca59.jpg",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "162",
+      "title"=> "高考考前冲刺（物理）",
+      "description"=> "升学e网通，物理名师团，围绕高考考前冲刺，搭建以考前复习（必考知识、重难点专题、选考内容）、考前练兵（高考模拟卷）、真题精讲为核心的一体化高考冲刺方案。",
+      "start_time"=> "1555061880",
+      "end_time"=> "1577788500",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=517",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=518",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-12/5cb05d0d057db.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-12/5cb05d0d057db.jpg",
+      "grade"=> "3"
+    ],
+    [
+      "id"=> "163",
+      "title"=> "100分提分系列之语文",
+      "description"=> "100分提分系列之语文",
+      "start_time"=> "1555322220",
+      "end_time"=> "1577797500",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=530",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=529",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-15/5cb4561d06c07.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-15/5cb4561d06c07.jpg",
+      "grade"=> "1,2,3"
+    ],
+    [
+      "id"=> "169",
+      "title"=> "这些历史高考“套路”，你get了吗？",
+      "description"=> "升学e网通，历史名师团，围绕高考考前冲刺，搭建以考前复习（必考知识、各类题型的解题技巧）、考前练兵（高考模拟卷）、真题精讲为核心的一体化高考冲刺方案。",
+      "start_time"=> "1556261640",
+      "end_time"=> "1574232600",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=538",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=537",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-26/5cc2ab7845f2c.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-26/5cc2ab7845f2c.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "170",
+      "title"=> "机械能守恒定律",
+      "description"=> "升学e网通，物理名师团，系统梳理《万有引力与航天》相关知识，构建知识脉络，同时提供课后同步补差方案，方案中不仅有知识课程、同时配备相应的测试卷，检验学习成果，实现一站式学习。",
+      "start_time"=> "1556262120",
+      "end_time"=> "1574935200",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=550",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=554",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-26/5cc2ad57b97a2.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-26/5cc2ad57b97a2.jpg",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "171",
+      "title"=> "高考考前冲刺（英语）",
+      "description"=> "高考考前冲刺（英语）",
+      "start_time"=> "1556270220",
+      "end_time"=> "1577352300",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=589",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=590",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-26/5cc2cce84e830.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-26/5cc2cce84e830.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "172",
+      "title"=> "高考考前冲刺（数学）",
+      "description"=> "高考考前冲刺（数学）",
+      "start_time"=> "1556521020",
+      "end_time"=> "1574247000",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=599",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=600",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-29/5cc6a0a14e055.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-29/5cc6a0a14e055.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "173",
+      "title"=> "周周练 · 第8周",
+      "description"=> "周周练 · 第8周",
+      "start_time"=> "1556521620",
+      "end_time"=> "1563344700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=597",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=598",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-29/5cc6a31a5bd9c.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-29/5cc6a31a5bd9c.jpg",
+      "grade"=> "1"
+    ],
+    [
+      "id"=> "178",
+      "title"=> "2019文综必考热点",
+      "description"=> "2019文综必考热点",
+      "start_time"=> "1556612940",
+      "end_time"=> "1574241900",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=613",
+      "h5_url"=> "//web.ewt360.com/community/h5-special/index.html?id=614",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-30/5cc807c1b5bf7.jpg",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-04-30/5cc807c1b5bf7.jpg",
+      "grade"=> "2,3"
+    ],
+    [
+      "id"=> "179",
+      "title"=> "基因和染色体的关系",
+      "description"=> "基因和染色体的关系",
+      "start_time"=> "1557028140",
+      "end_time"=> "1574228700",
+      "pc_url"=> "//web.ewt360.com/community/pc-special/index.html?id=588",
+      "h5_url"=> "https://web.ewt360.com/community/h5-special/index.html?id=587",
+      "report_url"=> "",
+      "teacher_image_big"=> "//huodong.ewt360.com/Uploads/Picture/2019-05-05/5cce5d9579ca4.png",
+      "teacher_image_small"=> "//huodong.ewt360.com/Uploads/Picture/2019-05-05/5cce5d9579ca4.png",
+      "grade"=> "1"
+    ]
+  ]
+];
 
-$sHtml = file_get_contents("http://static.ewt360.com/upload/ewt/image/2018/09/04/20180904181426450.png");
-echo $sHtml;
-
-die();
-
-$signkey = "apibib1b7b0d2a8d827e2a946b1861ea";
-
-$sLessIds="9233,17269,17268,13705,";
-$s1=strtolower(md5($signkey . $sLessIds . $signkey));
-
-echo $s1;
+var_dump(httpReplace($aReference));
 
 
-
-die();
-require_once 'operation_2.php';
-echo "xxx";
-$path="E:\\code\\at_demo\\mathtest\\tt.png";
-$s="http://thirdwx.qlogo.cn/mmopen/2tW9sibNiawYs73rhITCUTI8p8bUwTLlb39UJgmnBqVMuedaNloNOqe33OMOYEcO7cqliauq9FnpBalpSftNnjbhA/96";
-$data=curl_file_get_contents($s);
-//echo $cfg;
-file_put_contents($path, $data);
-die();
-require_once 'operation_2.php';
-require_once 'operation_3.php';
-require_once 'operation_4.php';
-
-$Oral=getOral();
-$Written=getWritten();
-$Recursive=getRecursive();
-main($Oral,$Written,$Recursive);
-
-
-function getOral() {
-    $items=getTwoMulti(50);
-    $items.=getThreeOperation(5);
-    $td = "<style type='text/css'>#to ul{list-style:none;width:750px;overflow:hidden;} #to li{width:150px;float:left}</style>";
-    $td .= "<td><ul id='to'>".$items."<ul></td>";
-    return $td;
-}
-
-function getWritten() {
-    $count=mt_rand(1,5);
-    $items=getTwoMulti($count);
-     for($i=0;$i<5-$count;$i++) {
-        $li=getTwoDivision();
-        $items.=$li;
+function httpReplace($aReference,$protocol="//")
+{
+    $aResult = [];
+    if (empty((array)$aReference) || !is_array($aReference)) {
+        return $aReference;
     }
-    $td = "<style type='text/css'>#wt ul{list-style:none;width:750px;overflow:hidden;} #wt li{width:150px;float:left;height:100px}</style> ";
-    $td .= "<td><ul id='wt'>".$items."</ul></td>";
-    return $td;
+    foreach ($aReference as $k => $aRef) {
+        $aResult[$k] = is_array($aReference[$k]) ? httpReplace($aReference[$k],$protocol) : (is_string($aRef)?str_replace("http://", $protocol, $aRef):$aRef);
+    }
+
+    return $aResult;
 }
 
-function getRecursive() {
-    $ct = getFourOperation(12);
-    $td = "<style type='text/css'>#fo ul{list-style:none;width:800px;overflow:hidden;} #fo li{width:200px;float:left;height:100px}</style>";
-    $td .= "<td><ul id='fo'>".$ct."</ul></td>";
-    return $td;
-}
-
-function main($Oral,$Written,$Recursive) {
-    
-    $content= "<table width=100%>";
-    $content.= "<tr><th align=left>1.口算</th></tr>";
-    $content.= "<tr>".$Oral."</tr>";
-    $content.= "<tr><th align=left>2.笔算</th></tr>";
-    $content.= "<tr>".$Written."</tr>";
-    $content.= "<tr><th align=left>3.递等式计算</th></tr>";
-    $content.= "<tr>".$Recursive."</tr>";
-    $content.= "</table>";
-    echo $content;
-}
+//
+//function httpReplace($aReference,$protocol="//")
+//{
+//    $aResult = [];
+//    if (empty((array)$aReference) || !is_array($aReference)) {
+//        return $aReference;
+//    }
+//    foreach ($aReference as $k => $aRef) {
+////        echo $k;
+////        var_dump($aRef);
+//        
+//        $tmp = is_string($aRef)?str_replace("http://", $protocol, $aRef):$aRef;
+//        
+//        $tmp = $aRef;
+//      
+//        //$aResult[$k] = is_array($aReference[$k]) ? httpReplace($aReference[$k],$protocol) : $tmp;
+//        
+//        $aResult[$k] = $tmp;
+//        
+//
+//    }
+//
+//    return $aResult;
+//}
+die();
