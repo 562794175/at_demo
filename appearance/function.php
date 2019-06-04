@@ -1,4 +1,5 @@
 <?php
+
 ini_set('date.timezone','Asia/Shanghai');
 function getPeriodMap()
 {
@@ -7,4 +8,20 @@ function getPeriodMap()
         '4H'=>["01:00","05:00","09:00","13:00","17:00","21:00"],
         '1D'=>["00:00"],
     ];
+}
+function getPeroidTime($sPeroidKey='1H',$nDefault=0)
+{
+    $aPeroid=getPeriodMap();
+    $aPeroid=empty($aPeroid[$sPeroidKey])?[]:$aPeroid[$sPeroidKey];
+    $sTime="";
+    foreach ($aPeroid as $key => $value) {
+        $sSelected="";
+        if($nDefault===$key) $sSelected="selected";
+        $sTime.="<option value='".$key."' ".$sSelected.">".$value."</option>";
+    }
+    return $sTime;
+}
+function getMarketState()
+{
+    
 }
