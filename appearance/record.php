@@ -85,9 +85,10 @@
         </div>
         <div id="tabs">
             <ul>
-              <li><a href="#tabs-1">1H</a></li>
+              <li><a href="#tabs-1">1D</a></li>
               <li><a href="#tabs-2">4H</a></li>
-              <li><a href="#tabs-3">1D</a></li>
+              <li><a href="#tabs-3">1H</a></li>
+              
             </ul>
             <div id="tabs-1">
                 <image src="pic1.png" width="100%" border="0">
@@ -95,7 +96,7 @@
                     <span class="ui-icon ui-icon-unlocked" style="float: left;margin-right: .3em;"></span>
                     <strong>状态</strong>
                     <select id='h1state'>
-                        <?php echo $sH1StateOption; ?>
+                        <?php echo $sD1StateOption; ?>
                     </select>
                 </div>
                 
@@ -196,7 +197,7 @@
                     <span class="ui-icon ui-icon-unlocked" style="float: left;margin-right: .3em;"></span>
                     <strong>状态</strong>
                     <select id='d1state'>
-                        <?php echo $sD1StateOption; ?>
+                        <?php echo $sH1StateOption; ?>
                     </select>
                 </div>
                 

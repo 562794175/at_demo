@@ -71,7 +71,7 @@ if(!function_exists("getDBConn")) {
 if(!function_exists("getPeroid")) {
     function getPeroid($index)
     {
-        $aPd=['1H','4H','1D'];
+        $aPd=['1D','4H','1H'];
         return empty($aPd[$index])?0:$aPd[$index];
     }
 }
