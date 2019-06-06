@@ -9,6 +9,9 @@
 #datepicker {
     width:85px;
 }
+.ui-selectmenu-button.ui-button{
+    width:70px;
+}
 #tabs .ui-accordion .ui-accordion-content {
     padding:0.5em;
 }
@@ -32,9 +35,44 @@
 <body>
     <?php 
         require_once 'function.php'; 
-        $sToday=empty($_GET["datepicker"])?date("Y-m-d",time()):$_GET["datepicker"];
-        $sPeroidTime=empty($_GET["peroidtime"])?0:$_GET["peroidtime"];
-        $sPeroidTime=getPeroidTime('1H',(int)$sPeroidTime);
+        $sToday=empty($_GET["date"])?date("Y-m-d",time()):$_GET["date"];
+        $sPeroid=empty($_GET["peroid"])?0:$_GET["peroid"];
+        $sPeroidName=getPeroid($sPeroid);
+        $sTime=empty($_GET["time"])?0:$_GET["time"];
+        $sTimeName=getPeroidTime('1H',$sTime,false);
+        $sStateCode=empty($_GET["state"])?0:$_GET["state"];
+        $sChange=empty($_GET["change"])?0:$_GET["change"];
+        
+        //查询数据库
+        $aRecord= getRecord($sToday, $sTimeName);
+        $nRecordID=empty($aRecord['id'])?0:$aRecord['id'];
+        if($nRecordID<=0) {
+            //没有就插入
+            insertRecord($sToday,$sTimeName);
+            $aRecord= getRecord($sToday, $sTimeName);
+            $nRecordID=empty($aRecord['id'])?0:$aRecord['id'];
+            //设置默认值
+            $nInitStateCode=11;
+            updateRecordTargetState($nRecordID,'1H',$nInitStateCode);
+            updateRecordTargetState($nRecordID,'4H',$nInitStateCode);
+            updateRecordTargetState($nRecordID,'1D',$nInitStateCode);
+        }
+        //改变状态
+        if((int)$sChange===1 && $nRecordID>0) {
+            updateRecordTargetState($nRecordID,$sPeroidName,$sStateCode);
+        }
+        //改变状态后再取，不然UI会没有变化
+        $aRecordTarget=getRecordTarget($nRecordID);
+        $sTimeOption=getPeroidTime('1H',(int)$sTime);
+        $sH1StateOption='';
+        $sH4StateOption='';
+        $sD1StateOption='';
+        foreach ($aRecordTarget as $key => $value) {
+            if($value['peroid']=='1H') $sH1StateOption=getPeroidState((int)$value['state_code']);
+            if($value['peroid']=='4H') $sH4StateOption=getPeroidState((int)$value['state_code']);
+            if($value['peroid']=='1D') $sD1StateOption=getPeroidState((int)$value['state_code']);
+        }
+        
     ?>
     <div class="widget">
         <div class="controlgroup">
@@ -42,7 +80,7 @@
                 <input readonly="readonly" id="datepicker" class="ui-widget ui-controlgroup-item ui-button" value="<?php echo $sToday; ?>">
                 <label class="ui-widget ui-controlgroup-item">时间：</label>
                 <select id="peroidtime">
-                  <?php echo $sPeroidTime; ?>
+                  <?php echo $sTimeOption; ?>
                 </select>
         </div>
         <div id="tabs">
@@ -56,13 +94,8 @@
                 <div class="ui-state-highlight ui-corner-all" style="padding: 3px; height:30px; ">
                     <span class="ui-icon ui-icon-unlocked" style="float: left;margin-right: .3em;"></span>
                     <strong>状态</strong>
-                    <select style="padding:5px;">
-                        <option>00:00</option>
-                        <option>01:00</option>
-                        <option>02:00</option>
-                        <option>00:00</option>
-                        <option>01:00</option>
-                        <option>02:00</option>
+                    <select id='h1state'>
+                        <?php echo $sH1StateOption; ?>
                     </select>
                 </div>
                 
@@ -78,7 +111,6 @@
                       <p>
                           <image src="pic2.png" width="100px" height="80px" border="1">
                           <image src="pic2.png" width="100px" height="80px" border="1">
-                          
                       </p>
                     </div>
                     <h3>Section 2</h3>
@@ -123,18 +155,12 @@
             </div>
             <div id="tabs-2">
 
-
                 <image src="pic1.png" width="100%" border="0">
                 <div class="ui-state-highlight ui-corner-all" style="padding: 3px; height:30px; ">
                     <span class="ui-icon ui-icon-unlocked" style="float: left;margin-right: .3em;"></span>
                     <strong>状态</strong>
-                    <select style="padding:5px;">
-                        <option>00:00</option>
-                        <option>01:00</option>
-                        <option>02:00</option>
-                        <option>00:00</option>
-                        <option>01:00</option>
-                        <option>02:00</option>
+                    <select id='h4state'>
+                        <?php echo $sH4StateOption; ?>
                     </select>
                 </div>
                 
@@ -169,13 +195,8 @@
                 <div class="ui-state-highlight ui-corner-all" style="padding: 3px; height:30px; ">
                     <span class="ui-icon ui-icon-unlocked" style="float: left;margin-right: .3em;"></span>
                     <strong>状态</strong>
-                    <select style="padding:5px;">
-                        <option>00:00</option>
-                        <option>01:00</option>
-                        <option>02:00</option>
-                        <option>00:00</option>
-                        <option>01:00</option>
-                        <option>02:00</option>
+                    <select id='d1state'>
+                        <?php echo $sD1StateOption; ?>
                     </select>
                 </div>
                 
@@ -208,19 +229,38 @@
 $( function() {
     $( ".controlgroup" ).controlgroup({"direction": "horizontal"});
     $( "#datepicker" ).datepicker({"dateFormat":"yy-mm-dd"});
-    $( "#tabs" ).tabs();
-    $( "#accordion" ).accordion({collapsible: true});
+    $( "#tabs" ).tabs({active:<?php echo $sPeroid;?>});
+    $( "#accordion" ).accordion({heightStyle: "content"});
     $( "#accordiontwo" ).accordion({heightStyle: "content"});
     $( "#accordionthree" ).accordion({heightStyle: "content"});
     $( "#peroidtime" ).selectmenu({
       change: function( event, data ) {
         var date=$( "#datepicker" ).val();
-        window.location.href='?datepicker='+date+'&peroidtime='+data.item.value;
+        window.location.href='?date='+date+'&time='+data.item.value;
+      }
+    });
+    $( "#h1state" ).selectmenu({
+      change: function( event, data ) {
+        var date=$( "#datepicker" ).val();
+        var time=$( "#peroidtime" ).val();
+        window.location.href='?date='+date+'&time='+time+'&change=1&peroid=0&state='+data.item.value;
+      }
+    });
+    $( "#h4state" ).selectmenu({
+      change: function( event, data ) {
+        var date=$( "#datepicker" ).val();
+        var time=$( "#peroidtime" ).val();
+        window.location.href='?date='+date+'&time='+time+'&change=1&peroid=1&state='+data.item.value;
+      }
+    });
+    $( "#d1state" ).selectmenu({
+      change: function( event, data ) {
+        var date=$( "#datepicker" ).val();
+        var time=$( "#peroidtime" ).val();
+        window.location.href='?date='+date+'&time='+time+'&change=1&peroid=2&state='+data.item.value;
       }
     });
 } );
-
-
 </script>
 
     
