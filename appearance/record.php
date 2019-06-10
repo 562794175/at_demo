@@ -37,6 +37,7 @@
         require_once 'function.php';
         require_once 'phpchartdir.php';
         require_once 'FinanceChart.php';
+        require_once 'phpchartpng.php';
         $sToday=empty($_GET["date"])?date("Y-m-d",time()):$_GET["date"];
         $sPeroid=empty($_GET["peroid"])?0:$_GET["peroid"];
         $sPeroidName=getPeroid($sPeroid);
@@ -93,35 +94,10 @@
             </ul>
             <div id="tabs-1">
                 <?php 
-                    $noOfDays = 100;
-                    $extraDays = 30;
-                    $rantable = new RanTable(9, 6, $noOfDays + $extraDays);
-                    $rantable->setDateCol(0, chartTime(2011, 9, 4), 86400, true);
-                    $rantable->setHLOCCols(1, 100, -5, 5);
-                    $rantable->setCol(5, 50000000, 250000000);
-                    $timeStamps = $rantable->getCol(0);
-                    $highData = $rantable->getCol(1);
-                    $lowData = $rantable->getCol(2);
-                    $openData = $rantable->getCol(3);
-                    $closeData = $rantable->getCol(4);
-                    $volData = $rantable->getCol(5);
-                    $c = new FinanceChart(350);
-                    $c->setMargins(0,0,1,9);
-                    $c->setLegendStyle("normal", 2, Transparent, Transparent);
-                    $c->setData($timeStamps, $highData, $lowData, $openData, $closeData, $volData, $extraDays);
-                    //$c->yAxis->setColors(Transparent, Transparent);
-
-                    $c->addMainChart(200);
-                    $c->addCandleStick(0x00ff00, 0xff0000);
-                    //$c->yAxis->setWidth(0);
-                    $c->addBollingerBand(20, 2, 0x9999ff, 0xc06666ff);
-                    $realpath=realpath('.')."\\test.png";
-                    $c->makeChart($realpath);
-                    cut_png($realpath,1,1,348,199,$realpath);
-                
+                    $sPng=getPng();
                 ?>
-                <img src='test.png' width="100%" border="0">
-<!--                <image src="pic1.png" width="100%" border="0">-->
+<!--                <img src='test.png' width="100%" border="0">-->
+                <image src="pic1.png" width="100%" border="0">
                 <div class="ui-state-highlight ui-corner-all" style="padding: 3px; height:30px; ">
                     <span class="ui-icon ui-icon-unlocked" style="float: left;margin-right: .3em;"></span>
                     <strong>状态</strong>
