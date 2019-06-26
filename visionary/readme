@@ -1,0 +1,5 @@
+LibSvm使用说明和LibSvm源码解析
+https://blog.csdn.net/haoji007/article/details/80299198
+
+SELECT * FROM xau_bolling LIMIT 100;
+alter table xau_bolling modify id int auto_increment;
