@@ -36,12 +36,17 @@ echo "<div align='center'>{$page->fpage()}</div>";//显示分页信息
         $arr = $result->fetch_all();
         foreach($arr as $k => $v){
             $id=$v[0];
-            $bolling['l']= explode(',', $v[1]);
-            $bolling['m']=explode(',', $v[2]);
-            $bolling['u']=explode(',', $v[3]);
+            $alower= explode(',', $v[1]);
+            $amain=explode(',', $v[2]);
+            $aupper=explode(',', $v[3]);
+            //只取最后5个数据
+//            $alower=array_slice($alower, -10);
+//            $amain=array_slice($amain, -10);
+//            $aupper=array_slice($aupper, -10);
+            
             $learn_type=$v[4];
             $human_type=$v[5];
-            $file=getBollingPng($id,$bolling);
+            $file=getBollingPng($id,['l'=>$alower,'m'=>$amain,'u'=>$aupper]);
             if($human_type>0) {
                 echo"<tr bgcolor='#f0f0f0'>";
             } else {
@@ -53,8 +58,8 @@ echo "<div align='center'>{$page->fpage()}</div>";//显示分页信息
             echo"<td><img src='".$file."'></td>";
             
             //预测
-            $atmp= array_merge($bolling['l'],$bolling['m']);
-            $atmp= array_merge($atmp,$bolling['u']);
+            $atmp= array_merge($alower,$amain);
+            $atmp= array_merge($atmp,$aupper);
             $svm_type=predict($atmp,$human_type,'/model.linear.svm');
             //准确率
             if($svm_type[1]==1) $linear_right_class++;
@@ -71,7 +76,6 @@ echo "<div align='center'>{$page->fpage()}</div>";//显示分页信息
             
             echo"<td>0</td>";
             echo"</tr>";
-            unset($bolling);
         }
         echo "<div align='center'>linear class:".$linear_right_class.",key:".$linear_right_key."</div>";
     }

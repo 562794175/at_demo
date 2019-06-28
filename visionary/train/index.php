@@ -21,6 +21,12 @@ if($result){
         $alower=explode(',',$v[1]);
         $amain=explode(',',$v[2]);
         $aupper=explode(',',$v[3]);
+        
+        //只取最后5个数据
+//        $alower=array_slice($alower, -10);
+//        $amain=array_slice($amain, -10);
+//        $aupper=array_slice($aupper, -10);
+        
         $learntype=$v[4];
         $humantype=$v[5];
         $strLine=$humantype;

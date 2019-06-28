@@ -6,6 +6,63 @@ if(isOnWindows()) {
 } else {
     define("PATHSEP", "/");
  }
+ 
+if(!function_exists("getRightRate")) {
+    //计时函数
+    function G($start,$end='',$dec=4)
+    {
+        static $_info = array();
+        if (!empty($end))
+        {
+            if(!isset($_info[$end])) $_info[$end] = microtime(TRUE);
+            $sconds = number_format(($_info[$end]-$_info[$start]), $dec) * 1000;
+            echo "{$sconds}ms<br />";
+        }
+        else
+        {
+            $_info[$start] = microtime(TRUE);
+        }
+    }
+}
+ 
+ if(!function_exists("getRightRate")) {
+     function getRightRate($i)
+     {
+        $db = getDBConn();
+        $sql = "select *  from xau_bolling where human_type>0 limit " .($i*100).",100";
+        $result = $db->query($sql);
+        
+        $linear_right_class=0;
+        $linear_right_key=0;
+         
+        if($result){
+            $arr = $result->fetch_all();
+            foreach($arr as $k => $v){
+                $id=$v[0];
+                $alower= explode(',', $v[1]);
+                $amain=explode(',', $v[2]);
+                $aupper=explode(',', $v[3]);
+                //只取最后5个数据
+//                $alower=array_slice($alower, -10);
+//                $amain=array_slice($amain, -10);
+//                $aupper=array_slice($aupper, -10);
+                $learn_type=$v[4];
+                $human_type=$v[5];
+                //预测
+                $atmp= array_merge($alower,$amain);
+                $atmp= array_merge($atmp,$aupper);
+                $svm_type=predict($atmp,$human_type,'/model.linear.svm');
+                //准确率
+                if($svm_type[1]==1) $linear_right_class++;
+                if($svm_type[2]==1) $linear_right_key++;
+            }
+        }//end if
+        return [$linear_right_class,$linear_right_key];
+     }
+     
+ }
+ 
+ 
 if(!function_exists("getTypeCount")) {
     function getTypeCount($type)
     {
