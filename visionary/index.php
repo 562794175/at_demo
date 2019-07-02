@@ -20,7 +20,7 @@
 //        echo "rbf:".predict_rbf($atmp);
 //    }
 //}
-
+require_once("phpchartdir.php");
 $svm = new SVM();
 $svm->setOptions(array(
             SVM::OPT_TYPE => SVM::C_SVC,

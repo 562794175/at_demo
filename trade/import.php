@@ -37,15 +37,17 @@ $json_sar="";
 //fisher
 $json_fisher="";
 
-if(empty($peroid) || empty($symbol))
+if($peroid==null || $symbol==null)
 {
     echo -1;
+    die();
 }
 
 try {
     $db=getDBConn();
+    $result=$db->query("SHOW TABLES LIKE '". $table."'");
     //判断表是否存在，不存在就创建
-    if(mysqli_num_rows(mysqli_query("SHOW TABLES LIKE '". $table."'")!==1))
+    if(mysqli_num_rows($result)!==1)
     {
         $sql = "CREATE TABLE ".$table." (
         id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -62,7 +64,7 @@ try {
 
     //INSERT
     $nTargetId=0;
-    $sBulkString="('".$time."','".$json_price."','".$obvData."','".$json_bands."','".$json_ac."','".$json_stoch."','".$json_sar."','".$json_fisher."')";
+    $sBulkString="('".$gmttime."','".$localtime."','".$json_price."','".$obvData."','".$json_bands."','".$json_ac."','".$json_stoch."','".$json_sar."','".$json_fisher."')";
     $sql="insert into ".$table." (gmttime,localtime,price,obv,bands,ac,stoch,sar,fisher) values".$sBulkString;
     $db->query($sql);
     $nTargetId=mysqli_insert_id($db);

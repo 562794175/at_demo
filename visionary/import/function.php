@@ -1,12 +1,12 @@
 <?php
 ini_set('date.timezone','Asia/Shanghai');
-//require_once("phpchartdir.php");
-//if(isOnWindows()) {
-//    define("PATHSEP", "\\");
-//} else {
-//    define("PATHSEP", "/");
-// }
-// 
+require_once("/phpchartdir.php");
+if(isOnWindows()) {
+    define("PATHSEP", "\\");
+} else {
+    define("PATHSEP", "/");
+ }
+ 
 if(!function_exists("bulkInsertRecord")) {
     function bulkInsertRecord($sBulkString)
     {
@@ -118,8 +118,8 @@ if(!function_exists("fetchArray")) {
     }
 }
 
-if(!function_exists("getREQUEST")) {
-    function getREQUEST($param)
+if(!function_exists("REQUEST")) {
+    function REQUEST($param)
     {
         return empty($_REQUEST[$param])?null:$_REQUEST[$param];
     }
