@@ -1,13 +1,13 @@
 <?php
 ini_set('date.timezone','Asia/Shanghai');
-require_once("phpchartdir.php");
-if(isOnWindows()) {
-    define("PATHSEP", "\\");
-} else {
-    define("PATHSEP", "/");
- }
- 
-  if(!function_exists("bulkInsertRecord")) {
+//require_once("phpchartdir.php");
+//if(isOnWindows()) {
+//    define("PATHSEP", "\\");
+//} else {
+//    define("PATHSEP", "/");
+// }
+// 
+if(!function_exists("bulkInsertRecord")) {
     function bulkInsertRecord($sBulkString)
     {
         $db=getDBConn();
@@ -16,7 +16,7 @@ if(isOnWindows()) {
     }
 }
  
- if(!function_exists("insertRecord")) {
+if(!function_exists("insertRecord")) {
     function insertRecord($sLower,$sMain,$sUpper)
     {
         $db=getDBConn();
@@ -25,7 +25,7 @@ if(isOnWindows()) {
     }
 }
  
- if(!function_exists("showPng")) {
+if(!function_exists("showPng")) {
      function showPng($aBolling)
      {
         $aPngs=[];
@@ -45,8 +45,7 @@ if(isOnWindows()) {
         echo $sTable;
      }
  }
- 
- 
+
 if(!function_exists("getBollingPng")) {
     function getBollingPng($abolling,$width=50,$height=50)
     {
@@ -118,6 +117,21 @@ if(!function_exists("fetchArray")) {
         return $query;
     }
 }
+
+if(!function_exists("getREQUEST")) {
+    function getREQUEST($param)
+    {
+        return empty($_REQUEST[$param])?null:$_REQUEST[$param];
+    }
+}
+
+if(!function_exists("getDBPre")) {
+    function getDBPre()
+    {
+        return "at";
+    }
+}
+
 if(!function_exists("getDBConn")) {
     function getDBConn()
     {

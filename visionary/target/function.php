@@ -51,7 +51,7 @@ if(!function_exists("getRightRate")) {
                 //预测
                 $atmp= array_merge($alower,$amain);
                 $atmp= array_merge($atmp,$aupper);
-                $svm_type=predict($atmp,$human_type,'/model.linear.svm');
+                $svm_type=predict($atmp,$human_type,'/model.rbf.svm');
                 //准确率
                 if($svm_type[1]==1) $linear_right_class++;
                 if($svm_type[2]==1) $linear_right_key++;

@@ -10,7 +10,8 @@ ini_set('date.timezone','Asia/Shanghai');
             SVM::OPT_KERNEL_TYPE => $kerneltype,
             SVM::OPT_P => 0.1,  // epsilon 0.1
             SVM::OPT_PROBABILITY => 1,
-            //203 => 0.01,
+            SVM::OPT_GAMMA => (1/4),
+            SVM::OPT_EPS => 0.01, 
         ));
         $model = $svm->train(dirname(__FILE__) . $scalefile);
         $model->save(dirname(__FILE__) . $modelsave);

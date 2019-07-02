@@ -3,3 +3,9 @@ https://blog.csdn.net/haoji007/article/details/80299198
 
 SELECT * FROM xau_bolling LIMIT 100;
 alter table xau_bolling modify id int auto_increment;
+
+LIBSVM使用方法及参数设置
+https://www.cnblogs.com/jerrice/p/4434118.html
+
+The SVM class ¶
+https://www.php.net/manual/pt_BR/class.svm.php
