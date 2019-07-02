@@ -63,6 +63,13 @@ if(!function_exists("fetchArray")) {
     }
 }
 
+if(!function_exists("REQUEST")) {
+    function REQUEST($param)
+    {
+        return empty($_REQUEST[$param])?null:$_REQUEST[$param];
+    }
+}
+
 if(!function_exists("getDBPre")) {
     function getDBPre()
     {

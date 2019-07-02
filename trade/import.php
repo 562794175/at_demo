@@ -7,13 +7,22 @@ $gmttime = REQUEST("GMTTime");
 $localtime = REQUEST("LocalTime");
 $table = getDBPre()."_".$symbol."_".$peroid;
 
+if($peroid==null || $symbol==null) {
+    echo -1;
+    die();
+}
+
 //price
 $highData = REQUEST("High");
 $lowData = REQUEST("Low");
 $openData = REQUEST("Open");
 $closeData = REQUEST("Close");
-$data_price=array("open"=>$openData,"close"=>$closeData,"high"=>$highData,"low"=>$lowData);
-$json_price= json_encode($data_price);
+$json_price="";
+if($highData==null || $lowData==null) {
+    $data_price=array("open"=>$openData,"close"=>$closeData,"high"=>$highData,"low"=>$lowData);
+    $json_price= json_encode($data_price);
+}
+
 
 //obv
 $obvData = REQUEST("OBV");
@@ -22,8 +31,11 @@ $obvData = REQUEST("OBV");
 $bandslowData = REQUEST("BandsLower");
 $bandmainData = REQUEST("BandsMain");
 $bandupperData = REQUEST("BandsUpper");
-$data_bands=array("lower"=>$bandslowData,"main"=>$bandmainData,"upper"=>$bandupperData);
-$json_bands= json_encode($data_bands);
+$json_bands="";
+if($highData==null || $lowData==null) {
+    $data_bands=array("lower"=>$bandslowData,"main"=>$bandmainData,"upper"=>$bandupperData);
+    $json_bands= json_encode($data_bands);
+}
 
 //ac
 $json_ac="";
@@ -37,12 +49,6 @@ $json_sar="";
 //fisher
 $json_fisher="";
 
-if($peroid==null || $symbol==null)
-{
-    echo -1;
-    die();
-}
-
 try {
     $db=getDBConn();
     $result=$db->query("SHOW TABLES LIKE '". $table."'");
@@ -50,16 +56,19 @@ try {
     if(mysqli_num_rows($result)!==1)
     {
         $sql = "CREATE TABLE ".$table." (
-        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        id INT(11) UNSIGNED AUTO_INCREMENT,
         gmttime VARCHAR(30) NOT NULL,
         localtime VARCHAR(30) NOT NULL,
         price text,
         bands text,
         ac text,
         sar text,
-        fisher text
-        )";
-        $db->query($sql);
+        fisher text,
+        PRIMARY KEY (id)
+        )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        if($db->query($sql)===TRUE) {
+            echo -2;die();
+        }
     }
 
     //INSERT
@@ -69,7 +78,7 @@ try {
     $db->query($sql);
     $nTargetId=mysqli_insert_id($db);
 } catch (Exception $e) {
-    $nTargetId=-1;
+    $nTargetId=-3;
 }
 
 echo $nTargetId;
