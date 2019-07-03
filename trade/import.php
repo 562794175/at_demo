@@ -18,7 +18,7 @@ $lowData = REQUEST("Low");
 $openData = REQUEST("Open");
 $closeData = REQUEST("Close");
 if($highData==null || $lowData==null) {
-    echo -1;
+    echo -1.1;
     die();
 }
 $data_price=array("open"=>$openData,"close"=>$closeData,"high"=>$highData,"low"=>$lowData);
@@ -28,8 +28,8 @@ $json_price= json_encode($data_price);
 $bandslowData = REQUEST("BandsLower");
 $bandmainData = REQUEST("BandsMain");
 $bandupperData = REQUEST("BandsUpper");
-if($highData!==null || $lowData!==null) {
-    echo -1;
+if($bandslowData==null || $bandmainData==null || $bandupperData==null) {
+    echo -1.2;
     die();
 }
 $data_bands=array("lower"=>$bandslowData,"main"=>$bandmainData,"upper"=>$bandupperData);

@@ -15,9 +15,24 @@ if(!function_exists("getAccountOrder")) {
 }
 
 if(!function_exists("getSVMPredict")) {
-    function getSVMPredict($dt)
+    function getSVMPredict($dt,$modelfile='/model/model.linear.svm')
     {
-        return 0;
+        $res="";
+        $MinValue=min($dt);
+        $MaxValue=max($dt);
+        $lower=-1;
+        $upper=1;
+        $data=[];
+        foreach ($dt as $kl => $vl) {
+            $one = $lower+($upper-$lower)*($vl-$MinValue)/($MaxValue-$MinValue);
+            $data[$kl+1]=$one;
+        }
+        
+        $model = new SVMModel();
+        $model->load(dirname(__FILE__) . $modelfile);
+        $class = $model->predict($data);
+    
+        return $class;
     }
 }
  
