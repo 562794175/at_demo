@@ -10,21 +10,19 @@ $account = $_POST["Account"];
 
 $targetid = $_POST["TargetID"];
 
+$state = $_POST["State"];
+
 //0-null,1-b,2-s
 $action=0;
 
-//if aacount had order then return
+//if a acount had order then return
 $order = getAccountOrder($account,$peroid);
 if($order>0) {
     echo $action;
     die();
 }
 
-//svm predict 1-s,2-k,3-d,4-z
-$state=getSVMPredict($table,$targetid);
-
-if($state==1)
-{
+if($state==1){
     $action = getStrategyByS($targetid);
 } else if($state==2) {
     $action = getStrategyByK($targetid);
