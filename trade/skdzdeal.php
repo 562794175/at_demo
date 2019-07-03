@@ -1,34 +1,45 @@
 <?php
 require_once 'function.php';
 //info
-$peroid = $_POST["Peroid"];
-$symbol = $_POST["Symbol"];
-$gmttime = $_POST["GMTTime"];
-$localtime = $_POST["LocalTime"];
-$table = $symbol."_".$peroid;
-$account = $_POST["Account"];
-
-$targetid = $_POST["TargetID"];
-
-$state = $_POST["State"];
-
-//0-null,1-b,2-s
-$action=0;
-
-//if a acount had order then return
-$order = getAccountOrder($account,$peroid);
-if($order>0) {
-    echo $action;
+$peroid = REQUEST("Peroid");
+$symbol = REQUEST("Symbol");
+$gmttime = REQUEST("GMTTime");
+$localtime = REQUEST("LocalTime");
+$table = getDBPre()."_".$symbol."_".$peroid;
+$targetid = REQUEST("TargetID");
+$account = REQUEST("Account");
+$state = REQUEST("State");
+if($peroid==null || $symbol==null || $targetid==null) {
+    echo -1;
     die();
 }
+//1-b,2-s
+$action=0;
+//0-null,1-open,2-close,3-sl
+$operate=0;
+//B0,S0,B1,S1,B2,S2,B3,S3
+//0,10,20,11,21,12,22,13,23
 
+$aTarget=getTargetById($table,$targetid);
 if($state==1){
-    $action = getStrategyByS($targetid);
+    $action = getStrategyByS($aTarget);
 } else if($state==2) {
-    $action = getStrategyByK($targetid);
+    $action = getStrategyByK($aTarget);
 } else if($state==3) {
-    $action = getStrategyByD($targetid);
+    $action = getStrategyByD($aTarget);
 } else if($state==4) {
-    $action = getStrategyByZ($targetid);
+    $action = getStrategyByZ($aTarget);
 }
-echo $action;
+
+$aOrder = getAccountOrder($table,$account);
+if(!empty($aOrder) && $aOrder['action']==$action && $state==3) {
+    //if a acount had an order same action then return 0
+    $operate=3;
+} else if(!empty($aOrder) && $aOrder['action']==$action) {
+    $operate=0;
+} else if(!empty($aOrder) && $aOrder['action']!=$action) {
+    $operate=2;
+} else {
+    $operate=1;
+}
+echo $action.$operate;

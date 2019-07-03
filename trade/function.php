@@ -7,10 +7,29 @@ if(isOnWindows()) {
     define("PATHSEP", "/");
  }
  
-if(!function_exists("getAccountOrder")) {
-    function getAccountOrder($dt)
+ if(!function_exists("logInsert")) {
+    function logInsert($table,$account,$gmttime,$localtime,$targetid,$message)
     {
-        return 0;
+        //INSERT
+        $sBulkString="('".$gmttime."','".$localtime."','".$account."',".$targetid.",".time().",'".$message."')";
+        $sql="insert into ".$table." (timegmt,timelocal,account,targetid,created,message) values".$sBulkString;
+        $db->query($sql);
+        return mysqli_insert_id($db);
+    }
+ }
+ 
+if(!function_exists("getAccountOrder")) {
+    function getAccountOrder($table,$account)
+    {
+        $db = getDBConn();
+        $sql = "select *  from ".$table."_order where state<>2 account=".$account;
+        $result = $db->query($sql);
+        $arr=[];
+        if($result){
+            $arr = fetchArray($result);
+            $arr = $arr[0];
+        }
+        return $arr;
     }
 }
 
@@ -35,35 +54,83 @@ if(!function_exists("getSVMPredict")) {
         return $class;
     }
 }
- 
+
+if(!function_exists("getTargetById")) {
+    function getTargetById($table,$id)
+    {
+        $db = getDBConn();
+        $sql = "select *  from ".$table." where id=".$id;
+        $result = $db->query($sql);
+        $arr=[];
+        if($result){
+            $arr = fetchArray($result);
+            $arr = $arr[0];
+        }
+        return $arr;
+    }
+}
  
 if(!function_exists("getStrategyByZ")) {
-    function getStrategyByZ($dt)
+    function getStrategyByZ($aTarget)
     {
+        //fisher 
+        //stoch
+        //ac
         return 0;
     }
 }
  
  
 if(!function_exists("getStrategyByD")) {
-    function getStrategyByD($dt)
+    function getStrategyByD($aTarget)
     {
+        //sar
+        $asar= explode(',', $aTarget['sar']);
+        $aac= explode(',', $aTarget['ac']);
+        //1-b,2-s
+        $action=0;
+        if($aac[count($aac)-1]>$aac[count($aac)-2]) {
+            $action=1;
+        } else {
+            $action=2;
+        }
         return 0;
     }
 }
  
  
 if(!function_exists("getStrategyByK")) {
-    function getStrategyByK($dt)
+    function getStrategyByK($aTarget)
     {
+        //fisher 
+        //stoch
+        //ac
         return 0;
     }
 }
  
 if(!function_exists("getStrategyByS")) {
-    function getStrategyByS($dt)
+    function getStrategyByS($aTarget)
     {
-        return 0;
+        $afisher= explode(',', $aTarget['fisher']);
+        $astoch= json_decode($aTarget['stoch'],true);
+        $astochl= explode(',', $astoch['low']);
+        $astochq= explode(',', $astoch['quik']);
+        $aac= explode(',', $aTarget['ac']);
+        //1-b,2-s
+        $action=0;
+        //fisher last element bigger then 70 or smaller then -70
+        $fisher=end($afisher);
+        if($fisher>70 || $fisher<-70) {
+            //stoch && ac
+            if($astochl>$astochq && $aac[count($aac)-1]>$aac[count($aac)-2]) {
+                $action=1;
+            } else {
+                $action=2;
+            }
+        }
+        
+        return $action;
     }
 }
  
@@ -79,9 +146,9 @@ if(!function_exists("fetchArray")) {
 }
 
 if(!function_exists("REQUEST")) {
-    function REQUEST($param)
+    function REQUEST($param,$default=null)
     {
-        return empty($_REQUEST[$param])?null:$_REQUEST[$param];
+        return empty($_REQUEST[$param])?$default:$_REQUEST[$param];
     }
 }
 
