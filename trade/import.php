@@ -1,94 +1,97 @@
 <?php
 require_once 'function.php';
-//info
-$peroid = REQUEST("Peroid");
-$symbol = REQUEST("Symbol");
-$gmttime = REQUEST("GMTTime");
-$localtime = REQUEST("LocalTime");
-$table = getDBPre()."_".$symbol."_".$peroid;
 
-if($peroid==null || $symbol==null) {
-    echo -1;
-    die();
-}
+function taskImport($data) {
+    
+    //info
+    $peroid = REQUEST($data,"Peroid");
+    $symbol = REQUEST($data,"Symbol");
+    $account = REQUEST($data,"Account");
+    $charttime = REQUEST($data,"ChartTime");
+    $localtime = REQUEST($data,"LocalTime");
+    $table = getDBPre()."_".$symbol."_".$peroid;
 
-//price
-$highData = REQUEST("High");
-$lowData = REQUEST("Low");
-$openData = REQUEST("Open");
-$closeData = REQUEST("Close");
-if($highData==null || $lowData==null) {
-    echo -1.1;
-    die();
-}
-$data_price=array("open"=>$openData,"close"=>$closeData,"high"=>$highData,"low"=>$lowData);
-$json_price= json_encode($data_price);
+    if($peroid==null || $symbol==null) {
+        return -1;
+    }
 
-//bands
-$bandslowData = REQUEST("BandsLower");
-$bandmainData = REQUEST("BandsMain");
-$bandupperData = REQUEST("BandsUpper");
-if($bandslowData==null || $bandmainData==null || $bandupperData==null) {
-    echo -1.2;
-    die();
-}
-$data_bands=array("lower"=>$bandslowData,"main"=>$bandmainData,"upper"=>$bandupperData);
-$json_bands= json_encode($data_bands);
+    //price
+    $highData = REQUEST($data,"High");
+    $lowData = REQUEST($data,"Low");
+    $openData = REQUEST($data,"Open");
+    $closeData = REQUEST($data,"Close");
+    if($highData==null || $lowData==null) {
+        return -1.1;
+    }
+    $data_price=array("open"=>$openData,"high"=>$highData,"low"=>$lowData,"close"=>$closeData);
+    $json_price= json_encode($data_price);
 
+    //bands
+    $bandslowData = REQUEST($data,"BandsLower");
+    $bandmainData = REQUEST($data,"BandsMain");
+    $bandupperData = REQUEST($data,"BandsUpper");
+    if($bandslowData==null || $bandmainData==null || $bandupperData==null) {
+        return -1.2;
+    }
+    $data_bands=array("lower"=>$bandslowData,"main"=>$bandmainData,"upper"=>$bandupperData);
+    $json_bands= json_encode($data_bands);
 
-//obv
-$obvData = REQUEST("OBV");
+    //obv
+    $obvData = REQUEST($data,"OBV");
 
-//ac
-$json_ac="";
+    //ac
+    $json_ac=REQUEST($data,"AC");
 
-//stoch
-$json_stoch="";
+    //stoch
+    $stochmain=REQUEST($data,"StochMain");
+    $stochsignal=REQUEST($data,"StochSIGNAL");
+    $data_stoch=array("StochMain"=>$stochmain,"StochSIGNAL"=>$stochsignal);
+    $json_stoch=json_encode($data_stoch);
 
-//sar
-$json_sar="";
+    //sar
+    $json_sar=REQUEST($data,"SAR");
 
-//fisher
-$json_fisher="";
+    //fisher
+    $json_fisher=REQUEST($data,"Fisher");
+    //osma
+    $json_osma=REQUEST($data,"OsMA");
 
-try {
-    $db=getDBConn();
-    $result=$db->query("SHOW TABLES LIKE '". $table."'");
-    //判断表是否存在，不存在就创建
-    if(mysqli_num_rows($result)!==1)
-    {
-        $sql = "CREATE TABLE ".$table." (".
-        "id INT(11) NOT NULL AUTO_INCREMENT,".
-        "timegmt VARCHAR(30) NOT NULL,".
-        "timelocal VARCHAR(30) NOT NULL,".
-        "price TEXT,".
-        "bands TEXT,".
-        "obv TEXT,".
-        "ac TEXT,".
-        "stoch TEXT,".
-        "sar TEXT,".
-        "fisher TEXT,".
-        "PRIMARY KEY (id)".
-        ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        if($db->query($sql)===FALSE) {
-            echo -2;
-            die();
-            //die('数据表创建失败: ' . mysqli_error($db));
+    try {
+        $db=getDBConn();
+        $result=$db->query("SHOW TABLES LIKE '". $table."'");
+        //判断表是否存在，不存在就创建
+        if(mysqli_num_rows($result)!==1)
+        {
+            $sql = "CREATE TABLE ".$table." (".
+            "id INT(11) NOT NULL AUTO_INCREMENT,".
+            "timechart VARCHAR(30) NOT NULL,".
+            "timelocal VARCHAR(30) NOT NULL,".
+            "price TEXT,".
+            "bands TEXT,".
+            "obv TEXT,".
+            "ac TEXT,".
+            "stoch TEXT,".
+            "sar TEXT,".
+            "fisher TEXT,".
+            "osma TEXT,".
+            "PRIMARY KEY (id)".
+            ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            if($db->query($sql)===FALSE) {
+                return -2;
+            }
         }
+
+        //INSERT
+        $nTargetId=0;
+        $sBulkString="('".$charttime."','".$localtime."','".$json_price."','".$obvData."','".$json_bands."','".$json_ac."','".$json_stoch."','".$json_sar."','".$json_fisher."','".$json_osma."')";
+        $sql="insert into ".$table." (timechart,timelocal,price,obv,bands,ac,stoch,sar,fisher,osma) values".$sBulkString;
+        if($db->query($sql)===FALSE) {
+            return -3;
+        }
+        $nTargetId=mysqli_insert_id($db);
+    } catch (Exception $e) {
+        return -4;
     }
 
-    //INSERT
-    $nTargetId=0;
-    $sBulkString="('".$gmttime."','".$localtime."','".$json_price."','".$obvData."','".$json_bands."','".$json_ac."','".$json_stoch."','".$json_sar."','".$json_fisher."')";
-    $sql="insert into ".$table." (timegmt,timelocal,price,obv,bands,ac,stoch,sar,fisher) values".$sBulkString;
-    if($db->query($sql)===FALSE) {
-        echo -3;
-        die();
-        //die('数据插入失败: ' . mysqli_error($db));
-    }
-    $nTargetId=mysqli_insert_id($db);
-} catch (Exception $e) {
-    $nTargetId=-4;
+    return $nTargetId;
 }
-
-echo $nTargetId;

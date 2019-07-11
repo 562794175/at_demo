@@ -1,0 +1,36 @@
+
+6477721
+bo1wsvu
+
+php使用zeromq
+https://blog.51cto.com/skindx/1441658
+http://pecl.php.net/package/zmq
+Windows下PHP使用ZMQ
+https://www.jianshu.com/p/fac7f14a9cc0
+
+php_svm
+
+phpchartdir
+
+mql4zmq
+https://github.com/AustenConrad/mql4zmq/
+ [downloaded_mql4zmq_source_folder]\pre-compiled\mql4zmq.dll 
+ => c:\Program Files (x86)\[metatrader directory]\experts\libraries\mql4zmq.dll
+
+ [downloaded_mql4zmq_source_folder]\pre-compiled\libzmq.dll 
+ => c:\Windows\SysWOW64\libzmq.dll
+
+ [downloaded_mql4zmq_source_folder]\mql4zmq.mqh 
+ => c:\Program Files (x86)\[metatrader directory]\experts\include\mql4zmq.mqh
+
+ [downloaded_mql4zmq_source_folder]\examples\mql4zmq.mq4 
+ => c:\Program Files (x86)\[metatrader directory]\experts\mql4zmq.mq4
+
+
+
+面向初学者的 MQL4 语言系列之3——技术指标和内置函数
+https://blog.csdn.net/woshiwangbiao/article/details/52698920
+
+http://www.damianifx.com.br/indicators1.php
+
+http://www.35pip.com/metatrader-indicators/ravi-fx-fisher-mq4/

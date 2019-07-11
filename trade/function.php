@@ -7,17 +7,6 @@ if(isOnWindows()) {
     define("PATHSEP", "/");
  }
  
- if(!function_exists("logInsert")) {
-    function logInsert($table,$account,$gmttime,$localtime,$targetid,$message)
-    {
-        //INSERT
-        $sBulkString="('".$gmttime."','".$localtime."','".$account."',".$targetid.",".time().",'".$message."')";
-        $sql="insert into ".$table." (timegmt,timelocal,account,targetid,created,message) values".$sBulkString;
-        $db->query($sql);
-        return mysqli_insert_id($db);
-    }
- }
- 
 if(!function_exists("getAccountOrder")) {
     function getAccountOrder($table,$account)
     {
@@ -63,8 +52,8 @@ if(!function_exists("getTargetById")) {
         $result = $db->query($sql);
         $arr=[];
         if($result){
-            $arr = fetchArray($result);
-            $arr = $arr[0];
+            $tmp = fetchArray($result);
+            $arr = count($tmp)<=0?[]:array_shift($tmp);
         }
         return $arr;
     }
@@ -73,10 +62,29 @@ if(!function_exists("getTargetById")) {
 if(!function_exists("getStrategyByZ")) {
     function getStrategyByZ($aTarget)
     {
-        //fisher 
-        //stoch
-        //ac
-        return 0;
+        $astoch= json_decode($aTarget['stoch'],true);
+        $astochmain= explode('|', $astoch['StochMain']);
+        $astochsignal= explode('|', $astoch['StochSIGNAL']);
+        $aac= explode('|', $aTarget['ac']);
+        $aosma= explode('|', $aTarget['osma']);
+        array_pop($astochmain);
+        array_pop($astochsignal);
+        array_pop($aac);
+        array_pop($aosma);
+        //1-b,2-s
+        $action=0;
+        if(end($astochmain)>end($astochsignal) && 
+            end($astochmain) < 80 &&     
+            $aac[count($aac)-1]>$aac[count($aac)-2] && 
+            $aosma[count($aosma)-1]>$aosma[count($aosma)-2] ) {
+            $action=1;
+        } else if(end($astochmain)<end($astochsignal) && 
+                end($astochmain) > 20 && 
+                $aac[count($aac)-1]<$aac[count($aac)-2] && 
+                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
+            $action=2;
+        }
+        return $action;
     }
 }
  
@@ -84,14 +92,17 @@ if(!function_exists("getStrategyByZ")) {
 if(!function_exists("getStrategyByD")) {
     function getStrategyByD($aTarget)
     {
-        //sar
-        $asar= explode(',', $aTarget['sar']);
-        $aac= explode(',', $aTarget['ac']);
+        $aac= explode('|', $aTarget['ac']);
+        $aosma= explode('|', $aTarget['osma']);
+        array_pop($aac);
+        array_pop($aosma);
         //1-b,2-s
         $action=0;
-        if($aac[count($aac)-1]>$aac[count($aac)-2]) {
+        if($aac[count($aac)-1]>$aac[count($aac)-2] && 
+            $aosma[count($aosma)-1]>$aosma[count($aosma)-2]) {
             $action=1;
-        } else {
+        } else if($aac[count($aac)-1]<$aac[count($aac)-2] && 
+                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
             $action=2;
         }
         return 0;
@@ -102,34 +113,54 @@ if(!function_exists("getStrategyByD")) {
 if(!function_exists("getStrategyByK")) {
     function getStrategyByK($aTarget)
     {
-        //fisher 
-        //stoch
-        //ac
-        return 0;
+        $astoch= json_decode($aTarget['stoch'],true);
+        $astochmain= explode('|', $astoch['StochMain']);
+        $astochsignal= explode('|', $astoch['StochSIGNAL']);
+        $aac= explode('|', $aTarget['ac']);
+        $aosma= explode('|', $aTarget['osma']);
+        array_pop($astochmain);
+        array_pop($astochsignal);
+        array_pop($aac);
+        array_pop($aosma);
+        //1-b,2-s
+        $action=0;
+        if(end($astochmain)>end($astochsignal) && 
+            $aac[count($aac)-1]>$aac[count($aac)-2] && 
+            $aosma[count($aosma)-1]>$aosma[count($aosma)-2] ) {
+            $action=1;
+        } else if(end($astochmain)<end($astochsignal) && 
+                $aac[count($aac)-1]<$aac[count($aac)-2] && 
+                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
+            $action=2;
+        }
+        return $action;
     }
 }
  
 if(!function_exists("getStrategyByS")) {
     function getStrategyByS($aTarget)
     {
-        $afisher= explode(',', $aTarget['fisher']);
+        //$afisher= explode('|', $aTarget['fisher']);
         $astoch= json_decode($aTarget['stoch'],true);
-        $astochl= explode(',', $astoch['low']);
-        $astochq= explode(',', $astoch['quik']);
-        $aac= explode(',', $aTarget['ac']);
+        $astochmain= explode('|', $astoch['StochMain']);
+        $astochsignal= explode('|', $astoch['StochSIGNAL']);
+        $aac= explode('|', $aTarget['ac']);
+        $aosma= explode('|', $aTarget['osma']);
+        array_pop($astochmain);
+        array_pop($astochsignal);
+        array_pop($aac);
+        array_pop($aosma);
         //1-b,2-s
         $action=0;
-        //fisher last element bigger then 70 or smaller then -70
-        $fisher=end($afisher);
-        if($fisher>70 || $fisher<-70) {
-            //stoch && ac
-            if($astochl>$astochq && $aac[count($aac)-1]>$aac[count($aac)-2]) {
-                $action=1;
-            } else {
-                $action=2;
-            }
+        if( end($astochmain)>end($astochsignal) && 
+            $aac[count($aac)-1]>$aac[count($aac)-2] && 
+            $aosma[count($aosma)-1]>$aosma[count($aosma)-2] ) {
+            $action=1;
+        } else if(end($astochmain)<end($astochsignal) && 
+                $aac[count($aac)-1]<$aac[count($aac)-2] && 
+                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
+            $action=2;
         }
-        
         return $action;
     }
 }
@@ -146,9 +177,9 @@ if(!function_exists("fetchArray")) {
 }
 
 if(!function_exists("REQUEST")) {
-    function REQUEST($param,$default=null)
+    function REQUEST($data,$param,$default=null)
     {
-        return empty($_REQUEST[$param])?$default:$_REQUEST[$param];
+        return empty($data[$param])?$default:$data[$param];
     }
 }
 
