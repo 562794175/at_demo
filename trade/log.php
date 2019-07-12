@@ -33,8 +33,10 @@ function taskLog($data) {
             "id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,".
             "account VARCHAR(30) NOT NULL,".
             "targetid INT(11),".
+            "MD5 VARCHAR(32),".
+            "message TEXT,".
             "created INT(11),".
-            "message TEXT".
+            "UNIQUE KEY atm(account,targetid,MD5)".
             ")ENGINE=InnoDB DEFAULT CHARSET=utf8;";
             if($db->query($sql)===FALSE) {
                 echo $nowtime."CREATE TABLE ".$table." FAILED!".mysqli_error($db);
@@ -43,15 +45,18 @@ function taskLog($data) {
         }
 
         //INSERT
-        $sBulkString="('".$account."',".$targetid.",".time().",'".$message."')";
-        $sql="insert into ".$table." (account,targetid,created,message) values".$sBulkString;
-        if($db->query($sql)===FALSE) {
-            echo $nowtime."INSERT INTO FAILED! ".$sql." ".mysqli_error($db);
-            die();
-        }
+        $sBulkString="('".$account."',".$targetid.",".time().",'".$message."','". md5($message)."')";
+        $sql="insert into ".$table." (account,targetid,created,message,MD5) values".$sBulkString;
+//        if($db->query($sql)===FALSE) {
+//            echo $nowtime."INSERT INTO FAILED! ".$sql." ".mysqli_error($db);
+//            die();
+//        }
+        
+        $db->query($sql);
 
     } catch (Exception $e) {
         echo $nowtime."LOG Exception!".$e->getMessage();
+        die();
     }
 
 }

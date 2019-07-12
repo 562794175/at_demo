@@ -14,6 +14,19 @@ if(isOnWindows()) {
     define("PATHSEP", "/");
  }
  
+ if(!function_exists("array2string")) {
+    function array2string($array,$split=':')
+    {
+        $string = [];
+         if($array && is_array($array)){
+            foreach ($array as $key=> $value){
+                $string[] = $key.$split.$value;
+            }
+        }
+        return implode(',',$string);
+    }
+}
+ 
 if(!function_exists("getAccountOrder")) {
     function getAccountOrder($table,$account)
     {
@@ -73,7 +86,7 @@ if(!function_exists("getStrategyByZ")) {
         $stoch = new CStoch(json_decode($aTarget['stoch'],true));
         $ac = new CAC(explode('|', $aTarget['ac']));
         $osma = new COsMA(explode('|', $aTarget['osma']));
-        $bands = new CBands(explode('|', $aTarget['bands']));
+        $bands = new CBands(json_decode($aTarget['bands'],true));
         //1-b,2-s
         $action=0;
         //sl
@@ -100,7 +113,7 @@ if(!function_exists("getStrategyByD")) {
     function getStrategyByD($aTarget)
     {
         $sar = new CSar(explode('|', $aTarget['sar']));
-        $ichimoku = new CIchimoku(explode('|', $aTarget['ichimoku']),explode('|', $aTarget['price']));
+        $ichimoku = new CIchimoku(json_decode($aTarget['ichimoku'],true),json_decode($aTarget['price'],true));
         //1-b,2-s
         $action=0;
         //sl
@@ -122,7 +135,7 @@ if(!function_exists("getStrategyByK")) {
         $stoch = new CStoch(json_decode($aTarget['stoch'],true));
         $ac = new CAC(explode('|', $aTarget['ac']));
         $osma = new COsMA(explode('|', $aTarget['osma']));
-        $bands = new CBands(explode('|', $aTarget['bands']));
+        $bands = new CBands(json_decode($aTarget['bands'],true));
         //1-b,2-s
         $action=0;
         //sl
@@ -151,7 +164,7 @@ if(!function_exists("getStrategyByS")) {
         $stoch = new CStoch(json_decode($aTarget['stoch'],true));
         $ac = new CAC(explode('|', $aTarget['ac']));
         $osma = new COsMA(explode('|', $aTarget['osma']));
-        $bands = new CBands(explode('|', $aTarget['bands']));
+        $bands = new CBands(json_decode($aTarget['bands'],true));
         //1-b,2-s
         $action=0;
         //sl

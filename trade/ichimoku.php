@@ -49,10 +49,10 @@ class CIchimoku {
     
     protected function initOHLC()
     {
-        $this->open= explode('|', $this->data['open']);
-        $this->high= explode('|', $this->data['high']);
-        $this->low= explode('|', $this->data['low']);
-        $this->close= explode('|', $this->data['close']);
+        $this->open= explode('|', $this->ohlc['open']);
+        $this->high= explode('|', $this->ohlc['high']);
+        $this->low= explode('|', $this->ohlc['low']);
+        $this->close= explode('|', $this->ohlc['close']);
         
         if(empty(end($this->open))) {
             array_pop($this->open);

@@ -23,7 +23,7 @@ while (true) {
         ];
         $result=json_encode($aResult);
         $responder->send($result);
-    } else if($task=="skdzdeal") {
+    } else if($task=="skdzengine") {
         $deal=taskSKDZDeal($data);
         $result=json_encode($deal);
         $responder->send($result);

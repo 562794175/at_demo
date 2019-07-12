@@ -1,22 +1,22 @@
 <?php
 require_once 'function.php';
-$data["Peroid"]="1";
-$data["Symbol"]="eurusd";
-$data["TargetID"]=9;
-$data["Account"]=933;
-$data["OrderNum"]=2;
-$data["Action"]=1;
-$data["Operate"]=2;
-$data["Profit"]=33;
-$data["SLTime"]="xx";
-taskOrder($data);
+//$data["Peroid"]="1";
+//$data["Symbol"]="eurusd";
+//$data["TargetID"]=9;
+//$data["Account"]=933;
+//$data["OrderNum"]=2;
+//$data["Action"]=1;
+//$data["Operate"]=2;
+//$data["Profit"]=33;
+//$data["SL"]="xx";
+//taskOrder($data);
 function taskOrder($data) {
     //info
     $peroid = REQUEST($data,"Peroid");
     $symbol = REQUEST($data,"Symbol");
     $table = getDBPre()."_".$symbol."_".$peroid."_order";
     $account = REQUEST($data,"Account");
-    $sltime = REQUEST($data,"SLTime");
+    $sl = REQUEST($data,"SL");
     $ordernum = REQUEST($data,"OrderNum");
     $targetid = REQUEST($data,"TargetID");
     $action = REQUEST($data,"Action");//1-b,2-s
@@ -40,7 +40,7 @@ function taskOrder($data) {
             action INT(11),
             state INT(11),
             profit INT(11),
-            slprice VARCHAR(30) NOT NULL,
+            sl VARCHAR(30) NOT NULL,
             created INT(11),
             updated INT(11)
             )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -51,8 +51,8 @@ function taskOrder($data) {
         //INSERT
         $nInsertId=0;
         if($operate==1) {
-            $sBulkString="('".$account."','".$ordernum."',".$targetid.",".$action.",".$operate.",0,'".$sltime."',".time().",".time().")";
-            $sql="insert into ".$table." (account,ordernum,targetid,action,state,profit,sltime,created,updated) values".$sBulkString;
+            $sBulkString="('".$account."','".$ordernum."',".$targetid.",".$action.",".$operate.",0,'".$sl."',".time().",".time().")";
+            $sql="insert into ".$table." (account,ordernum,targetid,action,state,profit,sl,created,updated) values".$sBulkString;
             if($db->query($sql)===FALSE) {
                 return -3;
             }
@@ -64,7 +64,7 @@ function taskOrder($data) {
             }
             $nInsertId=1;
         } else if($operate==3) {
-            $sql="update ".$table." set state=".$operate.",sltime='".$sltime."',updated=".time()." where ordernum=".$ordernum;
+            $sql="update ".$table." set state=".$operate.",sl='".$sl."',updated=".time()." where ordernum=".$ordernum;
             if($db->query($sql)===FALSE) {
                 return -4;
             }
