@@ -1,6 +1,13 @@
 <?php
 ini_set('date.timezone','Asia/Shanghai');
 require_once("phpchartdir.php");
+require_once("OsMA.php");
+require_once("ac.php");
+require_once("fisher.php");
+require_once("stoch.php");
+require_once("ichimoku.php");
+require_once("bands.php");
+require_once("sar.php");
 if(isOnWindows()) {
     define("PATHSEP", "\\");
 } else {
@@ -62,29 +69,29 @@ if(!function_exists("getTargetById")) {
 if(!function_exists("getStrategyByZ")) {
     function getStrategyByZ($aTarget)
     {
-        $astoch= json_decode($aTarget['stoch'],true);
-        $astochmain= explode('|', $astoch['StochMain']);
-        $astochsignal= explode('|', $astoch['StochSIGNAL']);
-        $aac= explode('|', $aTarget['ac']);
-        $aosma= explode('|', $aTarget['osma']);
-        array_pop($astochmain);
-        array_pop($astochsignal);
-        array_pop($aac);
-        array_pop($aosma);
+        $fisher = new CRAVIFisher(explode('|', $aTarget['fisher']));
+        $stoch = new CStoch(json_decode($aTarget['stoch'],true));
+        $ac = new CAC(explode('|', $aTarget['ac']));
+        $osma = new COsMA(explode('|', $aTarget['osma']));
+        $bands = new CBands(explode('|', $aTarget['bands']));
         //1-b,2-s
         $action=0;
-        if(end($astochmain)>end($astochsignal) && 
-            end($astochmain) < 80 &&     
-            $aac[count($aac)-1]>$aac[count($aac)-2] && 
-            $aosma[count($aosma)-1]>$aosma[count($aosma)-2] ) {
+        //sl
+        $slprice=0;
+        if( $stoch->riseup() && 
+            $fisher->riseup() && $fisher->istrend() && 
+            $ac->riseup() && 
+            $osma->riseup()) {
             $action=1;
-        } else if(end($astochmain)<end($astochsignal) && 
-                end($astochmain) > 20 && 
-                $aac[count($aac)-1]<$aac[count($aac)-2] && 
-                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
+            $slprice=$bands->getMinValue();
+        } else if($stoch->fulldown() && 
+                $fisher->fulldown() &&  $fisher->istrend() && 
+                $ac->fulldown() && 
+                $osma->fulldown()) {
             $action=2;
+            $slprice=$bands->getMaxValue();
         }
-        return $action;
+        return ['action'=>$action,'sl'=>$slprice];
     }
 }
  
@@ -92,20 +99,18 @@ if(!function_exists("getStrategyByZ")) {
 if(!function_exists("getStrategyByD")) {
     function getStrategyByD($aTarget)
     {
-        $aac= explode('|', $aTarget['ac']);
-        $aosma= explode('|', $aTarget['osma']);
-        array_pop($aac);
-        array_pop($aosma);
+        $sar = new CSar(explode('|', $aTarget['sar']));
+        $ichimoku = new CIchimoku(explode('|', $aTarget['ichimoku']),explode('|', $aTarget['price']));
         //1-b,2-s
         $action=0;
-        if($aac[count($aac)-1]>$aac[count($aac)-2] && 
-            $aosma[count($aosma)-1]>$aosma[count($aosma)-2]) {
+        //sl
+        $slprice=$sar->slprice();
+        if($ichimoku->riseup_tks()) {
             $action=1;
-        } else if($aac[count($aac)-1]<$aac[count($aac)-2] && 
-                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
+        } else if($ichimoku->fulldown_tks()) {
             $action=2;
         }
-        return 0;
+        return ['action'=>$action,'sl'=>$slprice];
     }
 }
  
@@ -113,55 +118,58 @@ if(!function_exists("getStrategyByD")) {
 if(!function_exists("getStrategyByK")) {
     function getStrategyByK($aTarget)
     {
-        $astoch= json_decode($aTarget['stoch'],true);
-        $astochmain= explode('|', $astoch['StochMain']);
-        $astochsignal= explode('|', $astoch['StochSIGNAL']);
-        $aac= explode('|', $aTarget['ac']);
-        $aosma= explode('|', $aTarget['osma']);
-        array_pop($astochmain);
-        array_pop($astochsignal);
-        array_pop($aac);
-        array_pop($aosma);
+        $fisher = new CRAVIFisher(explode('|', $aTarget['fisher']));
+        $stoch = new CStoch(json_decode($aTarget['stoch'],true));
+        $ac = new CAC(explode('|', $aTarget['ac']));
+        $osma = new COsMA(explode('|', $aTarget['osma']));
+        $bands = new CBands(explode('|', $aTarget['bands']));
         //1-b,2-s
         $action=0;
-        if(end($astochmain)>end($astochsignal) && 
-            $aac[count($aac)-1]>$aac[count($aac)-2] && 
-            $aosma[count($aosma)-1]>$aosma[count($aosma)-2] ) {
+        //sl
+        $slprice=0;
+        if( $stoch->riseup() && 
+            $fisher->riseup() && $fisher->istrend() && 
+            $ac->riseup() && 
+            $osma->riseup()) {
             $action=1;
-        } else if(end($astochmain)<end($astochsignal) && 
-                $aac[count($aac)-1]<$aac[count($aac)-2] && 
-                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
+            $slprice=$bands->getMinValue();
+        } else if($stoch->fulldown() && 
+                $fisher->fulldown() &&  $fisher->istrend() && 
+                $ac->fulldown() && 
+                $osma->fulldown()) {
             $action=2;
+            $slprice=$bands->getMaxValue();
         }
-        return $action;
+        return ['action'=>$action,'sl'=>$slprice];
     }
 }
  
 if(!function_exists("getStrategyByS")) {
     function getStrategyByS($aTarget)
     {
-        //$afisher= explode('|', $aTarget['fisher']);
-        $astoch= json_decode($aTarget['stoch'],true);
-        $astochmain= explode('|', $astoch['StochMain']);
-        $astochsignal= explode('|', $astoch['StochSIGNAL']);
-        $aac= explode('|', $aTarget['ac']);
-        $aosma= explode('|', $aTarget['osma']);
-        array_pop($astochmain);
-        array_pop($astochsignal);
-        array_pop($aac);
-        array_pop($aosma);
+        $fisher = new CRAVIFisher(explode('|', $aTarget['fisher']));
+        $stoch = new CStoch(json_decode($aTarget['stoch'],true));
+        $ac = new CAC(explode('|', $aTarget['ac']));
+        $osma = new COsMA(explode('|', $aTarget['osma']));
+        $bands = new CBands(explode('|', $aTarget['bands']));
         //1-b,2-s
         $action=0;
-        if( end($astochmain)>end($astochsignal) && 
-            $aac[count($aac)-1]>$aac[count($aac)-2] && 
-            $aosma[count($aosma)-1]>$aosma[count($aosma)-2] ) {
+        //sl
+        $slprice=0;
+        if( $stoch->riseup() && 
+            $fisher->riseup() && $fisher->istrend() && 
+            $ac->riseup() && 
+            $osma->riseup()) {
             $action=1;
-        } else if(end($astochmain)<end($astochsignal) && 
-                $aac[count($aac)-1]<$aac[count($aac)-2] && 
-                $aosma[count($aosma)-1]<$aosma[count($aosma)-2]) {
+            $slprice=$bands->getMinValue();
+        } else if($stoch->fulldown() && 
+                $fisher->fulldown() &&  $fisher->istrend() && 
+                $ac->fulldown() && 
+                $osma->fulldown()) {
             $action=2;
+            $slprice=$bands->getMaxValue();
         }
-        return $action;
+        return ['action'=>$action,'sl'=>$slprice];
     }
 }
  

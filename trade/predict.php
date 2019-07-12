@@ -1,8 +1,9 @@
 <?php
 require_once 'function.php';
+require_once 'bands.php';
 //$data["Peroid"]="1";
 //$data["Symbol"]="eurusd";
-//$data["TargetID"]=9;
+//$data["TargetID"]=2;
 //$state=taskPredict($data);
 
 function taskPredict($data) {
@@ -13,48 +14,29 @@ function taskPredict($data) {
     if($peroid==null || $symbol==null) {
         return -1;
     }
-    $atmp=[];
     $targetid = REQUEST($data,"TargetID");
+    $state = 0;
     //bands
     $bandslowData = REQUEST($data,"BandsLower");
     $bandmainData = REQUEST($data,"BandsMain");
     $bandupperData = REQUEST($data,"BandsUpper");
-    if($bandslowData!=null && $bandmainData!=null && $bandupperData!=null) {
-        $alower= explode('|',$bandslowData);
-        $amain = explode('|',$bandmainData);
-        $aupper= explode('|',$bandupperData);
-        array_pop($alower);
-        array_pop($amain);
-        array_pop($aupper);
-        //combime
-        $atmp= array_merge($alower,$amain);
-        $atmp= array_merge($atmp,$aupper);
-        //echo $atmp;die();
+    
+    if($bandslowData!=null && $bandmainData!=null && $bandupperData!=null) {    
+        
+        $bands = new CBands(null,$bandslowData,$bandmainData,$bandupperData);
+        $state = $bands->predictState();
+        
     } else if($targetid!=null) {
-        //echo $targetid;die();
-        $db = getDBConn();
-        $sql = "select *  from ".$table." where id=".$targetid;
-        $result = $db->query($sql);
-        $state=0;
-        if($result){
-            $arr = $result->fetch_all();
-            foreach($arr as $k => $v){
-                $id=$v[0];
-                $bands=json_decode($v[4],true);
-                $alower= explode('|', $bands['lower']);
-                $amain = explode('|', $bands['main']);
-                $aupper= explode('|', $bands['upper']);
-                array_pop($alower);
-                array_pop($amain);
-                array_pop($aupper);
-                //combime
-                $atmp= array_merge($alower,$amain);
-                $atmp= array_merge($atmp,$aupper);
-
-            }//end foreach
-        }//end if($result)
+        
+        $aTarget = getTargetById($table,$targetid);
+        
+        if(!empty($aTarget)) {
+            $dt=json_decode($aTarget['bands'],true);
+            $bands = new CBands($dt);
+            $state = $bands->predictState();
+        }
+        
+        
     }
-    //svm predict 1-s,2-k,3-d,4-z
-    $state=getSVMPredict($atmp,'/model/model.linear.svm');
     return $state;
 }

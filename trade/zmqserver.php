@@ -2,6 +2,7 @@
 require_once 'import.php';
 require_once 'predict.php';
 require_once 'skdzdeal.php';
+require_once 'order.php';
 require_once 'log.php';
 $context = new ZMQContext(1);
 $responder = new ZMQSocket($context, ZMQ::SOCKET_REP);
@@ -24,9 +25,11 @@ while (true) {
         $responder->send($result);
     } else if($task=="skdzdeal") {
         $deal=taskSKDZDeal($data);
-        $responder->send($deal);
+        $result=json_encode($deal);
+        $responder->send($result);
     } else if($task=="order") {
-        $responder->send("order");
+        $orderid= taskOrder($data);
+        $responder->send($orderid);
     } else if($task=="log") {
         taskLog($data);
         $responder->send(0);

@@ -1,5 +1,6 @@
 <?php
 require_once 'function.php';
+
 //$data["Peroid"]="1";
 //$data["Symbol"]="eurusd";
 //$data["TargetID"]=9;
@@ -17,35 +18,33 @@ function taskSKDZDeal($data) {
     if($peroid==null || $symbol==null || $targetid==null) {
         return -1;
     }
-    //1-b,2-s
-    $action=0;
-    //0-null,1-open,2-close,3-sl
-    $operate=0;
-    //B0,S0,B1,S1,B2,S2,B3,S3
-    //0,10,20,11,21,12,22,13,23
-
+    $aEvent=[
+        "action" => 0,//1-b,2-s
+        "sl" => 0,
+        "operate" => 0,//0-null,1-open,2-close,3-sl
+    ];
     $aTarget=getTargetById($table,$targetid);
     if($state==1 && $aTarget){
-        $action = getStrategyByS($aTarget);
+        $aEvent = getStrategyByS($aTarget);
     } else if($state==2 && $aTarget) {
-        $action = getStrategyByK($aTarget);
+        $aEvent = getStrategyByK($aTarget);
     } else if($state==3 && $aTarget) {
-        $action = getStrategyByD($aTarget);
+        $aEvent = getStrategyByD($aTarget);
     } else if($state==4 && $aTarget) {
-        $action = getStrategyByZ($aTarget);
+        $aEvent = getStrategyByZ($aTarget);
     }
 
     $aOrder = getAccountOrder($table,$account);
-    if(!empty($aOrder) && $aOrder['action']==$action && $state==3) {
+    if(!empty($aOrder) && $aOrder['sltime']==$action && $state==3) {
         //if a acount had an order same action then return 0
-        $operate=3;
+        $aEvent['operate']=3;
     } else if(!empty($aOrder) && $aOrder['action']==$action) {
-        $operate=0;
+        $aEvent['operate']=0;
     } else if(!empty($aOrder) && $aOrder['action']!=$action) {
-        $action=$aOrder['action'];
-        $operate=2;
+        $aEvent['action']=$aOrder['action'];
+        $aEvent['operate']=2;
     } else {
-        $operate=1;
+        $aEvent['operate']=1;
     }
-    return $action.$operate;
+    return $aEvent;
 }
