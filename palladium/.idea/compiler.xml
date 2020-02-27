@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="adminservice_main" target="1.8" />
+      <module name="adminservice_test" target="1.8" />
+      <module name="monitor_main" target="1.8" />
+      <module name="monitor_test" target="1.8" />
+      <module name="portal_main" target="1.8" />
+      <module name="portal_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
