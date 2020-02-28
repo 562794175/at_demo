@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  profiles:
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+    cache: false
+
+
+

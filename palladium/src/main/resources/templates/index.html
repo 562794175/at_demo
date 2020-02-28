@@ -10,14 +10,12 @@
     <link th:href="@{/floating-labels.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<form class="form-signin">
+<form class="form-signin" action="/" method="get">
     <div class="text-center mb-4">
         <img class="mb-4" src="/bootstrap-solid.svg" alt=""
              width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Palladium</h1>
-        <p>
-            You are great!
-        </p>
+        <p th:text="${user.getTip()}"></p>
     </div>
 
     <div class="form-label-group">
@@ -26,7 +24,7 @@
     </div>
 
     <div class="form-label-group">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
+        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required autofocus>
         <label for="inputPassword">Password</label>
     </div>
 

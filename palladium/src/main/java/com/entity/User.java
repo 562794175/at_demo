@@ -5,6 +5,7 @@ public class User {
   private String userName;
   private String password;
   private Integer command;
+  private String tip;
 
   public String getUserName() {
     return userName;
@@ -28,5 +29,13 @@ public class User {
 
   public void setCommand(Integer command) {
     this.command = command;
+  }
+
+  public String getTip() {
+    return tip;
+  }
+
+  public void setTip(String tip) {
+    this.tip = tip;
   }
 }

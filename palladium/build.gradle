@@ -17,5 +17,6 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'io.netty:netty-all'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

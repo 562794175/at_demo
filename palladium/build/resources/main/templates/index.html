@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/floating-labels.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<form class="form-signin" action="/" method="get">
+    <div class="text-center mb-4">
+        <img class="mb-4" src="/bootstrap-solid.svg" alt=""
+             width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Palladium</h1>
+        <p th:text="${user.getTip()}"></p>
+    </div>
+
+    <div class="form-label-group">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" readonly required>
+        <label for="inputEmail" th:text="${user.getUserName()}"></label>
+    </div>
+
+    <div class="form-label-group">
+        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required autofocus>
+        <label for="inputPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Are you ready?
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Commit</button>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2025</p>
+</form>
+</body>
+</html>
