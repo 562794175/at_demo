@@ -17,11 +17,11 @@ import java.util.Map;
 @Controller
 public class PortalController {
 
-    private final String USERNAME="815993";
-    private final String DEFAULTPWD="1";
-    private final String TIP1="You are great!";
-    private final String TIP2="Password error!";
-    private final String TIP3="Commit successful!";
+    private static final String USERNAME="815993";
+    private static final String DEFAULTPWD="1";
+    private static final String TIP1="You are great!";
+    private static final String TIP2="Password error!";
+    private static final String TIP3="Commit successful!";
 
 
     @GetMapping({"/","/home","/index"})

@@ -11,6 +11,92 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+
+<script>
+
+function post(URL, PARAMS) { 
+	alert("dd");
+	var xhr = new XMLHttpRequest();
+	xhr.open("post",URL,true);
+	// 设置请求头 告诉服务器发给他的数据是json格式
+	xhr.setRequestHeader("content-type","application/json");
+	xhr.responseType = "blob";
+	xhr.send( JSON.stringify(PARAMS) );
+	
+
+}
+
+function xxxload(url, params, fileName) {
+
+	alert("ffff");
+}
+
+
+function tttload(url, params, fileName) {
+
+	var len, i = 0,temp, input, form, key;
+ 
+
+
+
+
+	var xmlRequest = new XMLHttpRequest();
+	xmlRequest.open("POST", url, true);
+	xmlRequest.setRequestHeader("Content-type", "application/json");
+	xmlRequest.responseType = "blob";
+	xmlRequest.onload = function (oEvent) {
+		if((xmlRequest.status >= 200 && xmlRequest.status < 300) || xmlRequest.status === 304) {
+			if(!fileName) {
+				//从header中获取
+				fileName = decodeURI(xmlRequest.getResponseHeader('filename'));
+			}
+
+			console.log(fileName);
+
+			//校验是否下载参数
+			var content = xmlRequest.response;
+			if(!fileName || fileName === 'null') {
+				var myReader = new FileReader();
+				myReader.addEventListener("loadend", function(e){
+					var msg = e.srcElement.result;
+					Dialogs.showWarn(msg);
+				});
+				myReader.readAsText(content);
+				return;
+			}
+
+			//数据转换为文件下载
+			var elink = document.createElement('a');
+			elink.download = fileName || 'demo.xlsx';
+			elink.style.display = 'none';
+			var blob = new Blob([content]);
+			elink.href = URL.createObjectURL(blob);
+			document.body.appendChild(elink);
+			elink.click();
+			document.body.removeChild(elink);
+
+
+		} else {
+			console.error('下载失败',e);
+		}
+	};
+
+	try {
+		//发送参数字符串， 但是formData需要后台支持
+		xmlRequest.send(JSON.stringify(params));
+	} catch (e) {
+		console.error('发送失败',e);
+	}
+
+}
+</script>
+
+<a href="#" onclick='tttload("http://localhost:9991/admin/report/firstdown", {pageNum:1,pageSize:100,provinceCode:62},"first.xls");'>firstdown</a>
+
+<a href="#" onclick='tttload("http://localhost:9991/admin/report/seconddown", {schoolId:42,gradeId:44},"second.xls");'>seconddown</a>
+
+<a href="#" onclick='tttload("http://localhost:9991/admin/report/thirddown", {schoolId:42,gradeId:44,classId:46},"third.xls");'>thirddown</a>
+
+<a href="#" onclick='tttload("http://localhost:9991/admin/report/fourdown", {classId:1,name:"null",phone:-1,identityId:-1},"four.xls");'>fourdown</a>
     </body>
 </html>
