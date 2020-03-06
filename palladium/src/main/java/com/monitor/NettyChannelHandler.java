@@ -9,18 +9,24 @@ import io.netty.channel.ChannelPromise;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /** @author a.t */
 @ChannelHandler.Sharable
+@Component
 public class NettyChannelHandler extends ChannelDuplexHandler {
 
   private static final Logger logger = LoggerFactory.getLogger(NettyChannelHandler.class);
   /** the cache for alive worker channel. <ip:port, channel> */
   private final Map<String, NettyChannel> channels = new ConcurrentHashMap<>();
+
+  @Resource
+  private RequestHandler requestHandler;
 
   public Map<String, NettyChannel> getChannels() {
     return channels;
@@ -59,7 +65,7 @@ public class NettyChannelHandler extends ChannelDuplexHandler {
       JSONObject jsStr = JSONObject.parseObject((String) msg);
       Request request = JSONObject.toJavaObject(jsStr, Request.class);
       // ?
-      channel.getRequestHandler().dispatch(request, channel);
+      requestHandler.dispatch(request, channel);
 
     } catch (Exception e) {
       logger.error(e.getMessage());

@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.HashSet;
@@ -25,7 +26,10 @@ public class NettyServer {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-  private ServerBootstrap serverBootstrap;
+  private final ServerBootstrap serverBootstrap = new ServerBootstrap();
+
+  @Resource
+  private NettyChannelHandler nettyChannelHandler;
 
   private EventLoopGroup boss;
   private EventLoopGroup work;
@@ -41,20 +45,15 @@ public class NettyServer {
 
   private InetSocketAddress bindAddress;
 
-  private NettyChannelHandler nettyChannelHandler;
-
   NettyServer() {
-    serverBootstrap = null;
     boss = null;
     work = null;
     bossThreads = 1;
     workThreads = Runtime.getRuntime().availableProcessors() + 1;
     bindAddress = new InetSocketAddress(3460);
-    nettyChannelHandler = new NettyChannelHandler();
   }
 
   private void init() {
-    serverBootstrap = new ServerBootstrap();
     workThreads = Math.min(workThreads, 32);
     boss = new NioEventLoopGroup(bossThreads, new DefaultThreadFactory("NettyServerBoss", true));
     work = new NioEventLoopGroup(workThreads, new DefaultThreadFactory("NettyServerWorker", true));
@@ -69,11 +68,16 @@ public class NettyServer {
 
   public void start() {
     init();
-    // bind
-    ChannelFuture channelFuture = serverBootstrap.bind(bindAddress);
-    channelFuture.syncUninterruptibly();
-    channel = channelFuture.channel();
-    logger.info("netty server start!");
+    try {
+      // bind
+      ChannelFuture channelFuture = serverBootstrap.bind(bindAddress);
+      // channelFuture.syncUninterruptibly();
+      channelFuture.sync();
+      channel = channelFuture.channel();
+      logger.info("netty server start!");
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+    }
   }
 
   @PreDestroy

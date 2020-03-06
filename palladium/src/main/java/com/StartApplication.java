@@ -1,12 +1,18 @@
 package com;
 
 import com.monitor.NettyServer;
+import com.repository.AcTwentyRepository;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import javax.annotation.Resource;
+import java.sql.Timestamp;
 
 /**
  * StartApplication
@@ -15,7 +21,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  * @date 2020/02/27
  */
 @EnableJpaAuditing
-@SpringBootApplication(scanBasePackages = {"com.controller", "com.monitor"})
+@EntityScan("com.entity")
+@EnableJpaRepositories("com.repository")
+@SpringBootApplication(scanBasePackages = {"com.controller", "com.monitor","com.repository","com.entity"})
 public class StartApplication implements CommandLineRunner {
 
   private final NettyServer nettyServer;

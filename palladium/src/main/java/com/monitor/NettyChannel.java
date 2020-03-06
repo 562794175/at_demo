@@ -4,7 +4,9 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,8 +21,6 @@ public class NettyChannel {
       new ConcurrentHashMap<Channel, NettyChannel>();
   /** netty channel */
   private final Channel channel;
-
-  private final RequestHandler requestHandler = new RequestHandler();
 
   private final Map<String, Object> attributes = new ConcurrentHashMap<String, Object>();
   /**
@@ -64,10 +64,6 @@ public class NettyChannel {
     if (ch != null && !ch.isActive()) {
       CHANNEL_MAP.remove(ch);
     }
-  }
-
-  public RequestHandler getRequestHandler() {
-    return requestHandler;
   }
 
   public InetSocketAddress getLocalAddress() {

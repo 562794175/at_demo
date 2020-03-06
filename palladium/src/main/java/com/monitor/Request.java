@@ -1,45 +1,28 @@
 package com.monitor;
 
-/**
- * @author a.t
- */
+/** @author a.t */
 public class Request {
+  private String cmdName;
+  private String parameter;
 
-    public String getCmdName() {
-        return cmdName;
-    }
+  public String getCmdName() {
+    return cmdName;
+  }
 
-    public void setCmdName(String cmdName) {
-        this.cmdName = cmdName;
-    }
+  public void setCmdName(String cmdName) {
+    this.cmdName = cmdName;
+  }
 
-    public Integer getParam() {
-        return param;
-    }
+  public String getParameter() {
+    return parameter;
+  }
 
-    public void setParam(Integer param) {
-        this.param = param;
-    }
+  public void setParameter(String parameter) {
+    this.parameter = parameter;
+  }
 
-    public Integer getValue() {
-        return value;
-    }
-
-    public void setValue(Integer value) {
-        this.value = value;
-    }
-
-    private String cmdName;
-    private Integer param;
-    private Integer value;
-
-    @Override
-    public String toString() {
-        return "Request{" +
-                "cmdName='" + cmdName + '\'' +
-                ", param=" + param +
-                ", value=" + value +
-                '}';
-    }
-
+  @Override
+  public String toString() {
+    return "Request{" + "cmdName='" + cmdName + '\'' + ", parameter='" + parameter + '\'' + '}';
+  }
 }
