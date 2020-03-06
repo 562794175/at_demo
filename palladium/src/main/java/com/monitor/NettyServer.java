@@ -1,8 +1,11 @@
 package com.monitor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.util.NetUtils;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -87,6 +90,21 @@ public class NettyServer {
     work.shutdownGracefully();
     channels.clear();
     logger.info("netty server stop!");
+  }
+
+  public void notifyAll(Response response) {
+    Collection<NettyChannel> channels = getChannels();
+    if (channels == null || channels.size() <= 0 || response==null) {
+      return;
+    }
+    for (NettyChannel channel : channels) {
+      try {
+        ByteBuf buf = Unpooled.wrappedBuffer(JSONObject.toJSONBytes(response));
+        channel.send(buf, true);
+      } catch (Throwable e) {
+        logger.warn(e.getMessage(), e);
+      }
+    }
   }
 
   private void stopChannels() {

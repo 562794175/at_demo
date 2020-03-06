@@ -4,7 +4,9 @@ package com.monitor;
 public class Response {
   private String param;
   private String value;
-
+  // AUTO_STOPLOSS:1ENABLE,0DISABLED
+  // OPEN_ORDER:1ENABLE
+  // STOP_PROFIT:1234
   @Override
   public String toString() {
     return "Response{" + "param='" + param + '\'' + ", value='" + value + '\'' + '}';

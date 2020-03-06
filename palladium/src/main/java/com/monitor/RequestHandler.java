@@ -3,8 +3,6 @@ package com.monitor;
 import com.alibaba.fastjson.JSONObject;
 import com.entity.*;
 import com.repository.*;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -23,15 +21,12 @@ public class RequestHandler {
   private static final String SAR_TWENTY = "sar_20";
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+  @Resource private QuoteRepository quoteRepository;
   @Resource private AcTwentyRepository acTwentyRepository;
   @Resource private KlineTwentyRepository klineTwentyRepository;
   @Resource private BollingTwentyRepository bollingTwentyRepository;
   @Resource private OsmaTwentyRepository osmaTwentyRepository;
   @Resource private SarTwentyRepository sarTwentyRepository;
-
-  // AUTO_STOPLOSS:1ENABLE,0DISABLED
-  // OPEN_ORDER:1ENABLE
-  // STOP_PROFIT:1234
 
   public void dispatch(Request request, NettyChannel channel) throws Exception {
     switch (request.getCmdName()) {
@@ -55,6 +50,14 @@ public class RequestHandler {
         break;
       default:
     }
+  }
+
+  private void doQuote(Request request, NettyChannel channel) throws Exception {
+    String parameter = String.format("{%s}", request.getParameter());
+    JSONObject jsStr = JSONObject.parseObject(parameter);
+    Quote quote = jsStr.toJavaObject(Quote.class);
+    quoteRepository.deleteAll();
+    quoteRepository.saveAndFlush(quote);
   }
 
   private void doSarTwenty(Request request, NettyChannel channel) {
@@ -90,16 +93,5 @@ public class RequestHandler {
     JSONObject jsStr = JSONObject.parseObject(parameter);
     AcTwenty acTwenty = jsStr.toJavaObject(AcTwenty.class);
     acTwentyRepository.saveAndFlush(acTwenty);
-  }
-
-  private void doQuote(Request request, NettyChannel channel) throws Exception {
-
-    System.out.println("do info");
-
-    Response response = new Response();
-    response.setParam("PAUSE");
-    response.setValue("1");
-    ByteBuf buf = Unpooled.wrappedBuffer(JSONObject.toJSONBytes(response));
-    channel.send((Object) buf, true);
   }
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StopLoss</title>
+    <link th:href="@{/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/floating-labels.css}" rel="stylesheet" type="text/css"/>
+    <script>
+        function post(PARAMS) {
+            var url = "/stoploss/set?enabled="+PARAMS;
+            var xhr = new XMLHttpRequest();
+            xhr.open("get",url,true);
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick='post(1)'>Start</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick='post(0)'>Stop</button>
+</body>
+</html>
