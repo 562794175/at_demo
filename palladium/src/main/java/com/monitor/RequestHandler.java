@@ -1,8 +1,8 @@
 package com.monitor;
 
 import com.alibaba.fastjson.JSONObject;
-import com.entity.AcTwenty;
-import com.repository.AcTwentyRepository;
+import com.entity.*;
+import com.repository.*;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.slf4j.Logger;
@@ -24,6 +24,10 @@ public class RequestHandler {
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   @Resource private AcTwentyRepository acTwentyRepository;
+  @Resource private KlineTwentyRepository klineTwentyRepository;
+  @Resource private BollingTwentyRepository bollingTwentyRepository;
+  @Resource private OsmaTwentyRepository osmaTwentyRepository;
+  @Resource private SarTwentyRepository sarTwentyRepository;
 
   // AUTO_STOPLOSS:1ENABLE,0DISABLED
   // OPEN_ORDER:1ENABLE
@@ -35,21 +39,53 @@ public class RequestHandler {
         doQuote(request, channel);
         break;
       case KLINE_TWENTY:
+        doKlineTwenty(request, channel);
         break;
       case BOLLING_TWENTY:
+        doBollingTwenty(request, channel);
         break;
       case AC_TWENTY:
-        doAc(request, channel);
+        doAcTwenty(request, channel);
         break;
       case OSMA_TWENTY:
+        doOsmaTwenty(request, channel);
         break;
       case SAR_TWENTY:
+        doSarTwenty(request, channel);
         break;
       default:
     }
   }
 
-  private void doAc(Request request, NettyChannel channel) {
+  private void doSarTwenty(Request request, NettyChannel channel) {
+    String parameter = String.format("{%s}", request.getParameter());
+    JSONObject jsStr = JSONObject.parseObject(parameter);
+    SarTwenty sarTwenty = jsStr.toJavaObject(SarTwenty.class);
+    sarTwentyRepository.saveAndFlush(sarTwenty);
+  }
+
+  private void doOsmaTwenty(Request request, NettyChannel channel) {
+    String parameter = String.format("{%s}", request.getParameter());
+    JSONObject jsStr = JSONObject.parseObject(parameter);
+    OsmaTwenty osmaTwenty = jsStr.toJavaObject(OsmaTwenty.class);
+    osmaTwentyRepository.saveAndFlush(osmaTwenty);
+  }
+
+  private void doBollingTwenty(Request request, NettyChannel channel) {
+    String parameter = String.format("{%s}", request.getParameter());
+    JSONObject jsStr = JSONObject.parseObject(parameter);
+    BollingTwenty klineTwenty = jsStr.toJavaObject(BollingTwenty.class);
+    bollingTwentyRepository.saveAndFlush(klineTwenty);
+  }
+
+  private void doKlineTwenty(Request request, NettyChannel channel) {
+    String parameter = String.format("{%s}", request.getParameter());
+    JSONObject jsStr = JSONObject.parseObject(parameter);
+    KlineTwenty klineTwenty = jsStr.toJavaObject(KlineTwenty.class);
+    klineTwentyRepository.saveAndFlush(klineTwenty);
+  }
+
+  private void doAcTwenty(Request request, NettyChannel channel) {
     String parameter = String.format("{%s}", request.getParameter());
     JSONObject jsStr = JSONObject.parseObject(parameter);
     AcTwenty acTwenty = jsStr.toJavaObject(AcTwenty.class);

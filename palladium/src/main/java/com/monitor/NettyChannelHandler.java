@@ -25,8 +25,7 @@ public class NettyChannelHandler extends ChannelDuplexHandler {
   /** the cache for alive worker channel. <ip:port, channel> */
   private final Map<String, NettyChannel> channels = new ConcurrentHashMap<>();
 
-  @Resource
-  private RequestHandler requestHandler;
+  @Resource private RequestHandler requestHandler;
 
   public Map<String, NettyChannel> getChannels() {
     return channels;

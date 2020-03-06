@@ -28,8 +28,7 @@ public class NettyServer {
 
   private final ServerBootstrap serverBootstrap = new ServerBootstrap();
 
-  @Resource
-  private NettyChannelHandler nettyChannelHandler;
+  @Resource private NettyChannelHandler nettyChannelHandler;
 
   private EventLoopGroup boss;
   private EventLoopGroup work;
