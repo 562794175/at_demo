@@ -35,11 +35,11 @@ public class BaseEntity implements Serializable {
   @Column(nullable = false, columnDefinition = "int")
   private Integer duration;
 
-  @Column(nullable = false, columnDefinition = "datetime")
-  private Date firstAxis;
+  @Column(nullable = false)
+  private String firstAxis;
 
-  @Column(nullable = false, columnDefinition = "datetime")
-  private Date secondAxis;
+  @Column(nullable = false)
+  private String secondAxis;
 
   public Long getId() {
     return id;
@@ -81,19 +81,19 @@ public class BaseEntity implements Serializable {
     this.duration = duration;
   }
 
-  public Date getFirstAxis() {
+  public String getFirstAxis() {
     return firstAxis;
   }
 
-  public void setFirstAxis(Date firstAxis) {
+  public void setFirstAxis(String firstAxis) {
     this.firstAxis = firstAxis;
   }
 
-  public Date getSecondAxis() {
+  public String getSecondAxis() {
     return secondAxis;
   }
 
-  public void setSecondAxis(Date secondAxis) {
+  public void setSecondAxis(String secondAxis) {
     this.secondAxis = secondAxis;
   }
 }
