@@ -9,6 +9,14 @@ import javax.persistence.Entity;
 @Entity
 public class SarTwenty extends BaseEntity {
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     @Column(nullable = false, columnDefinition="text")
     private String value;
 

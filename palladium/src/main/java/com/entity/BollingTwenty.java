@@ -1,28 +1,42 @@
 package com.entity;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.security.Timestamp;
-
-/**
- * @author a.t
- */
+/** @author a.t */
 @Entity
-
 public class BollingTwenty extends BaseEntity {
 
-    @Column(nullable = false, columnDefinition="text")
-    private String lower;
+  @Column(nullable = false, columnDefinition = "text")
+  private String lower;
 
-    @Column(nullable = false, columnDefinition="text")
-    private String main;
+  @Column(nullable = false, columnDefinition = "text")
+  private String main;
 
-    @Column(nullable = false, columnDefinition="text")
-    private String upper;
+  @Column(nullable = false, columnDefinition = "text")
+  private String upper;
 
+  public String getLower() {
+    return lower;
+  }
 
+  public void setLower(String lower) {
+    this.lower = lower;
+  }
+
+  public String getMain() {
+    return main;
+  }
+
+  public void setMain(String main) {
+    this.main = main;
+  }
+
+  public String getUpper() {
+    return upper;
+  }
+
+  public void setUpper(String upper) {
+    this.upper = upper;
+  }
 }
