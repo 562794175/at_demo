@@ -50,9 +50,8 @@ public class PortalController {
 
   @GetMapping({"/", "/home", "/index"})
   public String stoploss(Model model) {
-    List<Quote> listQuote = quoteRepository.findAll();
-    if (!CollectionUtils.isEmpty(listQuote)) {
-      Quote quote = listQuote.get(0);
+    Quote quote = nettyServer.getQuote();
+    if (quote!=null) {
       String tip = quote.getAsk() + " | " + quote.getBid() + " | ";
       tip += (quote.getAutoStopLoss() == 1 ? "Y" : "N");
       model.addAttribute("tip", tip);

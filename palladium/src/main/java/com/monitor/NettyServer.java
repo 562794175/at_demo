@@ -1,6 +1,7 @@
 package com.monitor;
 
 import com.alibaba.fastjson.JSONObject;
+import com.entity.Quote;
 import com.util.NetUtils;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
@@ -46,6 +47,7 @@ public class NettyServer {
   private io.netty.channel.Channel channel;
 
   private InetSocketAddress bindAddress;
+  private Quote quote;
 
   NettyServer() {
     boss = null;
@@ -53,6 +55,14 @@ public class NettyServer {
     bossThreads = 1;
     workThreads = Runtime.getRuntime().availableProcessors() + 1;
     bindAddress = new InetSocketAddress(3460);
+  }
+
+  public Quote getQuote() {
+    return quote;
+  }
+
+  public void setQuote(Quote quote) {
+    this.quote = quote;
   }
 
   private void init() {

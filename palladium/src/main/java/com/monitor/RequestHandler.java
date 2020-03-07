@@ -28,6 +28,8 @@ public class RequestHandler {
   @Resource private OsmaTwentyRepository osmaTwentyRepository;
   @Resource private SarTwentyRepository sarTwentyRepository;
 
+  @Resource private NettyServer nettyServer;
+
   public void dispatch(Request request, NettyChannel channel) throws Exception {
     switch (request.getCmdName()) {
       case QUOTE:
@@ -56,8 +58,7 @@ public class RequestHandler {
     String parameter = String.format("{%s}", request.getParameter());
     JSONObject jsStr = JSONObject.parseObject(parameter);
     Quote quote = jsStr.toJavaObject(Quote.class);
-    quoteRepository.deleteAll();
-    quoteRepository.saveAndFlush(quote);
+    nettyServer.setQuote(quote);
   }
 
   private void doSarTwenty(Request request, NettyChannel channel) {

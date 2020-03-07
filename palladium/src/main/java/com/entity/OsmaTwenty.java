@@ -2,11 +2,14 @@ package com.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 /**
  * @author a.t
  */
 @Entity
+@Table(indexes = {@Index(columnList = "symbol,duration,firstAxis,secondAxis",name="twenty_uindex",unique = true)})
 public class OsmaTwenty extends BaseEntity {
 
     public String getValue() {

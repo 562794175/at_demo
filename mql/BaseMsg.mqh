@@ -27,8 +27,14 @@ BaseMsg::BaseMsg()
 {
    parameter["symbol"]=Symbol();
    parameter["duration"]=Period();
-   parameter["firstAxis"]=TimeToStr(iTime(Symbol(),PERIOD_M15,1),TIME_DATE|TIME_SECONDS);
-   parameter["secondAxis"]=TimeToStr(iTime(Symbol(),PERIOD_H1,1),TIME_DATE|TIME_SECONDS);
+   if(ChartPeriod()==PERIOD_M15) {
+      parameter["firstAxis"]=TimeToStr(iTime(Symbol(),PERIOD_M15,1),TIME_DATE|TIME_SECONDS);
+      parameter["secondAxis"]=TimeToStr(iTime(Symbol(),PERIOD_H1,1),TIME_DATE|TIME_SECONDS);
+   }
+   if(ChartPeriod()==PERIOD_H1) {
+      parameter["firstAxis"]=TimeToStr(iTime(Symbol(),PERIOD_H1,1),TIME_DATE|TIME_SECONDS);
+      parameter["secondAxis"]=TimeToStr(iTime(Symbol(),PERIOD_H4,1),TIME_DATE|TIME_SECONDS);
+   }
 }
 
 void BaseMsg::SetCmdName(string name) {

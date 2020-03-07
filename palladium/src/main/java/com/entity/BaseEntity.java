@@ -29,16 +29,16 @@ public class BaseEntity implements Serializable {
   @Column(nullable = false, columnDefinition = "datetime")
   private Date updatedAt;
 
-  @Column(nullable = false)
+  @Column(nullable = false,length = 10)
   private String symbol;
 
   @Column(nullable = false, columnDefinition = "int")
   private Integer duration;
 
-  @Column(nullable = false)
+  @Column(nullable = false,length = 20)
   private String firstAxis;
 
-  @Column(nullable = false)
+  @Column(nullable = false,length = 20)
   private String secondAxis;
 
   public Long getId() {

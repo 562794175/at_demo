@@ -6,10 +6,13 @@ import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 /** @author a.t */
 @Entity
 @DynamicInsert
+@Table(indexes = {@Index(columnList = "symbol,duration,firstAxis,secondAxis",name="twenty_uindex",unique = true)})
 public class AcTwenty extends BaseEntity {
 
   @Column(nullable = false, columnDefinition = "text")
