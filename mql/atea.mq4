@@ -16,6 +16,7 @@
 #include <BollingTwenty.mqh>
 #include <OsmaTwenty.mqh>
 #include <SarTwenty.mqh>
+#include <Quote.mqh>
 
 AutoStopLoss autoStoploss;
 ClientSocket* glbClientSocket = NULL;
@@ -31,7 +32,7 @@ int barsCount;
 int OnInit()
   {
 //--- create timer
-   EventSetTimer(5);
+   EventSetTimer(1);
    
    
    
@@ -68,8 +69,6 @@ void OnTick()
 //+------------------------------------------------------------------+
 void OnTimer()
   {
-  Print(TimeToStr(iTime(Symbol(),PERIOD_M15,1),TIME_DATE|TIME_SECONDS));
-  return;
 //---
    if (!glbClientSocket) {
       glbClientSocket = new ClientSocket(Hostname, ServerPort);
@@ -77,6 +76,9 @@ void OnTimer()
          Print("Client connection succeeded");
       } else {
          Print("Client connection failed");
+         delete glbClientSocket;
+         glbClientSocket = NULL;
+         return;
       }
    }
 
@@ -103,7 +105,9 @@ void OnTimer()
       
       barsCount=Bars;
    }
-   
+   Quote quote;
+   quote.SetAutoStopLossState(autoStoploss.GetEnabled());
+   glbClientSocket.Send(quote.Serialize());
    
    
    string strMessage;
