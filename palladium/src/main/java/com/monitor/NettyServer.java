@@ -94,7 +94,7 @@ public class NettyServer {
 
   public void notifyAll(Response response) {
     Collection<NettyChannel> channels = getChannels();
-    if (channels == null || channels.size() <= 0 || response==null) {
+    if (channels == null || channels.size() <= 0) {
       return;
     }
     for (NettyChannel channel : channels) {

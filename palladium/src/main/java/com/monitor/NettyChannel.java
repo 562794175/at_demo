@@ -86,17 +86,18 @@ public class NettyChannel {
    */
   public void send(Object message, boolean sent) throws Exception {
     boolean success = true;
-    int timeout = 3;
+    int timeout = 0;
     try {
-      ChannelFuture future = channel.writeAndFlush(message);
-      if (sent) {
-        // wait timeout ms
-        success = future.await(timeout);
-      }
-      Throwable cause = future.cause();
-      if (cause != null) {
-        throw cause;
-      }
+      channel.writeAndFlush(message);
+//      ChannelFuture future = channel.writeAndFlush(message);
+//      if (sent) {
+//        // wait timeout ms
+//        success = future.await(timeout);
+//      }
+//      Throwable cause = future.cause();
+//      if (cause != null) {
+//        throw cause;
+//      }
     } catch (Throwable e) {
       throw new Exception(
           "Failed to send message "

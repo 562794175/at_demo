@@ -42,3 +42,9 @@ JPA EnableJpaAuditing 审计功能
 
 https://blog.csdn.net/liuyueyi25/article/details/92434557
 SpringBoot系列教程JPA之新增记录使用姿势
+
+http://www.blogjava.net/xiaomage234/archive/2015/12/30.html
+性能问题定位：工具使用【转】
+
+https://www.cnblogs.com/gnivor/p/5646822.html
+Netty笔记--ByteBuf释放

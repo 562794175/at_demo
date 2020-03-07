@@ -56,10 +56,7 @@ public class PortalController {
     @GetMapping(value = {"/stoploss/set"})
     @ResponseBody
     public String setStoploss(@RequestParam String enabled) {
-        Response response = new Response();
-        response.setParam("AUTO_STOPLOSS");
-        response.setValue(enabled);
-        nettyServer.notifyAll(response);
+        nettyServer.notifyAll(new Response("AUTO_STOPLOSS",enabled));
         return "true";
     }
 

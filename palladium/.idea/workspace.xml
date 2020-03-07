@@ -4,9 +4,11 @@
     <list default="true" id="5d3df9c9-a40b-44cb-81d8-2a5ab66db33f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/PortalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/PortalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/monitor/NettyChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monitor/NettyChannel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/monitor/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monitor/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/stoploss.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/stoploss.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readme" beforeDir="false" afterPath="$PROJECT_DIR$/src/readme" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -101,7 +103,7 @@
     <session id="1306437656">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.11" value="4" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.14" value="1" />
@@ -112,9 +114,9 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -123,9 +125,9 @@
           <entry key="CSS" value="5" />
           <entry key="Database Element" value="12" />
           <entry key="Groovy" value="16" />
-          <entry key="HTML" value="8" />
-          <entry key="JAVA" value="270" />
-          <entry key="PLAIN_TEXT" value="19" />
+          <entry key="HTML" value="9" />
+          <entry key="JAVA" value="273" />
+          <entry key="PLAIN_TEXT" value="20" />
           <entry key="SVG" value="2" />
           <entry key="Scratch" value="6" />
           <entry key="TypeScript" value="1" />
@@ -135,9 +137,9 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="136" />
-          <entry key="HTML" value="515" />
-          <entry key="JAVA" value="5307" />
-          <entry key="PLAIN_TEXT" value="60" />
+          <entry key="HTML" value="519" />
+          <entry key="JAVA" value="5424" />
+          <entry key="PLAIN_TEXT" value="66" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="48" />
           <entry key="VTL" value="34" />
@@ -151,26 +153,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="37" selection-start-line="37" selection-end-line="37" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/stoploss.html">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+              <caret line="32" column="38" lean-forward="true" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -179,7 +163,25 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="370">
-              <caret line="105" column="7" lean-forward="true" selection-start-line="105" selection-start-column="7" selection-end-line="105" selection-end-column="7" />
+              <caret line="103" column="29" lean-forward="true" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/readme">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.1.36.Final/194c47ffd2525ec0a1caf8f070321ce7629ca1d8/netty-all-4.1.36.Final-sources.jar!/io/netty/buffer/Unpooled.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="152" column="26" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -187,35 +189,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/PortalController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="62" column="22" lean-forward="true" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
+            <state relative-caret-position="496">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyChannel.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyChannelHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="114" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="78">
+              <caret line="83" column="46" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.1.8.RELEASE/1b39bc8f5e65621e891efb0dc6e2d5cf7e443ae3/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="904" column="21" lean-forward="true" selection-start-line="904" selection-start-column="21" selection-end-line="904" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/Response.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+            <state relative-caret-position="396">
+              <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -683,7 +679,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/entity/BollingTwenty.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entity/OsmaTwenty.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entity/SarTwenty.java" />
-        <option value="$PROJECT_DIR$/src/readme" />
         <option value="$PROJECT_DIR$/src/main/java/com/repository/BaseRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entity/AcTwentyTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/entity/AcTwenty.java" />
@@ -691,7 +686,6 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/entity/BaseEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/monitor/NettyChannelHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/monitor/NettyChannel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/monitor/NettyChannelInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/monitor/Request.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/repository/KlineTwentyRepository.java" />
@@ -701,15 +695,17 @@
         <option value="$PROJECT_DIR$/src/main/java/com/repository/SarTwentyRepository.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/console.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/stop.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/entity/Quote.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/repository/QuoteRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/monitor/Response.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/stoploss.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/monitor/NettyChannel.java" />
+        <option value="$PROJECT_DIR$/src/readme" />
+        <option value="$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/controller/PortalController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/monitor/Response.java" />
       </list>
     </option>
   </component>
@@ -779,8 +775,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="NBKnowledgePane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -860,6 +854,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="NettyChannelHandler" type="1a9f42e2:ClassTreeNode" />
+            </path>
+            <path>
+              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
+              <item name="palladium" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="monitor" type="462c0819:PsiDirectoryNode" />
               <item name="NettyServer" type="1a9f42e2:ClassTreeNode" />
             </path>
             <path>
@@ -871,15 +875,6 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="monitor" type="462c0819:PsiDirectoryNode" />
               <item name="Response" type="1a9f42e2:ClassTreeNode" />
-            </path>
-            <path>
-              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="palladium" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
@@ -903,37 +898,54 @@
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.springframework:spring-web:5.1.8.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="Gradle: io.netty:netty-all:4.1.36.Final" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.springframework:spring-web:5.1.8.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-5.1.8.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="Gradle: io.netty:netty-all:4.1.36.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.36.Final.jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.springframework:spring-web:5.1.8.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-5.1.8.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
+              <item name="Gradle: io.netty:netty-all:4.1.36.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.36.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.springframework:spring-web:5.1.8.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-5.1.8.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="Gradle: io.netty:netty-all:4.1.36.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.36.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="buffer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Gradle: org.springframework:spring-web:5.1.8.RELEASE" type="70bed36:NamedLibraryElementNode" />
-              <item name="spring-web-5.1.8.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="springframework" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="MediaType" type="1a9f42e2:ClassTreeNode" />
+              <item name="Gradle: io.netty:netty-all:4.1.36.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.36.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="buffer" type="462c0819:PsiDirectoryNode" />
+              <item name="Unpooled" type="1a9f42e2:ClassTreeNode" />
+            </path>
+            <path>
+              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: io.netty:netty-all:4.1.36.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.36.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="channel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: io.netty:netty-all:4.1.36.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.36.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="channel" type="462c0819:PsiDirectoryNode" />
+              <item name="Channel" type="1a9f42e2:ClassTreeNode" />
             </path>
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
@@ -961,25 +973,12 @@
               <item name="servlet" type="462c0819:PsiDirectoryNode" />
               <item name="FrameworkServlet" type="1a9f42e2:ClassTreeNode" />
             </path>
-            <path>
-              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-            </path>
-            <path>
-              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
-            </path>
-            <path>
-              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
-              <item name="9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1" type="1e004dc1:ScratchProjectViewPane$MyRootNode$1$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="NBKnowledgePane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -992,7 +991,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583491289963" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583491333190" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="C:/Program Files/Java/jdk1.8.0_172/bin/jvisualvm.exe" />
     <property name="node.js.path.for.package.stylelint" value="project" />
@@ -1165,7 +1164,8 @@
       <workItem from="1583410573922" duration="5287000" />
       <workItem from="1583415879289" duration="13218000" />
       <workItem from="1583476344068" duration="115000" />
-      <workItem from="1583484000716" duration="6116000" />
+      <workItem from="1583484000716" duration="6175000" />
+      <workItem from="1583557605055" duration="3590000" />
     </task>
     <task id="LOCAL-00001" summary="修改">
       <created>1582859966484</created>
@@ -1178,7 +1178,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144010000" />
+    <option name="totallyTimeSpent" value="147659000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1191,8 +1191,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="1920" y="0" width="1440" height="860" id="Project" order="0" sideWeight="0.25381416" visible="true" weight="0.272" />
+      <window_info content_ui="combo" x="1920" y="0" width="1440" height="860" id="Project" order="0" sideWeight="0.25381416" visible="true" weight="0.2752" />
       <window_info id="Structure" order="1" sideWeight="0.74618584" side_tool="true" weight="0.256" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1294,20 +1295,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.3.10.Final/ceb495c8397086f17246c31dd1fac06a1a1ab2c3/hibernate-core-5.3.10.Final-sources.jar!/org/hibernate/annotations/UpdateTimestamp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.62/ddc73fc24155c7e75d660de78eda40311dab4522/fastjson-1.2.62-sources.jar!/com/alibaba/fastjson/parser/ParserConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1505,16 +1492,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/readme">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1556,16 +1533,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyChannelHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1540">
-          <caret line="83" column="46" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/entity/AcTwenty.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -1577,20 +1544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="10" column="18" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <element signature="e#245#246#0" expanded="true" />
-            <element signature="e#265#266#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#409#410#0" expanded="true" />
-            <element signature="e#433#434#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#555#556#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1604,52 +1557,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/Response.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.1.8.RELEASE/4e19ca13005f5175b8cf87c0d3a0df681d2e55c/spring-web-5.1.8.RELEASE-sources.jar!/org/springframework/http/MediaType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="88" column="34" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.1.8.RELEASE/1b39bc8f5e65621e891efb0dc6e2d5cf7e443ae3/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="904" column="21" lean-forward="true" selection-start-line="904" selection-start-column="21" selection-end-line="904" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/PortalController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="62" column="22" lean-forward="true" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="105" column="7" lean-forward="true" selection-start-line="105" selection-start-column="7" selection-end-line="105" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1660,13 +1571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/stoploss.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/admin.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1674,6 +1578,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="715">
           <caret line="37" selection-start-line="37" selection-end-line="37" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.1.36.Final/194c47ffd2525ec0a1caf8f070321ce7629ca1d8/netty-all-4.1.36.Final-sources.jar!/io/netty/buffer/Unpooled.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="152" column="26" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-all/4.1.36.Final/194c47ffd2525ec0a1caf8f070321ce7629ca1d8/netty-all-4.1.36.Final-sources.jar!/io/netty/channel/Channel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="76" column="24" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.1.8.RELEASE/1b39bc8f5e65621e891efb0dc6e2d5cf7e443ae3/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="904" column="21" selection-start-line="904" selection-start-column="21" selection-end-line="904" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/readme">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="104" column="22" lean-forward="true" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyChannelHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/stoploss.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="21" column="99" lean-forward="true" selection-start-line="21" selection-start-column="99" selection-end-line="21" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="32" column="38" lean-forward="true" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="103" column="29" lean-forward="true" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/PortalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
         </state>
       </provider>
     </entry>

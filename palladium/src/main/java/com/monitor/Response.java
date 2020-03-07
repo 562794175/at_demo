@@ -7,6 +7,15 @@ public class Response {
   // AUTO_STOPLOSS:1ENABLE,0DISABLED
   // OPEN_ORDER:1ENABLE
   // STOP_PROFIT:1234
+
+  public Response() {
+  }
+
+  public Response(String param,String value) {
+    this.param=param;
+    this.value=value;
+  }
+
   @Override
   public String toString() {
     return "Response{" + "param='" + param + '\'' + ", value='" + value + '\'' + '}';
