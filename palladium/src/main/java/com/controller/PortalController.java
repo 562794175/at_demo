@@ -7,14 +7,12 @@ import com.monitor.Response;
 import com.repository.QuoteRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.Calendar;
-import java.util.List;
 
 @Controller
 public class PortalController {
@@ -30,28 +28,15 @@ public class PortalController {
 
   @Resource private QuoteRepository quoteRepository;
 
-  @GetMapping({"/ss"})
-  public String index(
-      Model model, @RequestParam(value = "inputPassword", defaultValue = DEFAULTPWD) String pwd) {
-    User user = new User();
-    user.setUserName(USERNAME);
-    Calendar now = Calendar.getInstance();
-    String time = String.format("%d%d", now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE));
-    if (pwd.equals(time)) {
-      user.setTip(TIP3);
-    } else if (pwd.equals(DEFAULTPWD)) {
-      user.setTip(TIP1);
-    } else {
-      user.setTip(TIP2);
-    }
-    model.addAttribute("user", user);
+  @GetMapping({"/drop"})
+  public String index(Model model) {
     return "index";
   }
 
   @GetMapping({"/", "/home", "/index"})
   public String stoploss(Model model) {
     Quote quote = nettyServer.getQuote();
-    if (quote!=null) {
+    if (quote != null) {
       String tip = quote.getAsk() + " | " + quote.getBid() + " | ";
       tip += (quote.getAutoStopLoss() == 1 ? "Y" : "N");
       model.addAttribute("tip", tip);

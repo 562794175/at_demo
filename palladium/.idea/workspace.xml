@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d3df9c9-a40b-44cb-81d8-2a5ab66db33f" name="Default Changelist" comment="修改">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/PortalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/PortalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/AcTwenty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/AcTwenty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/BollingTwenty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/BollingTwenty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/KlineTwenty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/KlineTwenty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/OsmaTwenty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/OsmaTwenty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/SarTwenty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/SarTwenty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -127,39 +119,48 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="CSS" value="5" />
-          <entry key="Database Element" value="40" />
+          <entry key="Database Element" value="49" />
           <entry key="Groovy" value="16" />
           <entry key="HTML" value="12" />
-          <entry key="JAVA" value="308" />
+          <entry key="JAVA" value="310" />
           <entry key="PLAIN_TEXT" value="20" />
           <entry key="SQL" value="1" />
           <entry key="SVG" value="2" />
           <entry key="Scratch" value="6" />
           <entry key="TypeScript" value="1" />
-          <entry key="YAML" value="14" />
+          <entry key="YAML" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="136" />
           <entry key="HTML" value="530" />
-          <entry key="JAVA" value="5811" />
+          <entry key="JAVA" value="5822" />
           <entry key="PLAIN_TEXT" value="72" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="48" />
           <entry key="VTL" value="34" />
-          <entry key="YAML" value="106" />
+          <entry key="YAML" value="112" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="42" column="14" lean-forward="true" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="32" />
+            <state relative-caret-position="232">
+              <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,34 +171,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="528">
+              <caret line="46" column="43" lean-forward="true" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
               <folding>
                 <element signature="e#1764#1765#0" expanded="true" />
                 <element signature="e#1786#1787#0" expanded="true" />
                 <element signature="e#1825#1826#0" expanded="true" />
                 <element signature="e#1853#1854#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/repository/QuoteRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/PortalController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -675,7 +655,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/repository/OsmaTwentyRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/repository/SarTwentyRepository.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/console.sql" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/stop.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/entity/Quote.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
@@ -693,6 +672,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/controller/PortalController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
       </list>
     </option>
   </component>
@@ -814,15 +794,6 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="PortalController" type="1a9f42e2:ClassTreeNode" />
-            </path>
-            <path>
-              <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="palladium" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="palladium" type="b2602c69:ProjectViewProjectNode" />
@@ -1056,7 +1027,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583586856025" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583588249283" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="C:/Program Files/Java/jdk1.8.0_172/bin/jvisualvm.exe" />
     <property name="node.js.path.for.package.stylelint" value="project" />
@@ -1094,7 +1065,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.StartApplication">
+  <component name="RunManager" selected="Gradle.palladium [build]">
     <configuration name="StartApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.StartApplication" />
       <module name="palladium_main" />
@@ -1232,7 +1203,7 @@
       <workItem from="1583484000716" duration="6175000" />
       <workItem from="1583557605055" duration="4252000" />
       <workItem from="1583565087273" duration="3916000" />
-      <workItem from="1583571637891" duration="13962000" />
+      <workItem from="1583571637891" duration="15459000" />
     </task>
     <task id="LOCAL-00001" summary="修改">
       <created>1582859966484</created>
@@ -1273,7 +1244,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166199000" />
+    <option name="totallyTimeSpent" value="167696000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1288,7 +1259,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="1920" y="0" width="1440" height="860" id="Project" order="0" sideWeight="0.25381416" visible="true" weight="0.22133334" />
+      <window_info content_ui="combo" x="1920" y="0" width="1440" height="860" id="Project" order="0" sideWeight="0.25381416" visible="true" weight="0.22133334" />
       <window_info id="Structure" order="1" sideWeight="0.74618584" side_tool="true" weight="0.256" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1300,8 +1271,8 @@
       <window_info anchor="bottom" id="SQL Generator" weight="0.329718" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.18546638" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.2570499" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18546638" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2570499" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
@@ -1324,13 +1295,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Maven Projects" order="5" weight="0.0037313432" />
-      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.1712" />
+      <window_info anchor="right" id="Database" order="6" weight="0.1712" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" weight="0.32995737" />
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" />
       <window_info anchor="right" id="Alibaba Function Compute" order="11" />
-      <window_info anchor="right" id="Gradle" order="12" weight="0.3296" />
+      <window_info anchor="right" id="Gradle" order="12" visible="true" weight="0.3296" />
       <window_info anchor="right" id="ASM" order="13" weight="0.3296" />
       <window_info anchor="right" id="Alibaba Log Console" order="14" />
     </layout>
@@ -1537,13 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/readme">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="968">
@@ -1607,13 +1571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/hibernate_sequence">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/ac_twenty.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -1632,27 +1589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
           <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/osma_twenty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/quote">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/sar_twenty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1680,27 +1616,6 @@
             <element signature="e#264#265#0" expanded="true" />
             <element signature="e#298#299#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/ac_twenty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/bolling_twenty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/kline_twenty">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1738,17 +1653,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/kline_twenty">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/osma_twenty">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/sar_twenty">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/hibernate_sequence">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/bolling_twenty">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/quote">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/repository/QuoteRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9afc0971-6568-4c3d-b4f9-4e60c3a1cdd1/schema/palladium/table/ac_twenty">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/PortalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/RequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="32" />
+        <state relative-caret-position="232">
+          <caret line="60" column="32" lean-forward="true" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1757,8 +1733,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/monitor/NettyServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="528">
+          <caret line="46" column="43" lean-forward="true" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
           <folding>
             <element signature="e#1764#1765#0" expanded="true" />
             <element signature="e#1786#1787#0" expanded="true" />
@@ -1768,13 +1744,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/controller/PortalController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="522">
+          <caret line="42" column="14" lean-forward="true" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
         </state>
       </provider>
     </entry>
